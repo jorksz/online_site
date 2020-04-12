@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.online.site.start.mapper.UserMapper">
+   <!-- <resultMap id="user" type="com.online.site.start.entity.User">
+        <id column="id" property="id" jdbcType="int"></id>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"></result>
+        <result column="password" property="password" jdbcType="VARCHAR"></result>
+        <result column="mail_number" property="mailNumber" jdbcType="VARCHAR"></result>
+        <result column="role_id" property="roleId" jdbcType="int"></result>
+    </resultMap>-->
+    
+    <select id="getPassword" resultType="String">
+        select password from user
+        <where>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName}
+            </if>
+            <if test="mailNumber != null and mailNumber != ''">
+               or mail_number = #{mailNumber}
+            </if>
+        </where>
+    </select>
+
+    <select id="getUserName" resultType="user">
+        select * from user where user_name = #{userName}
+    </select>
+
+    <select id="getMail" resultType="user">
+        select * from user where mail_number = #{mailNumber};
+    </select>
+
+    <insert id="saveUser" parameterMap="user">
+        insert into user(user_name, password, mail_number) values (#{userName},
+        #{password}, #{mailNumber})
+    </insert>
+
+    <select id="getUser" resultType="user">
+        select * from user;
+    </select>
+
+    <update id="updateUserMessage">
+        update user set user_name = #{userName}, password = #{password}, user_mail = #{userMail}
+            where id = #{id}
+    </update>
+
+    <delete id="deleteUser">
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="updatePassword">
+        update user set password = #{password} where user_mail = #{userMail}
+    </update>
+
+
+
+</mapper>
