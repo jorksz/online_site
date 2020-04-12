@@ -6,8 +6,8 @@ public interface MailService {
 
     /**
      * 保存邮件信息
-     * @param mail
+     * @param mailNumber 邮箱
      * @return
      */
-    boolean saveMail(Mail mail);
+    boolean saveMail(String mailNumber);
 }

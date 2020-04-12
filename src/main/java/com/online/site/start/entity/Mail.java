@@ -9,9 +9,9 @@ public class Mail {
     private Integer id;
     private String title;
     private String content;
-    private Integer toMailNumber;
-    private Date startTime;
-    private Date endTime;
+    private String toMailNumber;
+    private String startTime;
+    private String endTime;
     private String verificationCode;
 
     public Integer getId() {
@@ -38,27 +38,27 @@ public class Mail {
         this.content = content;
     }
 
-    public Integer getToMailNumber() {
+    public String getToMailNumber() {
         return toMailNumber;
     }
 
-    public void setToMailNumber(Integer toMailNumber) {
+    public void setToMailNumber(String toMailNumber) {
         this.toMailNumber = toMailNumber;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
