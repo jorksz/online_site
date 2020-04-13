@@ -53,4 +53,9 @@ public class UserServiceImpl implements UserService {
     public boolean deleteUser(Integer id) {
         return userMapper.deleteUser(id) > 0;
     }
+
+    @Override
+    public List<User> getUser(String userName) {
+        return userMapper.getUserName(userName);
+    }
 }

@@ -1,6 +1,7 @@
 package com.online.site.start.controller;
 
 import com.online.site.start.entity.User;
+import com.online.site.start.service.RoleService;
 import com.online.site.start.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,15 +19,26 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
     public boolean checkUserExist(@PathVariable String userName){
         return userService.checkUserNameExist(userName);
     }
 
     @RequestMapping(value = "/login/{userName}/{password}", method = RequestMethod.GET)
-    public boolean login(@PathVariable String userName, @PathVariable String password){
+    public String login(@PathVariable String userName, @PathVariable String password){
             String loginPassword = Optional.ofNullable(userService.getPassword(userName)).orElse("");
-            return password.equals(loginPassword);
+            if (password.equals(loginPassword)){
+                int id = 0;
+                for (User user : userService.getUser(userName)){
+                    id = user.getId();
+                }
+                return Optional.ofNullable(roleService.getRole(id)).orElse("");
+
+            }
+            return "";
     }
 
     @RequestMapping(value = "/send/{mailNumber}")

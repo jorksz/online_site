@@ -27,10 +27,10 @@
     </select>
 
     <select id="getMail" resultType="user">
-        select * from user where mail_number = #{mailNumber};
+        select * from user where mail_number = #{mailNumber}
     </select>
 
-    <insert id="saveUser" parameterMap="user">
+    <insert id="saveUser" parameterType="user">
         insert into user(user_name, password, mail_number) values (#{userName},
         #{password}, #{mailNumber})
     </insert>

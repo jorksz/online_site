@@ -60,4 +60,11 @@ public interface UserService {
      * @return
      */
     boolean deleteUser(Integer id);
+
+    /**
+     * 查询用户详细信息
+     * @param userName 邮箱或者用户名
+     * @return
+     */
+    List<User> getUser(String userName);
 }
