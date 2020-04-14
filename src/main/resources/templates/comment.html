@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../static/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../static/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+
+    <!--<link rel="stylesheet" href="../static/plugins/iCheck/all.css">-->
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../static/dist/css/skins/_all-skins.min.css">
+
+    <!--    -->
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="../static/dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <!--    <script src="../static/dist/bootstrap/jquery/jquery.min.js"></script>-->
+    <script src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../static/dist/bootstrap/js/bootstrap.min.js"></script>
+
+
+    <link href="../static/dist/Admin/nav/fonts/iconfont.css" rel="stylesheet">
+
+    <script src="../static/dist/Admin/nav/js/nav.js"></script>
+
+    <!--table需要的静态资源-->
+
+    <link href="../static/dist/Admin/label/bootstrap-table.css" rel="stylesheet" media="screen">
+    <script src="../static/dist/Admin/label/bootstrap-table.js" type="text/javascript"></script>
+    <script src="../static/dist/Admin/label/bootstrap-table-zh-CN.js" charset="UTF-8"
+            type="text/javascript"></script>
+    <!--    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="../static/dist/js/html5shiv.min.js"></script>
+    <script src="../static/dist/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!--    顶部导航栏-->
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <!-- 缩小时显示的字样 -->
+            <span class="logo-mini"><b>后台</b>管理</span>
+            <!-- 正常时显示的字样 -->
+            <span class="logo-lg"><b>后台</b>管理</span>
+        </a>
+        <!--头部样式 : style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- 左边导航栏. 包括logo和侧边栏 -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- 侧边用户面板 -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <!--管理员名称-->
+                    <p>ali</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <!--            侧边栏按钮-->
+            <ul class="sidebar-menu" data-widget="tree">
+                <!--                网站基本信息-->
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-dashboard"></i> <span>网站基本信息</span>
+
+                    </a>
+                </li>
+                <!--                视频管理-->
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>视频管理</span>
+
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="auditing.html"><i class="fa fa-circle-o"></i> 待审核</a></li>
+                        <li><a href="pass.html"><i class="fa fa-circle-o"></i> 已通过</a></li>
+
+                    </ul>
+                </li>
+                <!--                用户管理-->
+                <li>
+                    <a href="manageruser.html">
+                        <i class="fa fa-th"></i> <span>用户管理</span>
+
+                    </a>
+                </li>
+                <!--                消息管理-->
+                <!--                评论管理-->
+                <li class="active">
+                    <a href="comment.html">
+                        <i class="fa fa-laptop"></i>
+                        <span>帖子管理</span>
+                    </a>
+                </li>
+                <!--                广告管理-->
+
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!--    页面主要内容-->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                帖子管理
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">帖子管理</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <!--<button type="button" class="btn btn-success">删除</button>-->
+                            <h3 class="box-title">用户评论信息</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div id="reportTableDiv">
+                                <table id="reportTable"></table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <!-- /.content -->
+
+        <!--        删除模态框-->
+        <div class="modal modal-warning fade" id="modal-warning">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">确定删除吗？</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">关闭</button>
+                        <button id="del-event" type="button" class="btn btn-outline">确认</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+
+    <!--    页脚-->
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+        <strong>Copyright &copy; 2020.在线学习网站</strong> All rights
+        reserved.
+    </footer>
+
+    <!--    更换主题侧边栏-->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+
+
+            </div>
+
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!--&lt;!&ndash; jQuery 3 &ndash;&gt;-->
+<!--<script src="../static/bower_components/jquery/dist/jquery.min.js"></script>-->
+<!--&lt;!&ndash; Bootstrap 3.3.7 &ndash;&gt;-->
+<!--<script src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<!--&lt;!&ndash; DataTables &ndash;&gt;-->
+<!--<script src="../static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>-->
+<!--<script src="../static/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>-->
+<!--SlimScroll -->
+<!--<script src="../static/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>-->
+<!--&lt;!&ndash; FastClick &ndash;&gt;-->
+<!--<script src="../static/bower_components/fastclick/lib/fastclick.js"></script>-->
+
+<!--&lt;!&ndash; iCheck 1.0.1 &ndash;&gt;-->
+<!--<script src="../static/plugins/iCheck/icheck.min.js"></script>-->
+<!--&lt;!&ndash; AdminLTE App &ndash;&gt;-->
+<!--<script src="../static/dist/js/adminlte.min.js"></script>-->
+<!--&lt;!&ndash; AdminLTE for demo purposes &ndash;&gt;-->
+<!--<script src="../static/dist/js/color.js"></script>-->
+<!-- page script -->
+
+<!--<script>-->
+<!--$(function () {-->
+<!--$('#example1').DataTable()-->
+<!--$('#example2').DataTable({-->
+<!--'paging': true,-->
+<!--'lengthChange': false,-->
+<!--'searching': true,-->
+<!--'ordering': false,-->
+<!--'info': true,-->
+<!--'autoWidth': false-->
+<!--})-->
+<!--});-->
+<!--</script>-->
+<!--<script>-->
+<!--$(function () {-->
+<!--//Flat red color scheme for iCheck-->
+<!--$('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({-->
+<!--checkboxClass: 'icheckbox_flat-green',-->
+<!--radioClass: 'iradio_flat-green'-->
+<!--})-->
+<!--});-->
+<!--$("#selectAll").click(function () {-->
+<!--alert('sd');-->
+<!--$("#tablebody input:checkbox").each(function () {-->
+<!--$(this).prop('checked', true);//-->
+
+<!--});-->
+<!--});-->
+<!--</script>-->
+
+<!--
+* @Author: yzh
+* @Date: 2019/6/6 17:14
+* @Description： 评论信息的管理
+-->
+
+<!--未分页实现-->
+<!--<script>-->
+<!--$(function () {-->
+<!--//把前面的静态数据置空-->
+<!--$("#example3").empty();-->
+<!--VideoCommentSelect();-->
+
+<!--});-->
+<!--function VideoCommentSelect() {-->
+<!--$.ajax({-->
+<!--url: "/videoComment/getVideoComment",-->
+<!--type: "get",-->
+<!--dataType: "json",-->
+<!--//默认执行成功-->
+<!--success: function (data) {-->
+<!--//控制台打印-->
+<!--console.log(data.data);-->
+<!--showVideoComment(data);-->
+<!--alert("获取评论信息成功！");-->
+<!--},-->
+<!--error: function(){-->
+<!--alert("获取评论信息失败！");-->
+<!--}-->
+<!--});-->
+
+<!--}-->
+
+<!--function showVideoComment(data) {-->
+<!--//控制台打印-->
+<!--console.log("第一次：" + data.data.length);-->
+<!--//按格式从数据库取数据-->
+<!--var appendhtml =-->
+<!--"<thead>\n" +-->
+<!--"<tr>\n" +-->
+<!--"<th>" + "评论者" + "</th>" +-->
+<!--"<th>" + "评论内容" + "</th>" +-->
+<!--"<th>" + "评论时间" + "</th>" +-->
+<!--"<th>" + "操作" + "</th>" +-->
+<!--"</tr>" +-->
+<!--"</thead>";-->
+<!--for (var i = 0; i < data.data.length; i++) {-->
+<!--appendhtml += "<tbody>\n" +-->
+<!--"<tr>\n" +-->
+<!--"<td>" + data.data[i].user.userName + "</td>" +-->
+<!--"<td>" + data.data[i].content + "</td>" +-->
+<!--"<td>" + data.data[i].createTime + "</td>" +-->
+<!--"<td>\n" +-->
+<!--"<div class=\"btn-group\">" +-->
+<!--"<button type=\"button\" class=\"btn btn-warning\"  data-toggle=\"modal\" data-target=\"#modal-warning\">删除</button>\n" +-->
+<!--"</div>\n" +-->
+<!--"</td>" +-->
+<!--"</tr>"-->
+<!--"</tbody>";-->
+<!--}-->
+<!--//将取得的数据追加进去-->
+<!--$("#example3").append(appendhtml);-->
+
+<!--}-->
+<!--</script>-->
+
+<!-- ./wrapper -->
+
+<!--
+* @Author: yzh
+* @Date: 2019/6/10 14:14
+* @Description： 评论信息的管理
+-->
+
+<!--有分页实现-->
+<script type="text/javascript">
+
+    $(function () {
+        $('#reportTable').bootstrapTable({
+
+            url: '/videoComment/getVideoComment', // 请求后台的URL（*）
+            dataType: "json",
+            pagination: true, //前端处理分页
+            singleSelect: true,//是否只能单选
+            search: true, //显示搜索框，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            //toolbar: '#toolbar1', //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pageNumber: 1, //初始化加载第10页，默认第一页
+            pageSize: 7, //每页的记录行数（*）
+            pageList: [5, 10, 20, 50], //可供选择的每页的行数（*）
+            strictSearch: true,//设置为 true启用 全匹配搜索，false为模糊搜索
+            showColumns: true, //显示内容列下拉框
+            showRefresh: true, //显示刷新按钮
+            minimumCountColumns: 2, //当列数小于此值时，将隐藏内容列下拉框
+            clickToSelect: true, //设置true， 将在点击某行时，自动勾选rediobox 和 checkbox
+            // height: 450, //表格高度，如果没有设置height属性，表格自动根据记录条数决定表格高度#}
+            uniqueId: "id", //每一行的唯一标识，一般为主键列
+            showToggle: true, //是否显示详细视图和列表视图的切换按钮
+            cardView: false, //是否显示详细视图
+            //detailView: true, //是否显示父子表，设置为 true 可以显示详细页面模式,在每行最前边显示+号#}
+            sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
+
+            responseHandler: function (res) {
+                return {
+                    "rows": res.data   //数据
+                };
+            },
+
+            columns: [
+                {
+                    checkbox: true
+                },
+                //定义表头,这个表头必须定义,下边field后边跟的字段名字必须与后端传递的字段名字相同.如:id、name、price
+                //跟后端的字段名id  name price是完全一样的
+
+                {
+                    field: 'user.userName',
+                    title: '评论者',
+                    align: 'center'
+                },
+                {
+                    field: 'content',
+                    title: '评论内容',
+                    align: 'center',
+                },
+                {
+                    field: 'createTime',
+                    title: "评论时间",
+                    align: 'center'
+                },
+
+                {
+                    field: 'id',
+                    title: "操作",
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        //通过formatter可以自定义列显示的内容
+                        //value：当前field的值，即id
+                        //row：当前行的数据
+                        console.log("获取评论信息成功value:" + value);
+                        var a = '<button id="delButton" type="button" class="btn btn-warning" onclick="return del()">删除</button>';
+
+                        return a;
+
+                    },
+                    events: {
+                        "click #delButton": function (value, row, index) {
+                            //location.reload();    //操作完成后马上刷新页面
+                            console.log("row.id: " + row);
+                            console.log(value);
+                            $.ajax({
+                                url: '/videoComment/delVideoComment',
+                                type: 'get',
+                                data: {id: row},
+                                success: function (data) {
+                                    alert("删除成功！");
+                                    location.reload();   //操作完成后马上刷新页面
+                                    console.log("删除成功！");
+                                },
+                                error: function () {
+                                    alert("删除失败！");
+
+                                },
+                            });
+                        },
+
+                    }
+
+                },
+
+            ],
+        });
+    });
+        //删除框
+    // function del() {
+    //     var msg = "您真的确定要删除吗？\n\n请确认！";
+    //     if (confirm(msg)==true){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    //
+    // }
+
+    //alert("获取评论信息成功！");
+</script>
+
+<!-- SlimScroll -->
+<script src="../static/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../static/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../static/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../static/dist/js/color.js"></script>
+
+
+<!-- page script -->
+
+
+</body>
+</html>

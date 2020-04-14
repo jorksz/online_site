@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>历史记录</title>
+
+    <link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="../static/resources/css/history.css" rel="stylesheet">
+</head>
+
+<script>
+function setBodyWidth(){
+    var barWidthHelper=document.createElement('div');
+    barWidthHelper.style.cssText="overflow:scroll; width:100px; height:100px;";
+    document.body.appendChild(barWidthHelper);
+    var barWidth=barWidthHelper.offsetWidth-barWidthHelper.clientWidth;
+    document.body.removeChild(barWidthHelper);
+    var bodyWidth=window.screen.availWidth-barWidth;
+    return bodyWidth;
+}
+$(document).ready(
+    function(){
+    var bodyWidth=setBodyWidth()+"px";
+    //document.body.style.width=bodyWidth;
+    $("body").css("width",bodyWidth);
+    }
+)
+</script>
+<body>
+    <img width="100%" height="150" src="../static/resources/image/history-background.jpg">
+<div class="topspace">
+    <div class="top_title1">
+        <span class="glyphicon glyphicon-time" style="color: rgb(217, 109, 60); font-size: larger">
+            播放历史
+        </span>
+    </div>
+    <div class="top_title2">
+        <button type="button" class="btn btn-default" data-color="#0b93d5">删除历史</button>
+    </div>
+</div>
+
+<div class="video">
+    <div class="video_line_day">
+        今天 13：40
+    </div>
+    <div class="video_show">
+        <a href="#"><img width="200px" height="120px" src="../static/resources/image/test_history.jpg"></a>
+    </div>
+    <div class="video_title">
+        <a href="#"> 后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放</a>
+    </div>
+    <div class="video_time">
+        <span class="glyphicon glyphicon-hd-video" style="color: rgb(149, 121, 0);">&nbsp;看到03:41</span>
+    </div>
+    <div class="video_author">
+        <a ref="#">快乐的死肥宅</a> &nbsp;|&nbsp;<span>Java</span>
+    </div>
+    <div class="video_delete">
+        <span class="glyphicon glyphicon-trash"></span>
+    </div>
+    <div class="video_line">
+        <HR color=#987cb9>
+    </div>
+</div>
+<div class="video">
+    <div class="video_line_day">
+        今天 13：40
+    </div>
+    <div class="video_show">
+        <a href="#"><img width="200px" height="120px" src="../static/resources/image/test_history.jpg"></a>
+    </div>
+    <div class="video_title">
+        <a href="#"> 后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放</a>
+    </div>
+    <div class="video_time">
+        <span class="glyphicon glyphicon-hd-video" style="color: rgb(149, 121, 0);">&nbsp;看到03:41</span>
+    </div>
+    <div class="video_author">
+        <a ref="#">快乐的死肥宅</a> &nbsp;|&nbsp;<span>Java</span>
+    </div>
+    <div class="video_delete">
+        <span class="glyphicon glyphicon-trash"></span>
+    </div>
+    <div class="video_line">
+        <HR color=#987cb9>
+    </div>
+ </div>
+ <div class="video">
+     <div class="video_line_day">
+         今天 13：40
+     </div>
+     <div class="video_show">
+         <a href="#"><img width="200px" height="120px" src="../static/resources/image/test_history.jpg"></a>
+     </div>
+     <div class="video_title">
+         <a href="#"> 后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放</a>
+     </div>
+     <div class="video_time">
+         <span class="glyphicon glyphicon-hd-video" style="color: rgb(149, 121, 0);">&nbsp;看到03:41</span>
+     </div>
+     <div class="video_author">
+         <a ref="#">快乐的死肥宅</a> &nbsp;|&nbsp;<span>Java</span>
+     </div>
+     <div class="video_delete">
+         <span class="glyphicon glyphicon-trash"></span>
+     </div>
+     <div class="video_line">
+         <HR color=#987cb9>
+     </div>
+ </div>
+ <div class="video">
+     <div class="video_line_day">
+         今天 13：40
+     </div>
+     <div class="video_show">
+         <a href="#"><img width="200px" height="120px" src="../static/resources/image/test_history.jpg"></a>
+     </div>
+     <div class="video_title">
+         <a href="#"> 后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放</a>
+     </div>
+     <div class="video_time">
+         <span class="glyphicon glyphicon-hd-video" style="color: rgb(149, 121, 0);">&nbsp;看到03:41</span>
+     </div>
+     <div class="video_author">
+         <a ref="#">快乐的死肥宅</a> &nbsp;|&nbsp;<span>Java</span>
+     </div>
+     <div class="video_delete">
+         <span class="glyphicon glyphicon-trash"></span>
+     </div>
+     <div class="video_line">
+         <HR color=#987cb9>
+     </div>
+ </div>
+</body>
+</html>

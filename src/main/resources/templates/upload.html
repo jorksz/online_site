@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Data Tables</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../static/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../static/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../static/dist/css/skins/_all-skins.min.css">
+
+<!--    layui-->
+
+    <link rel="stylesheet" href="../static/layui/css/layui.css"  media="all">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="../static/dist/js/html5shiv.min.js"></script>
+    <script src="../static/dist/js/respond.min.js"></script>
+    <![endif]-->
+    <!--    -->
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="../static/dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <!--    <script src="../static/dist/bootstrap/jquery/jquery.min.js"></script>-->
+    <script src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../static/dist/bootstrap/js/bootstrap.min.js"></script>
+
+
+    <link href="../static/dist/Admin/nav/fonts/iconfont.css" rel="stylesheet">
+
+    <script src="../static/dist/Admin/nav/js/nav.js"></script>
+
+    <!--table需要的静态资源-->
+
+    <link href="../static/dist/Admin/label/bootstrap-table.css" rel="stylesheet" media="screen">
+    <script src="../static/dist/Admin/label/bootstrap-table.js" type="text/javascript"></script>
+    <script src="../static/dist/Admin/label/bootstrap-table-zh-CN.js" charset="UTF-8" type="text/javascript"></script>
+    <!--    -->
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <!--    顶部导航栏-->
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <!-- 缩小时显示的字样 -->
+            <span class="logo-mini"><b>F</b>VS</span>
+            <!-- 正常时显示的字样 -->
+            <span class="logo-lg"><b>Admin</b>FVS</span>
+        </a>
+        <!--头部样式 : style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- 左边导航栏. 包括logo和侧边栏 -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- 侧边用户面板 -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <!--管理员名称-->
+                    <p>admin</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <!--            侧边栏按钮-->
+            <ul class="sidebar-menu" data-widget="tree">
+                <!--                网站基本信息-->
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-dashboard"></i> <span>网站基本信息</span>
+
+                    </a>
+                </li>
+                <!--                视频管理-->
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>视频管理</span>
+
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="auditing.html"><i class="fa fa-circle-o"></i> 待审核</a></li>
+                        <li><a href="pass.html"><i class="fa fa-circle-o"></i> 已通过</a></li>
+                        <li class="active"><a href="upload.html"><i class="fa fa-circle-o"></i> 管理番剧</a></li>
+                        <li><a href="class.html"><i class="fa fa-circle-o"></i> 分类管理</a></li>
+                    </ul>
+                </li>
+                <!--                用户管理-->
+                <li>
+                    <a href="manageruser.html">
+                        <i class="fa fa-th"></i> <span>用户管理</span>
+
+                    </a>
+                </li>
+                <!--                消息管理-->
+                <li>
+                    <a href="message.html">
+                        <i class="fa fa-pie-chart"></i>
+                        <span>消息管理</span>
+                    </a>
+                </li>
+                <!--                评论管理-->
+                <li >
+                    <a href="comment.html">
+                        <i class="fa fa-laptop"></i>
+                        <span>评论管理</span>
+                    </a>
+                </li>
+                <!--                广告管理-->
+
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!--    页面主要内容-->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                番剧
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">番剧</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Custom Tabs -->
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab_1" data-toggle="tab">已上传番剧</a></li>
+                            <li><a href="#tab_2" data-toggle="tab">上传新番剧</a></li>
+<!--                            <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>-->
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">番剧</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div id="reportTableDiv">
+                                            <table id="reportTable"></table>
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                            </div>
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane" id="tab_2">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">名称</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item layui-form-text">
+                                    <label class="layui-form-label">简介</label>
+                                    <div class="layui-input-block">
+                                        <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                                    </div>
+                                </div>
+                                <div class="layui-upload">
+                                    <div class="layui-upload-list">
+                                        <table class="layui-table">
+                                            <thead>
+                                            <tr><th>文件名</th>
+                                                <th>大小</th>
+                                                <th>状态</th>
+                                                <th>操作</th>
+                                            </tr></thead>
+                                            <tbody id="demoList"></tbody>
+                                        </table>
+                                    </div>
+                                    <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+                                    <button type="button" class="layui-btn layui-btn-normal" id="testList">选择资源</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.tab-content -->
+                    </div>
+                    <!-- nav-tabs-custom -->
+                </div>
+                <!-- /.col -->
+
+            </div>
+            <!-- /.row -->
+
+
+        </section>
+        <!-- /.content -->
+
+
+    </div>
+
+
+<!--  更新番剧模态框  -->
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">更新</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="layui-upload-drag" id="test10">
+                        <i class="layui-icon"></i>
+                        <p>点击上传，或将文件拖拽到此处</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">更新</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!--    页脚-->
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+        <strong>Copyright &copy; 2019 工程实践IV.</strong> All rights
+        reserved.
+    </footer>
+
+    <!--    更换主题侧边栏-->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+
+
+            </div>
+
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+
+<!-- SlimScroll -->
+<script src="../static/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../static/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../static/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../static/dist/js/color.js"></script>
+<!--layui-->
+<script src="../static/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: '/upload/'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+
+        //多图片上传
+        upload.render({
+            elem: '#test2'
+            ,url: '/upload/'
+            ,multiple: true
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                });
+            }
+            ,done: function(res){
+                //上传完毕
+            }
+        });
+
+        //指定允许上传的文件类型
+        upload.render({
+            elem: '#test3'
+            ,url: '/upload/'
+            ,accept: 'file' //普通文件
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+        upload.render({ //允许上传的文件后缀
+            elem: '#test4'
+            ,url: '/upload/'
+            ,accept: 'file' //普通文件
+            ,exts: 'zip|rar|7z' //只允许上传压缩文件
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+        upload.render({
+            elem: '#test5'
+            ,url: '/upload/'
+            ,accept: 'video' //视频
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+        upload.render({
+            elem: '#test6'
+            ,url: '/upload/'
+            ,accept: 'audio' //音频
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+
+        //设定文件大小限制
+        upload.render({
+            elem: '#test7'
+            ,url: '/upload/'
+            ,size: 60 //限制文件大小，单位 KB
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+
+        //同时绑定多个元素，并将属性设定在元素上
+        upload.render({
+            elem: '.demoMore'
+            ,before: function(){
+                layer.tips('接口地址：'+ this.url, this.item, {tips: 1});
+            }
+            ,done: function(res, index, upload){
+                var item = this.item;
+                console.log(item); //获取当前触发上传的元素，layui 2.1.0 新增
+            }
+        })
+
+        //选完文件后不自动上传
+        upload.render({
+            elem: '#test8'
+            ,url: '/upload/'
+            ,auto: false
+            //,multiple: true
+            ,bindAction: '#test9'
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+
+        //拖拽上传
+        upload.render({
+            elem: '#test10',
+            url: '/upload/',
+            accept:'file',
+            done: function(res){
+                console.log(res)
+            }
+        });
+
+        //多文件列表示例
+        var demoListView = $('#demoList')
+            ,uploadListIns = upload.render({
+            elem: '#testList'
+            ,url: '/upload/'
+            ,accept: 'file'
+            ,multiple: true
+            ,auto: false
+            ,bindAction: '#testListAction'
+            ,choose: function(obj){
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var tr = $(['<tr id="upload-'+ index +'">'
+                        ,'<td>'+ file.name +'</td>'
+                        ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+                        ,'<td>等待上传</td>'
+                        ,'<td>'
+                        ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        ,'</td>'
+                        ,'</tr>'].join(''));
+
+                    //单个重传
+                    tr.find('.demo-reload').on('click', function(){
+                        obj.upload(index, file);
+                    });
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function(){
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+
+                    demoListView.append(tr);
+                });
+            }
+            ,done: function(res, index, upload){
+                if(res.code == 0){ //上传成功
+                    var tr = demoListView.find('tr#upload-'+ index)
+                        ,tds = tr.children();
+                    tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(3).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            ,error: function(index, upload){
+                var tr = demoListView.find('tr#upload-'+ index)
+                    ,tds = tr.children();
+                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+
+        //绑定原始文件域
+        upload.render({
+            elem: '#test20'
+            ,url: '/upload/'
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+
+    });
+</script>
+<!-- page script -->
+<script>
+    $(function () {
+        $('#reportTable').bootstrapTable({
+            url: '/upload/getUpload', // 请求后台的URL（*）
+            dataType: "json",
+            pagination: true, //前端处理分页
+            singleSelect: false,//是否只能单选
+            search: true, //显示搜索框，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            //toolbar: '#toolbar1', //工具按钮用哪个容器
+            striped: true, //是否显示行间隔色
+            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pageNumber: 1, //初始化加载第10页，默认第一页
+            pageSize: 8, //每页的记录行数（*）
+            pageList: [5, 10, 50, 100], //可供选择的每页的行数（*）
+            strictSearch: true,//设置为 true启用 全匹配搜索，false为模糊搜索
+            showColumns: true, //显示内容列下拉框
+            showRefresh: true, //显示刷新按钮
+            minimumCountColumns: 2, //当列数小于此值时，将隐藏内容列下拉框
+            clickToSelect: true, //设置true， 将在点击某行时，自动勾选rediobox 和 checkbox
+            height: 450, //表格高度，如果没有设置height属性，表格自动根据记录条数决定表格高度#}
+            uniqueId: "id", //每一行的唯一标识，一般为主键列
+            showToggle: true, //是否显示详细视图和列表视图的切换按钮
+            cardView: false, //是否显示详细视图
+            //detailView: true, //是否显示父子表，设置为 true 可以显示详细页面模式,在每行最前边显示+号#}
+            sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
+            responseHandler: function(res) {
+                return {
+                    "rows": res.data   //数据
+                };
+            },
+            columns: [
+                {
+                    checkbox: true
+                },
+                //定义表头,这个表头必须定义,下边field后边跟的字段名字必须与后端传递的字段名字相同.如:id、name、price
+                //跟后端的字段名id  name price是完全一样的
+
+                {
+                    field: 'name',
+                    title: '番剧名',
+                    align: 'center'
+                }, {
+                    field: 'time',
+                    title: '上传时间',
+                    align: 'center',
+                },
+                {
+                    title: "状态",
+                    field: 'status',
+                    align: 'center'
+                },
+                //编辑按钮，查看按钮，更新按钮
+            ],
+        });
+    });
+</script>
+
+</body>
+</html>

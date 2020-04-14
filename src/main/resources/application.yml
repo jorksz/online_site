@@ -11,6 +11,12 @@ spring:
     username: 1223360222@qq.com
     password: wmpqszdeiwtugjgj
 
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    cache: false
+
 
 
 

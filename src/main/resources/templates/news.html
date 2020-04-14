@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>消息中心</title>
+
+
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../static/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../static/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/dist/css/AdminLTE.min.css">
+
+    <link rel="stylesheet" href="../tempcss/layui/css/layui.css">
+    <link rel="stylesheet" href="../tempcss/bilibili/bilibili.css">
+
+    <link rel="stylesheet" href="../static/dist/css/news.css">
+
+
+</head>
+<style>
+    .comment-onclick {
+        display: none;
+    }
+
+    .direct-chat-messages {
+        -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        transform: translate(0, 0);
+        padding: 10px;
+        height: 450px;
+        overflow: auto
+    }
+
+    html{
+        background: #F6F6F6;
+    }
+</style>
+<script type="text/javascript">
+
+
+    window.onload = function () {
+        var catalogUl = document.getElementById("catalog-ul");
+        var ali = catalogUl.getElementsByTagName("li");
+        var comment = document.getElementById("new-comment");
+        var newComment = comment.children;
+        for (var i = 0; i < ali.length; i++) {
+            ali[i].index = i;
+            ali[i].onclick = function () {
+                for (var j = 0; j < ali.length; j++) {
+                    ali[j].className = "";
+                    newComment[j].className = "comment-onclick";
+                }
+                this.className = "active";
+                newComment[this.index].className = "";
+            }
+        }
+
+    }
+</script>
+<body style="background: #F6F6F6">
+<header class="main-header">
+    <li class="layui-lump" id="head">
+        <ul class="layui-nav">
+            <li class="layui-nav-logo">
+                <a href="index2.html"><i class="layui-icon layui-icon-website" style="font-size: 15px"></i>FREE</a>
+            </li>
+
+            <li style="float: right" class="layui-nav-item">
+                <a href="">退出</a>
+            </li>
+            <li style="float: right" class="layui-nav-item">
+                <a href="">历史记录</a>
+            </li>
+            <li style="float: right" class="layui-nav-item">
+                <a href="">消息</a>
+            </li>
+            <li style="float: right" class="layui-nav-item">
+                <a href=""><img class="layui-nav-img" src="//t.cn/RCzsdCq">哔了狗了</a>
+            </li>
+
+
+            <div class="bili-header-m">
+                <li style="float: right;height: 15px;right: -30px" class="layui-nav-item">
+                    <div class="search" id="search">
+                        <form class="searchform"  method="post">
+                            <input id="searchcomment" class="search-keyword" accesskey="s" type="text"
+                                   placeholder="搜索内容" value=""
+                                   x-webkit-grammar="builtin:translate" x-webkit-speech=""
+                                   autocomplete="off">
+                            <button class="search-submit" type="button" onclick="Search()" ></button>
+                        </form>
+
+                    </div>
+                </li>
+            </div>
+
+            </li>
+
+
+        </ul>
+    </li>
+</header>
+
+
+<div class="content" style="margin-top: 80px;">
+    <div class="catalog">
+        <div class="catalog-head">
+            <img style="width: 20px; height: 20px;" src="../static/dist/img/news-logo.png">
+            <span>消息中心</span>
+
+        </div>
+        <ul class="catalog-ul" id="catalog-ul">
+            <li><a href="#" onclick="getCommentReplyData(1)">回复我的</a></li>
+            <li><a href="#" onclick="getPraiseData(1)">收到的赞</a></li>
+            <li><a href="#" onclick="getSystemMessage(1)">系统通知</a></li>
+            <li><a href="#" onclick="getMessageBox()">我的消息</a></li>
+        </ul>
+    </div>
+
+    <div class="new-comment" id="new-comment" style="position: fixed;">
+        <div class="comment" id="commentReply">
+            <div class="comment-catalog">&nbsp;&nbsp;回复我的</div>
+
+            <div class="comment-content">
+                <div class="comment-content-img">
+                    <a href="#"><img style="width: 50px; height: 50px;" src="../static/dist/img/head-portrait.png"></a>
+                </div>
+                <div class="comment-content-user">
+                    <span class="comment-content-user-username"><b><a href="#">科学声音</a></b></span>
+                    <span class="comment-content-user-time">2019年3月19日&nbsp;09:18</span>
+                    <span class="comment-content-user-delete"><a href="#">删除</a> </span>
+                    <br>
+                    <span class="comment-content-response"><span style="color: #00a65a">回复我</span> :民间抽样调查的方法，且不说样本很可能缺乏随机性的问题。更重要的是，它无法成为科学依据。</span>
+                </div>
+                <div class="comment-content-remark">
+                        <span class="comment-content-remark-content">不科学，1.百度了一下，没找到全国有机大米促进会，2.据研究，没有表明研究出处，
+                            3.被长期赞美大米比普通大米更有益健康，违反常识，没有科学依据，4.95％未标明</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment comment-onclick" id="myPraise">
+
+        </div>
+
+        <div class="comment comment-onclick" id="systemMessage">
+            <div class="comment-catalog">&nbsp;&nbsp;系统通知</div>
+            <div class="comment-content comment-content-praise">
+                <div class="comment-content-user">
+                    <span class="comment-content-user-username"><b><a href="#">科学声音</a></b></span>
+                    <span class="comment-content-user-time">2019年3月19日&nbsp;09:18</span>
+                    <br>
+                    <span class="comment-content-response">如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？
+                            根据世界末日主题脑补一段故事来参加脑洞君活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳></span>
+                    <span class="comment-content-notify"><a href="#">点击前往</a></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="comment comment-onclick" id="myMessage">
+            <div class="comment-catalog" style="width: 900px;">&nbsp;&nbsp;我的消息</div>
+            <div class="comment-content" style="height: 620px; padding: 0px 0px;width: 900px;">
+
+                <div class="my-news-user-list">
+                    <div class="my-news-last-news" style="border-right: 1px solid #b9b9b9;">
+                        <span>&nbsp;&nbsp;&nbsp;近期消息</span></div>
+                    <div id="showUser">
+                    <a href="#">
+                        <div class="my-news-user-name">
+                            <div class="comment-content-img"
+                                 style="margin-top: 5px; width: 40px; height: 40px;margin-left: 10px;">
+                                <img style="width: 40px; height: 40px;" src="../static/dist/img/head-portrait.png">
+                            </div>
+                            <div style="padding-top: 15px;">
+                                <span style="margin-left: 10px;font-size: 15px;">雨中的泡沫</span>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                        class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="my-news-user-name">
+                            <div class="comment-content-img"
+                                 style="margin-top: 5px; width: 40px; height: 40px;margin-left: 10px;">
+                                <img style="width: 40px; height: 40px;" src="../static/dist/img/head-portrait.png">
+                            </div>
+                            <div style="padding-top: 15px;">
+                                <span style="margin-left: 10px;font-size: 15px;">幻夜星辰</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="my-news-user-name">
+                            <div class="comment-content-img"
+                                 style="margin-top: 5px; width: 40px; height: 40px;margin-left: 10px;">
+                                <img style="width: 40px; height: 40px;" src="../static/dist/img/head-portrait.png">
+                            </div>
+                            <div style="padding-top: 15px;">
+                                <span style="margin-left: 10px;font-size: 15px;">陌上花开</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="my-news-user-name">
+                            <div class="comment-content-img"
+                                 style="margin-top: 5px; width: 40px; height: 40px;margin-left: 10px;">
+                                <img style="width: 40px; height: 40px;" src="../static/dist/img/head-portrait.png">
+                            </div>
+                            <div style="padding-top: 15px;">
+                                <span style="margin-left: 10px;font-size: 15px;">天才少年</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="my-news-user-name">
+                            <div class="comment-content-img"
+                                 style="margin-top: 5px; width: 40px; height: 40px;margin-left: 10px;">
+                                <img style="width: 40px; height: 40px;" src="../static/dist/img/head-portrait.png">
+                            </div>
+                            <div style="padding-top: 15px;">
+                                <span style="margin-left: 10px;font-size: 15px;">萌萌哒</span>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                </div>
+
+                <div>
+                    <!--                    聊天框-->
+                    <div class="row">
+                        <div class="col-md-9">
+                            <!-- DIRECT CHAT SUCCESS -->
+                            <div class="box box-success direct-chat direct-chat-success" id="messageshow">
+                                <span>没有更多消息了</span>
+                            </div>
+                            <!--/.direct-chat -->
+                        </div>
+                    </div>
+                    <!--                    ./聊天框-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery 3 -->
+<script src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+<!--cookie-->
+<script src="../static/plugins/cookie/jquery.cookie.min.js"></script>
+
+<script src="../static/tools.js"></script>
+
+<script src="../static/layui/layui.js" charset="utf-8"></script>
+
+<!--sockJS cdn-->
+<script src="../static/plugins/stomp/sockjs.min.js"></script>
+<!--stomp cdn-->
+<script src="../static/plugins/stomp/stomp.min.js"></script>
+
+<!-- Bootstrap 3.3.7 -->
+<script src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src="../static/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../static/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../static/dist/js/adminlte.min.js"></script>
+
+<script>
+    layui.use('element', function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //监听导航点击
+        element.on('nav(demo)', function (elem) {
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+<script language="JavaScript">
+    function Search() {
+        var videoName=$("#searchcomment").val();
+        window.location.href="/user/searchresult.html?VideoName="+videoName;
+    }
+
+</script>
+
+<script>
+    var userId = $.cookie('userId');
+
+    var rId=getUrlParam("rId");
+
+    var userIcon;
+
+
+    /**
+     *获得当前登录用户的用户信息
+     */
+    function getUserInfo(userId) {
+        var result;
+        $.ajax({
+            url: '/user/getUserInfo',
+            type: 'get',
+            data: {
+                userId: userId
+            },
+            success: function (data) {
+                if (data.code == 0) {
+                    result = data.data;
+                    showhead(result);
+                }
+            }
+        });
+    };
+
+    function showhead(data){
+        $("#head").empty();
+        var appendhtml='';
+        var user=data;
+        appendhtml+=' <ul class="layui-nav">\n' +
+            '        <li class="layui-nav-logo">\n' +
+            '            <a href="index2.html"><i class="layui-icon layui-icon-website" style="font-size: 15px"></i>FREE</a>\n' +
+            '        </li>\n' +
+            '\n' +
+            '        <li style="float: right" class="layui-nav-item">\n' +
+            '            <a href="/user/login.html">退出</a>\n' +
+            '        </li>\n' +
+            '        <li style="float: right" class="layui-nav-item">\n' +
+            '            <a href="">历史记录</a>\n' +
+            '        </li>\n' +
+            '        <li style="float: right" class="layui-nav-item">\n' +
+            '            <a href="/user/news.html">消息</a>\n' +
+            '        </li>\n' +
+            '        <li style="float: right" class="layui-nav-item">\n' +
+            '            <a href=""><img class="layui-nav-img" src="..'+user.icon+'">'+user.userName+'</a>\n' +
+            '        </li>\n' +
+            '\n' +
+            '\n' +
+            '        <div class="bili-header-m">\n' +
+            '            <li style="float: right;height: 15px;right: -30px" class="layui-nav-item">\n' +
+            '                <div class="search" id="search">\n' +
+            '                    <form class="searchform"  method="post">\n' +
+            '                        <input id="searchcomment" class="search-keyword" accesskey="s" type="text"\n' +
+            '                                                    placeholder="搜索内容" value=""\n' +
+            '                                                     x-webkit-grammar="builtin:translate" x-webkit-speech=""\n' +
+            '                                                    autocomplete="off">\n' +
+            '                        <button class="search-submit" type="button" onclick="Search()" ></button>\n' +
+            '                    </form>\n' +
+            '\n' +
+            '                </div>\n' +
+            '            </li>\n' +
+            '        </div>\n' +
+            '\n' +
+            '        </li>\n' +
+            '\n' +
+            '\n' +
+            '    </ul>';
+        $("#head").append(appendhtml);
+    }
+
+
+    $(function () {
+
+        connect();
+
+
+
+        $.ajax({
+            url: '/user/getUserInfo',
+            type: 'get',
+            data: {
+                userId: userId
+            },
+            success:function (data) {
+                userIcon=data.data.icon;
+            }
+
+        });
+
+        getUserInfo(userId);
+
+        if(rId!=null){
+            $("#myMessage").removeClass("comment-onclick");
+            $("#commentReply").addClass("comment-onclick");
+            addMessageBox(rId);
+        }else{
+            getCommentReplyData(1);
+        }
+    })
+
+    //从后台得到评论数据
+    function getCommentReplyData(currPage) {
+        $.ajax({
+            url: "/commentReply/getUserReply",
+            type: "get",
+            dataType: "json",
+            data: {
+                userId: userId,
+                currPage: currPage
+            },
+            success: function (data) {
+                console.log(data);
+                console.log(data.data.lists.length);
+                showCommentReplyData(data.data.lists);
+            }
+        });
+    }
+
+    //在前端页面展示数据
+    function showCommentReplyData(data) {
+        $("#commentReply").empty();
+        var appendhtml = "<div class=\"comment-catalog\">&nbsp;&nbsp;回复我的</div>";
+        for (var i = 0; i < data.length; i++) {
+            var commentReply = data[i].commentReply;
+            appendhtml += "<div class=\"comment-content\">\n" +
+                "                <div class=\"comment-content-img\">\n" +
+                "                    <a href=\"usercenter.html?id=" + data[i].userId + "\"><img style=\"width: 50px; height: 50px;\" src=\".."+data[i].icon+"\"></a>\n" +
+                "                </div>\n" +
+                "                <div class=\"comment-content-user\">\n" +
+                "                    <span class=\"comment-content-user-username\"><b><a href=\"usercenter.html?id=" + data[i].userId + "\">" + data[i].userName + "</a></b></span>\n" +
+                "                    <span class=\"comment-content-user-time\">" + changeDateFormat(commentReply.replyTime) + "</span>\n" +
+                "                    <br>\n" +
+                "                    <span class=\"comment-content-response\"><span style=\"color: #00a65a\">回复我</span> :" + commentReply.content + "</span>\n" +
+                "                </div>\n" +
+                "                <div class=\"comment-content-remark\">\n" +
+                "                        <span class=\"comment-content-remark-content\">" + commentReply.myContent + "</span>\n" +
+                "                </div>\n" +
+                "            </div>"
+        }
+        $("#commentReply").append(appendhtml);
+    }
+
+
+    function getPraiseData(currPage) {
+        $.ajax({
+            url: "/user/getPraiseInfo",
+            type: "get",
+            dataType: "json",
+            data: {
+                userId: userId,
+                currPage: currPage
+            },
+            success: function (data) {
+                console.log(data);
+                console.log(data.data.lists.length);
+                showPraiseData(data.data.lists);
+            }
+        });
+    }
+
+    function showPraiseData(data) {
+        $("#myPraise").empty();
+
+        var appendhtml='<div class="comment-catalog">&nbsp;&nbsp;收到的赞</div>';
+        for (var i=0;i<data.length;i++){
+            appendhtml+='<div class="comment-content comment-content-praise"  style="width: 900px">\n' +
+                '                <div class="comment-content-img" style="margin-top: 10px">\n' +
+                '                    <a href="#"><img style="width: 50px; height: 50px;" src="../static/dist/img/praise.png"></a>\n' +
+                '                </div>\n' +
+                '                <div class="comment-content-user" style="margin-top: 10px">\n' +
+                '                    <span class="comment-content-user-username"><b><a href="#">'+data[i].userName+'</a></b></span>\n' +
+                '                    <span class="comment-content-response" style="color: #0b58a2"><a href="#">'+data[i].comment+'</a></span>\n' +
+                '                    <span class="comment-content-user-time">'+changeDateFormat(data[i].time)+'</span>\n' +
+                '                </div>\n' +
+                '            </div>';
+        }
+        $("#myPraise").append(appendhtml);
+
+    }
+
+
+    //从后台得到系统通知数据
+    function getSystemMessage(currPage) {
+
+        $.ajax({
+            url: "/systemmessage/getMessage",
+            type: "get",
+            data: {
+                userId: userId,
+                currPage: currPage,
+            },
+            success: function (data) {
+                console.log(data);
+                showSystemMessage(data.data.lists);
+            }
+        });
+    }
+
+
+    //展示系统通知数据
+    function showSystemMessage(data) {
+        $("#systemMessage").empty();
+        var appendhtml = '<div class="comment-catalog">&nbsp;&nbsp;系统通知</div>';
+
+
+        for (var i = 0; i < data.length; i++) {
+            appendhtml += '<div class="comment-content comment-content-praise">\n' +
+                '                <div class="comment-content-user">\n' +
+                '                    <span class="comment-content-user-username"><b>' + data[i].title + '</b></span>\n' +
+                '                    <span class="comment-content-user-time">' + changeDateFormat(data[i].sendTime) + '</span>\n' +
+                '                    <br>\n' +
+                '                    <span class="comment-content-response">' + data[i].content + '</span>\n' +
+                '                    <span class="comment-content-notify"><a href="#">点击前往</a></span>\n' +
+                '                </div>\n' +
+                '            </div>';
+        }
+
+        $('#systemMessage').append(appendhtml);
+    }
+
+
+
+    /**
+     * 客户端连接服务端websocket
+     * 并且订阅一系列频道，用来接收不同种类的消息
+     * /app/chat/participants ：当前在线人数的消息，只会接收一次
+     * /topic/login ： 新登录用户的消息
+     * /topic/chat/message ： 聊天内容消息
+     * /topic/logout : 用户离线的消息
+     * 服务器发回json实例{"userName":"chris","sendDate":1494664021793,"content":"hello","messageType":"text"}
+     * messageType分为：text与image
+     */
+    function connect() {
+        var socket = new SockJS("/websocket");
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe('/user/' + userId + '/chat/message', function (message) {
+
+
+                var json = JSON.parse(message.body);
+                var data = json;
+                var chatMessages = data.chatMessages;
+                var sendId = data.sendId;
+                var userName = data.userName;
+                var icon = data.icon;
+                var receiveId = data.receiveId;
+                var receiveName = data.receiveName;
+                var receiveIcon = data.receiveIcon;
+
+
+                var appendhtml = '';
+                for (var i = 0; i < chatMessages.length; i++) {
+                    var chatMessage = chatMessages[i];
+                    appendhtml += '<div class="direct-chat-msg">\n' +
+                        '                                            <div class="direct-chat-info clearfix">\n' +
+                        '                                                <span class="direct-chat-timestamp pull-right">' + changeDateFormat(chatMessage.sendTime) + '</span>\n' +
+                        '                                            </div>\n' +
+                        '                                            <!-- /.direct-chat-info -->\n' +
+                        '                                            <img class="direct-chat-img" src="..'+icon+'"\n' +
+                        '                                                 alt="Message User Image"><!-- /.direct-chat-img -->\n' +
+                        '                                            <div class="direct-chat-text">\n' +
+                        '                                                ' + chatMessage.message + '\n' +
+                        '                                            </div>\n' +
+                        '                                            <!-- /.direct-chat-text -->\n' +
+                        '                                        </div>'
+                }
+
+                var messagenumber=Number($("#"+sendId+"span").text());
+                $("#"+sendId+"span").remove();
+                messagenumber+=1;
+                $("#"+sendId).append('<span id="'+sendId+'span" data-toggle="tooltip" class="badge bg-aqua-active">'+messagenumber+'</span>');
+                var divid=sendId<receiveId?sendId+'_'+receiveId:receiveId+'_'+sendId;
+                $("#"+divid).append(appendhtml);
+                var container = document.getElementById(divid);
+                container.scrollTop = container.scrollHeight;
+
+            })
+        });
+    }
+
+
+    /**
+     * 发送输入框中的信息
+     */
+    function sendMessage(sendId, receiveId) {
+        var content = $("#content").val();
+        console.log('发送消息内容' + content);
+        if (content.trim().length != 0) {
+            $("#content").val('');
+            stompClient.send("/app/chat/message", {}, JSON.stringify({
+                'receiveId': receiveId,
+                'message': content,
+                'sendId': sendId
+            }));
+
+            var appendhtml = '<div class="direct-chat-msg right">\n' +
+                '                                            <div class="direct-chat-info clearfix">\n' +
+                '                                                <span class="direct-chat-timestamp pull-left">' + changeDateFormat(new Date().getTime()) + '</span>\n' +
+                '                                            </div>\n' +
+                '                                            <!-- /.direct-chat-info -->\n' +
+                '                                            <img class="direct-chat-img" src="..'+userIcon+'"\n' +
+                '                                                 alt="Message User Image"><!-- /.direct-chat-img -->\n' +
+                '                                            <div class="direct-chat-text">\n' +
+                '                                                ' + content + '\n' +
+                '                                            </div>\n' +
+                '                                            <!-- /.direct-chat-text -->\n' +
+                '                                        </div>'
+
+
+            var divid=sendId<receiveId?sendId+'_'+receiveId:receiveId+'_'+sendId;
+            $("#"+divid).append(appendhtml);
+            var container = document.getElementById(divid);
+            container.scrollTop = container.scrollHeight;
+
+        }
+    }
+
+
+    /**
+     * 展示历史消息记录
+     * @param userId 自己的id
+     * @param receiveId 接收者的id
+     */
+    function showHistoryMessage(userId, receiveId) {
+        $.ajax({
+            url: '/chat/getMessages',
+            type: 'get',
+            data: {
+                mesId: userId + '_' + receiveId
+            },
+            success: function (data) {
+
+                if (data.code == 0) {
+                    $("#messageshow").empty()
+                    var data = data.data;//获取返回数据中的实际数据
+
+                    var chatMessages = data.chatMessages;
+                    var sendId = data.sendId;
+                    var userName = data.userName;
+                    var icon = data.icon;
+                    var receiveId = data.receiveId;
+                    var receiveName = data.receiveName;
+                    var receiveIcon = data.receiveIcon;
+
+
+                    var divid=sendId<receiveId?sendId+'_'+receiveId:receiveId+'_'+sendId;
+
+                    var appendhtml = '<div class="box-header with-border">\n' +
+                        '                                    <h3 class="box-title">' + receiveName + '</h3>\n' +
+                        '                                </div>\n' +
+                        '                                <!-- /.box-header -->\n' +
+                        '                                <div class="box-body">\n' +
+                        '                                    <!-- 聊天消息框 -->\n' +
+                        '                                    <div class="direct-chat-messages" id="'+divid+'">';
+
+                    for (var i = 0; i < chatMessages.length; i++) {
+                        var chatMessage = chatMessages[i];
+
+                        if (chatMessage.sendId == sendId) {
+                            appendhtml += '<div class="direct-chat-msg right">\n' +
+                                '                                            <div class="direct-chat-info clearfix">\n' +
+                                '                                                <span class="direct-chat-timestamp pull-left">' + changeDateFormat(chatMessage.sendTime) + '</span>\n' +
+                                '                                            </div>\n' +
+                                '                                            <!-- /.direct-chat-info -->\n' +
+                                '                                            <img class="direct-chat-img" src="..'+icon+'"\n' +
+                                '                                                 alt="Message User Image"><!-- /.direct-chat-img -->\n' +
+                                '                                            <div class="direct-chat-text">\n' +
+                                '                                                ' + chatMessage.message + '\n' +
+                                '                                            </div>\n' +
+                                '                                            <!-- /.direct-chat-text -->\n' +
+                                '                                        </div>'
+                        } else {
+                            appendhtml += '<div class="direct-chat-msg">\n' +
+                                '                                            <div class="direct-chat-info clearfix">\n' +
+                                '                                                <span class="direct-chat-timestamp pull-right">' + changeDateFormat(chatMessage.sendTime) + '</span>\n' +
+                                '                                            </div>\n' +
+                                '                                            <!-- /.direct-chat-info -->\n' +
+                                '                                            <img class="direct-chat-img" src="..'+receiveIcon+'"\n' +
+                                '                                                 alt="Message User Image"><!-- /.direct-chat-img -->\n' +
+                                '                                            <div class="direct-chat-text">\n' +
+                                '                                                ' + chatMessage.message + '\n' +
+                                '                                            </div>\n' +
+                                '                                            <!-- /.direct-chat-text -->\n' +
+                                '                                        </div>'
+                        }
+
+
+                    }
+
+                    appendhtml += ' </div>\n' +
+                        '                                    <!--/.direct-chat-messages-->\n' +
+                        '\n' +
+                        '                                </div>\n' +
+                        '                                <!-- /.box-body -->\n' +
+                        '                                <div class="box-footer">\n' +
+                        '                                    <div>\n' +
+                        '                                        <div class="input-group">\n' +
+                        '                                            <input id="content" type="text" name="message"\n' +
+                        '                                                   class="form-control">\n' +
+                        '                                            <span class="input-group-btn">\n' +
+                        '                        <button class="btn btn-success btn-flat" onclick="sendMessage(' + sendId + ',' + receiveId + ')">发送</button>\n' +
+                        '                      </span>\n' +
+                        '                                        </div>\n' +
+                        '                                    </div>\n' +
+                        '                                </div>';
+
+
+                    $("#messageshow").append(appendhtml);
+
+                    $("#"+receiveId+"span").remove();
+                    $("#"+sendId).append('<span id="'+receiveId+'span" data-toggle="tooltip" class="badge bg-aqua-active" style="display: none">0</span>')
+                    var container = document.getElementById(divid);
+                    container.scrollTop = container.scrollHeight;
+                }
+
+            }
+        });
+    }
+
+
+    function getMessageBox() {
+
+        $.ajax({
+            url: '/chat/getMessageBox',
+            type:'get',
+            data:{
+                userId:userId
+            },
+            success:function (data) {
+                if(data.code==0) {
+                    if (data.data.length>0) {
+                        var data=data.data;
+                        console.log(data);
+
+                        var receiveId;
+
+                        $("#showUser").empty();
+                        var appendhtml='';
+                        for (var i = 0; i < data.length; i++) {
+                            receiveId=data[0].receiveId;
+                            appendhtml+='<a href="#">\n' +
+                                '                        <div class="my-news-user-name">\n' +
+                                '                            <div class="comment-content-img"\n' +
+                                '                                 style="margin-top: 5px; width: 40px; height: 40px;margin-left: 10px;">\n' +
+                                '                                <img style="width: 40px; height: 40px;" src="..'+data[i].receiveIcon+'">\n' +
+                                '                            </div>\n' +
+                                '                            <div id="'+data[i].receiveId+'" onclick="showHistoryMessage('+userId+','+data[i].receiveId+')" style="padding-top: 15px;">\n' +
+                                '                                <span style="margin-left: 10px;font-size: 15px;">'+data[i].receiveName+'</span>\n' +
+                                '                                <span id="'+data[i].receiveId+'span" data-toggle="tooltip" class="badge bg-aqua-active" style="display: none">0</span>\n'+
+                                '                            </div>\n' +
+                                '                        </div>\n' +
+                                '                    </a>';
+                        }
+
+                        $("#showUser").append(appendhtml);
+
+                        if(rId!=null){
+                            if(!$("#"+rId)[0]){
+                                var user;
+                                $.ajax({
+                                    url: '/user/getUserInfo',
+                                    type: 'get',
+                                    data: {
+                                        userId: rId
+                                    },
+                                    success:function (data) {
+                                        user=data.data;
+                                        console.log(user);
+                                        if(user!=null){
+                                            var appendhtml='';
+                                            appendhtml+='<a href="#">\n' +
+                                                '                        <div class="my-news-user-name">\n' +
+                                                '                            <div class="comment-content-img"\n' +
+                                                '                                 style="margin-top: 5px; width: 40px; height: 40px;margin-left: 10px;">\n' +
+                                                '                                <img style="width: 40px; height: 40px;" src="..'+user.icon+'">\n' +
+                                                '                            </div>\n' +
+                                                '                            <div id="'+rId+'" onclick="showHistoryMessage('+userId+','+rId+')" style="padding-top: 15px;">\n' +
+                                                '                                <span style="margin-left: 10px;font-size: 15px;">'+user.userName+'</span>\n' +
+                                                '                                <span id="'+rId+'span" data-toggle="tooltip" class="badge bg-aqua-active" style="display: none">0</span>\n'+
+                                                '                            </div>\n' +
+                                                '                        </div>\n' +
+                                                '                    </a>';
+
+
+                                            $("#showUser").append(appendhtml);
+                                            showHistoryMessage(userId,rId);
+                                            rId=null;
+                                        }else{
+                                            showHistoryMessage(userId,receiveId);
+                                            rId=null;
+                                        }
+                                    }
+                                });
+
+                            }
+
+                        }
+
+                        else{
+                            showHistoryMessage(userId,receiveId);
+                        }
+                    }
+                    else{
+                        $("#showUser").empty();
+                    }
+                }
+            }
+        });
+    }
+
+
+
+    function addMessageBox(receiveId) {
+        getMessageBox();
+    }
+
+
+
+
+
+</script>
+</body>
+</html>
