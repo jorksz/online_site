@@ -35,7 +35,7 @@
         #{password}, #{mailNumber})
     </insert>
 
-    <select id="getUser" resultType="user">
+    <select id="listUser" resultType="user">
         select * from user;
     </select>
 
@@ -51,7 +51,4 @@
     <update id="updatePassword">
         update user set password = #{password} where user_mail = #{userMail}
     </update>
-
-
-
 </mapper>

@@ -3,7 +3,7 @@ package com.online.site.start.entity;
 /**
  * 视频分类
  */
-public class Type {
+public class VideoType {
     private Integer id;
     private String typeName;
 

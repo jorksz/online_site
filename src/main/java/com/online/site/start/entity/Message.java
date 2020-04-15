@@ -8,8 +8,8 @@ public class Message {
     private Integer id;
     private String title;
     private String content;
-    private Integer fromId;
-    private Integer toId;
+    private Integer fromUser;
+    private Integer toUser;
     private String startTime;
 
     public Integer getId() {
@@ -36,20 +36,20 @@ public class Message {
         this.content = content;
     }
 
-    public Integer getFromId() {
-        return fromId;
+    public Integer getFromUser() {
+        return fromUser;
     }
 
-    public void setFromId(Integer fromId) {
-        this.fromId = fromId;
+    public void setFromUser(Integer fromId) {
+        this.fromUser = fromId;
     }
 
-    public Integer getToId() {
-        return toId;
+    public Integer getToUser() {
+        return toUser;
     }
 
-    public void setToId(Integer toId) {
-        this.toId = toId;
+    public void setToUser(Integer toUser) {
+        this.toUser = toUser;
     }
 
     public String getStartTime() {

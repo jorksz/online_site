@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>后台管理</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -65,9 +65,9 @@
         <!-- Logo -->
         <a href="index.html" class="logo">
             <!-- 缩小时显示的字样 -->
-            <span class="logo-mini"><b>F</b>VS</span>
+            <span class="logo-mini"><b>后</b>台</span>
             <!-- 正常时显示的字样 -->
-            <span class="logo-lg"><b>Admin</b>FVS</span>
+            <span class="logo-lg"><b>后台</b>管理</span>
         </a>
         <!--头部样式 : style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -97,7 +97,7 @@
                 </div>
                 <div class="pull-left info">
                     <!--管理员名称-->
-                    <p>admin</p>
+                    <p>ali</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
                 </div>
             </div>
@@ -105,24 +105,17 @@
             <!--            侧边栏按钮-->
             <ul class="sidebar-menu" data-widget="tree">
                 <!--                网站基本信息-->
-                <li>
-                    <a href="index.html">
-                        <i class="fa fa-dashboard"></i> <span>网站基本信息</span>
 
-                    </a>
-                </li>
                 <!--                视频管理-->
                 <li class="active treeview">
-                    <a href="#">
+                    <a href="auditing.html">
                         <i class="fa fa-files-o"></i>
                         <span>视频管理</span>
 
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="auditing.html"><i class="fa fa-circle-o"></i> 待审核</a></li>
-                        <li><a href="pass.html"><i class="fa fa-circle-o"></i> 已通过</a></li>
-                        <li class="active"><a href="upload.html"><i class="fa fa-circle-o"></i> 管理番剧</a></li>
-                        <li><a href="class.html"><i class="fa fa-circle-o"></i> 分类管理</a></li>
+                        <li class="active"><a href="upload.html"><i class="fa fa-circle-o"></i> 上传视频</a></li>
                     </ul>
                 </li>
                 <!--                用户管理-->
@@ -132,18 +125,12 @@
 
                     </a>
                 </li>
-                <!--                消息管理-->
-                <li>
-                    <a href="message.html">
-                        <i class="fa fa-pie-chart"></i>
-                        <span>消息管理</span>
-                    </a>
-                </li>
+
                 <!--                评论管理-->
                 <li >
-                    <a href="comment.html">
+                    <a href="post.html">
                         <i class="fa fa-laptop"></i>
-                        <span>评论管理</span>
+                        <span>帖子管理</span>
                     </a>
                 </li>
                 <!--                广告管理-->
@@ -159,11 +146,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                番剧
+                视频信息
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li class="active">番剧</li>
+                <li class="active">视频信息</li>
             </ol>
         </section>
 
@@ -174,15 +161,15 @@
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab_1" data-toggle="tab">已上传番剧</a></li>
-                            <li><a href="#tab_2" data-toggle="tab">上传新番剧</a></li>
+                            <li class="active"><a href="#tab_1" data-toggle="tab">已上传视频</a></li>
+                            <li><a href="#tab_2" data-toggle="tab">上传新视频</a></li>
 <!--                            <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>-->
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
                                 <div class="box">
                                     <div class="box-header">
-                                        <h3 class="box-title">番剧</h3>
+                                        <h3 class="box-title">视频</h3>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
@@ -269,13 +256,6 @@
 
     <!--    页脚-->
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0.0
-        </div>
-        <strong>Copyright &copy; 2019 工程实践IV.</strong> All rights
-        reserved.
-    </footer>
 
     <!--    更换主题侧边栏-->
     <!-- Control Sidebar -->

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.site.start.mapper.MessageMapper">
+    <select id="listMessage" resultType="message">
+        select * from message
+        <where>
+            <if test="fromUser != null and fromUser != ''">
+                from_user = #{fromUser}
+            </if>
+            <if test="toUser != null and toUser != ''">
+                or to_user = #{toUser}
+            </if>
+        </where>
+    </select>
+
+    <insert id="saveMessage" parameterType="message">
+         insert into history(title, content, from_user, to_user ) values (#{title},
+        #{content}, #{fromUser}, #{toUser})
+    </insert>
+
+
+</mapper>

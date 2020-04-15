@@ -6,13 +6,15 @@ package com.online.site.start.entity;
 public class Video {
 
     private Integer id;
-    private String name;
+    private String videoName;
     private Integer typeId;
     private Integer userId;
     private String videoLocation;
     private String intro;
-    private Integer order;
+    private Integer videoOrder;
     private Integer courseId;
+    private Integer isPass;
+    private String uploadTime;
 
     public Integer getId() {
         return id;
@@ -22,13 +24,6 @@ public class Video {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Integer getTypeId() {
         return typeId;
@@ -62,13 +57,6 @@ public class Video {
         this.intro = intro;
     }
 
-    public Integer getOrder() {
-        return order;
-    }
-
-    public void setOrder(Integer order) {
-        this.order = order;
-    }
 
     public Integer getCourseId() {
         return courseId;
@@ -78,5 +66,34 @@ public class Video {
         this.courseId = courseId;
     }
 
+    public Integer getIsPass() {
+        return isPass;
+    }
 
+    public void setIsPass(Integer isPass) {
+        this.isPass = isPass;
+    }
+    public String getUploadTime() {
+        return uploadTime;
+    }
+
+    public void setUploadTime(String uploadTime) {
+        this.uploadTime = uploadTime;
+    }
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
+    }
+
+    public Integer getVideoOrder() {
+        return videoOrder;
+    }
+
+    public void setVideoOrder(Integer videoOrder) {
+        this.videoOrder = videoOrder;
+    }
 }

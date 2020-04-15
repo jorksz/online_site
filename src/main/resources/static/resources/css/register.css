@@ -1,0 +1,161 @@
+/*.body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6,small{ font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}*/
+body{
+    display: block;
+}
+label{
+    display:unset;
+}
+div#bg{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: url("https://unsplash.it/1920/1080/?random") no-repeat center;
+
+}
+
+div#login{
+    font: 14px/1.4 "Helvetica Neue","HelveticaNeue",Helvetica,Arial,sans-serif;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    top: 50%;
+    left: 35%;
+    width: 850px;
+    height: 506px;
+    padding: 0px !important;
+    margin: -235px 0px 0px -190px !important;
+    background-position: center 18%;
+    background: #f1f1f1;
+    min-width: 0;
+    color: #444;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-size: 13px;
+    line-height: 1.4em;
+    filter:alpha(opacity:85);
+    opacity:0.85;
+
+}
+h1#login-title{
+    font-size: 26px;
+    padding-bottom: 10px;
+}
+form#loginInfor{
+    position: center;
+    padding: 10px 10px;
+    background: none;
+    box-shadow: none;
+    margin-top: 10px;
+
+}
+label{
+    width: 266px;
+    height: 80px;
+    /*text-align: center;*/
+
+}
+label.promt{
+    padding-left: 10px;
+    padding-top: 10px;
+    text-align:unset;
+    color: #ff5b5b;
+}
+h1{
+    position: center;
+}
+img.error-img{
+    max-width: 16px;
+    max-height: 16px;
+    text-align: center;
+}
+
+p{
+    line-height: 1.5;
+    display: block;
+    /*-webkit-margin-before: 1em;*/
+    /*-webkit-margin-after: 1em;*/
+    /*-webkit-margin-start: 0px;*/
+    /*-webkit-margin-end: 0px;*/
+    /*font-size: xx-large;*/
+}
+input{
+    /*height:20px;*/
+    /*border-radius:0.4em;*/
+
+    border: 1px solid #EAEAEA;
+    border-radius: 0px;
+    background: none;
+    padding: 5px 10px;
+    color: #444;
+    font-weight: normal;
+    font-size: 14px;
+    background: #FFF;
+    font-family: "Microsoft Yahei";
+    box-shadow: 0 0 0px 1000px white inset;
+    width: 280px;
+    height: 50px;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-right: 40px;
+}
+/*input#userCode{*/
+    /*!*height:20px;*!*/
+    /*!*border-radius:0.4em;*!*/
+
+    /*width: 280px;*/
+/*}*/
+input#Submit{
+    width: 59%;
+    margin: 20px auto 40px;
+    border: none;
+    float: none;
+    border-radius: 3px;
+    height: 50px;
+    font-size: 14px;
+    text-align: center;
+    color: #FFF;
+    background: #8191D2;
+    font-weight: normal;
+    cursor: pointer;
+    box-shadow: none;
+    text-shadow: none;
+    letter-spacing: 2px;
+}
+input#sendCode{
+    width: 280px;
+    border: none;
+    float: none;
+    border-radius: 3px;
+    height: 50px;
+    font-size: 14px;
+    text-align: center;
+    color: #FFF;
+    background: #8191D2;
+    font-weight: normal;
+    cursor: pointer;
+    box-shadow: none;
+    text-shadow: none;
+    letter-spacing: 2px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    margin-right: 40px;
+    margin-left: 10px;
+}
+.modal-footer{
+    padding: 35px;
+    text-align: center;
+    border-top:0;
+    font-size:100%;
+    font-weight: bold;
+    color: black;
+}
+.href-text{
+    color: #6c6c6c;
+    text-decoration: none;
+}
+label.inputlabel.col-lg-6{
+    float:none;
+}

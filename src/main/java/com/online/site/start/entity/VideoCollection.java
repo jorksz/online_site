@@ -9,6 +9,7 @@ public class VideoCollection {
     private Integer userId;
     private Integer videoId;
     private String  videoName;
+    private String collectionTime;
 
     public Integer getId() {
         return id;
@@ -42,5 +43,12 @@ public class VideoCollection {
         this.videoName = videoName;
     }
 
+    public String getCollectionTime() {
+        return collectionTime;
+    }
+
+    public void setCollectionTime(String collectionTime) {
+        this.collectionTime = collectionTime;
+    }
 
 }

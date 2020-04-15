@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.site.start.mapper.VideoCommentMapper">
+    <select id="listVideoComment" resultType="videoComment">
+        select * from video_comment where user_id = #{userId}
+    </select>
+
+    <insert id="saveVideoComment" parameterType="videoComment">
+         insert into video_comment(user_id, video_id, video_name, comment)
+         values (#{userId},#{videoId}, #{videoName}, #{comment})
+    </insert>
+</mapper>
