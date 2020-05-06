@@ -27,9 +27,10 @@ public class UserController {
         return userService.checkUserNameExist(userName);
     }
 
-    @RequestMapping(value = "/login/{userName}/{password}", method = RequestMethod.GET)
+    @RequestMapping(value = "/login/{userName}/{password}")
     public String login(@PathVariable String userName, @PathVariable String password){
             String loginPassword = Optional.ofNullable(userService.getPassword(userName)).orElse("");
+            System.out.print(loginPassword);
             if (password.equals(loginPassword)){
                 int id = 0;
                 for (User user : userService.getUser(userName)){
