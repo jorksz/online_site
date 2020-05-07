@@ -21,6 +21,24 @@
 
 </head>
 <body background="../../static/resources/image/login/bg.jpg">
-
+<div class="container" style="margin-left: 400px; margin-top: 60px;width: 450px;height: 300px">
+    <h2 style="margin-left: 140px;margin-top:100px;color: darkblue ">用户注册</h2>
+    <form class=" form-inline">
+        <div class="form-group">
+            <label for="userName" style="margin-top: 15px">邮箱:</label>
+            <input type="email" class="form-control" id="userName" placeholder="邮箱" style="width: 300px;margin-left: 20px;margin-top: 30px">
+        </div>
+        <div class="form-group">
+            <label for="pwd">密码:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="密码" style="width: 300px;margin-left: 20px;margin-top: 20px ">
+        </div>
+        <div class="form-group">
+            <label for="pwd" style="margin-left: -14px">验证码:</label>
+            <input type="String" class="form-control" id="verCode" placeholder="验证码" style="width: 300px;margin-left: 20px;margin-top: 20px">
+            <button type="button" class="btn btn-light " style="margin-left: 20px; margin-top: 20px;width: 100px">发送</button>
+        </div>
+        <button id="registerBtn"  type="button" class="btn btn-light btn-lg" style="margin-left: 150px;margin-top: 30px;width: 100px">注册</button>
+    </form>
+</div>
 </body>
 </html>

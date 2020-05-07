@@ -1,128 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- import Vue before Element -->
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <!-- import JavaScript -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-    <!-- import CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <title>在线学习网站</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-<div id="app" >
-    <!--<div class="block">
-        <span class="demonstration">默认不区分颜色</span>
-        <el-rate v-model="value1"></el-rate>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <a class="navbar-brand" href="#">在线学习网站</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">课程</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">讨论社区</a>
+        </li>
+    </ul>
+    <form class="form-inline"; style="margin-left: 200px">
+        <input class="form-control" type="text" placeholder="请输入关键字...">
+        <button class="btn btn-light" type="button" style="margin-left: 10px">查询</button>
+    </form>
     </div>
-    <div class="block">
-        <span class="demonstration">区分颜色</span>
-        <el-rate
-                v-model="value2"
-                :colors="colors">
-        </el-rate>
-    </div>-->
-    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="密码" prop="pass">
-            <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="确认密码" prop="checkPass">
-            <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="年龄" prop="age">
-            <el-input v-model.number="ruleForm.age"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
-        </el-form-item>
-    </el-form>
+    <img src="https://static.runoob.com/images/mix/cinqueterre.jpg" href="#" class="rounded-circle" style="margin-left:400px;width: 50px;height: 50px">
+</nav>
+
+<div id="demo" class="carousel slide" data-ride="carousel" style="margin-left: 400px;margin-top: 100px;width: 60%">
+    <!-- 指示符 -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <!-- 轮播图片 -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg" >
+        </div>
+        <div class="carousel-item">
+            <img src="https://static.runoob.com/images/mix/img_nature_wide.jpg">
+        </div>
+        <div class="carousel-item">
+            <img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
+        </div>
+    </div>
+
+    <!-- 左右切换按钮 -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+<ol class="breadcrumb" style="width: 81%;margin-left: 6%;margin-top: 50px;">
+    <li class="breadcrumb-item"><h4><a class="text-dark" href="#">后端</a></h4></li>
+    <li class="breadcrumb-item"><a class="text-dark" href="#">Java</a></li>
+    <li class="breadcrumb-item" style="margin-left: 20px"><a class="text-dark" href="#">查看更多...</a></li>
+</ol>
+<div class="btn-group btn-group-lg"  style="width: 81%;margin-left: 6%;margin-top: 50px;">
+    <button type="button" class="btn btn-light">后端</button>
+    <button type="button" class="btn btn-light">Java</button>
+    <button type="button" class="btn btn-light">查看更多...</button>
+</div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p>合作请联系李富贵lifug@qq.com</p>
 </div>
 </body>
-<script>
-   /* var Main1 = {
-        data() {
-            return {
-                value1: null,
-                value2: null,
-                colors: ['#99A9BF', '#F7BA2A', '#FF9900']  // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
-            }
-        }
-    }
-    var Ctor1 = Vue.extend(Main1)*/
-    var Main = {
-        data() {
-            var checkAge = (rule, value, callback) => {
-                if (!value) {
-                    return callback(new Error('年龄不能为空'));
-                }
-                setTimeout(() => {
-                    if (!Number.isInteger(value)) {
-                        callback(new Error('请输入数字值'));
-                    } else {
-                        if (value < 18) {
-                            callback(new Error('必须年满18岁'));
-                        } else {
-                            callback();
-                        }
-                    }
-                }, 1000);
-            };
-            var validatePass = (rule, value, callback) => {
-                if (value === '') {
-                    callback(new Error('请输入密码'));
-                } else {
-                    if (this.ruleForm.checkPass !== '') {
-                        this.$refs.ruleForm.validateField('checkPass');
-                    }
-                    callback();
-                }
-            };
-            var validatePass2 = (rule, value, callback) => {
-                if (value === '') {
-                    callback(new Error('请再次输入密码'));
-                } else if (value !== this.ruleForm.pass) {
-                    callback(new Error('两次输入密码不一致!'));
-                } else {
-                    callback();
-                }
-            };
-            return {
-                ruleForm: {
-                    pass: '',
-                    checkPass: '',
-                    age: ''
-                },
-                rules: {
-                    pass: [
-                        { validator: validatePass, trigger: 'blur' }
-                    ],
-                    checkPass: [
-                        { validator: validatePass2, trigger: 'blur' }
-                    ],
-                    age: [
-                        { validator: checkAge, trigger: 'blur' }
-                    ]
-                }
-            };
-        },
-        methods: {
-            submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        alert('submit!');
-                    } else {
-                        console.log('error submit!!');
-                        return false;
-                    }
-                });
-            },
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
-            }
-        }
-    }
-    var Ctor = Vue.extend(Main)
-    new Ctor().$mount('#app')
-</script>
 </html>
