@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的收藏</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!--字体图标-->
+    <link rel="stylesheet" href="../../static/resources/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <script src="../../static/resources/plugins/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/resources/plugins/sweetalert.css">
+    <link href="../../static/resources/css/history.css" rel="stylesheet">
+</head>
+<script>
+    function setBodyWidth(){
+        var barWidthHelper=document.createElement('div');
+        barWidthHelper.style.cssText="overflow:scroll; width:100px; height:100px;";
+        document.body.appendChild(barWidthHelper);
+        var barWidth=barWidthHelper.offsetWidth-barWidthHelper.clientWidth;
+        document.body.removeChild(barWidthHelper);
+        var bodyWidth=window.screen.availWidth-barWidth;
+        return bodyWidth;
+    }
+    $(document).ready(
+        function(){
+            var bodyWidth=setBodyWidth()+"px";
+            //document.body.style.width=bodyWidth;
+            $("body").css("width",bodyWidth);
+        }
+    )
+</script>
+<body class="jumbotron">
+<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
+    <a class="navbar-brand" href="#">在线学习网站</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">课程</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">讨论社区</a>
+        </li>
+    </ul>
+    <form class="form-inline" style="margin-left: 200px">
+        <input class="form-control" type="text" placeholder="请输入关键字...">
+        <button class="btn btn-light" type="button" style="margin-left: 10px">查询</button>
+    </form>
+    <ul class="navbar-nav">
+        <li class="nav-item" style="margin-left: 130px">
+            <a class="nav-link" href="#">消息</a>
+        </li>
+        <li class="nav-item" style="margin-left: 20px">
+            <a class="nav-link" href="#">历史</a>
+        </li>
+        <li class="nav-item" style="margin-left: 20px">
+            <a class="nav-link" href="#">收藏</a>
+        </li>
+    </ul>
+    <img src="../../static/resources/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
+</nav>
+<div class="container">
+    <div class="card img-fluid" style="width: 100%">
+        <img class="card-img-top" src="../../static/resources/image/user/timg.jpg" alt="Card image" style="width:100%;height: 300px">
+        <div class="card-img-overlay">
+            <img src="../../static/resources/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 80px;height: 80px;margin-top: 15%">
+            <h4 class="card-title" style="margin-left: 15%;margin-top: -7%;color: #f1f1f1">向南的我</h4>
+        </div>
+    </div>
+</div>
+<div style="background-color: #f1f1f1;width: 92%;margin-left: 4%" >
+    <div class="topspace">
+        <div class="top_title1" style="margin-top: 10%">
+        <span class="fa fa-bars" style="color: rgb(217, 109, 60); font-size: larger">
+            收藏于：
+        </span>
+        </div>
+        <div class="top_title2">
+            <button type="button" class="btn btn-default" data-color="#0b93d5"><i class="fa fa-trash-o fa-lg"></i>取消收藏</button>
+        </div>
+    </div>
+
+    <div class="video">
+        <div class="video_line_day">
+            2020-5-1
+        </div>
+        <div class="video_show">
+            <a href="#"><img width="200px" height="120px" src="../../static/resources/image/user/test_history.jpg"></a>
+        </div>
+        <div style="margin-left: 42%;margin-top: -10%">
+            <a href="#">
+                后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放
+            </a>
+        </div>
+        <div style="margin-left: 42%; margin-top: 5%">
+            <span class="fa fa-book" style="color: rgb(149, 121, 0);">Java</span>
+        </div>
+        <div style="margin-left: 89%;margin-top: -6%">
+            <a class="btn" href="#">
+                <i class="fa fa-trash-o fa-lg"></i></a>
+        </div>
+        <div style="margin-left:8%;margin-top: -0.5%">
+            <HR style="width: 55%"/>
+        </div>
+    </div>
+    <div class="video">
+        <div class="video_line_day">
+            2020-5-1
+        </div>
+        <div class="video_show">
+            <a href="#"><img width="200px" height="120px" src="../../static/resources/image/user/test_history.jpg"></a>
+        </div>
+        <div style="margin-left: 42%;margin-top: -10%">
+            <a href="#">
+                后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放
+            </a>
+        </div>
+        <div style="margin-left: 42%; margin-top: 5%">
+            <span class="fa fa-book" style="color: rgb(149, 121, 0);">Java</span>
+        </div>
+        <div style="margin-left: 89%;margin-top: -6%">
+            <a class="btn" href="#">
+                <i class="fa fa-trash-o fa-lg"></i></a>
+        </div>
+        <div style="margin-left:8%;margin-top: -0.5%">
+            <HR style="width: 55%"/>
+        </div>
+    </div>
+    <div class="video">
+        <div class="video_line_day">
+            2020-5-1
+        </div>
+        <div class="video_show">
+            <a href="#"><img width="200px" height="120px" src="../../static/resources/image/user/test_history.jpg"></a>
+        </div>
+        <div style="margin-left: 42%;margin-top: -10%">
+            <a href="#">
+                后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放
+            </a>
+        </div>
+        <div style="margin-left: 42%; margin-top: 5%">
+            <span class="fa fa-book" style="color: rgb(149, 121, 0);">Java</span>
+        </div>
+        <div style="margin-left: 89%;margin-top: -6%">
+            <a class="btn" href="#">
+                <i class="fa fa-trash-o fa-lg"></i></a>
+        </div>
+        <div style="margin-left:8%;margin-top: -0.5%">
+            <HR style="width: 55%"/>
+        </div>
+    </div>
+</div>
+<a id="rTop" class="btn btn-default" href="#" role="button" style="position:fixed;right:0%;bottom:30%">
+    <i class="fa fa-hand-o-up fa-4x" aria-hidden="true"></i>
+</a>
+</body>
+</html>
