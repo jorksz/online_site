@@ -9,6 +9,16 @@ public class User {
     private String userName;
     private String password;
     private String mailNumber;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    private String sex;
     private Integer roleId;
 
     public Integer getId() {
