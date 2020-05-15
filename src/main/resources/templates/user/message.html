@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>消息通知</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--字体图标-->
+    <link rel="stylesheet" href="../../static/resources/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--markdown-->
+    <link rel="stylesheet" href="../../static/resources/plugins/editor.md-master/css/editormd.css" />
+    <script src="../../static/resources/plugins/editor.md-master/editormd.min.js"></script>
+    <link rel="stylesheet" href="../../static/resources/plugins/editor.md-master/css/editormd.preview.css" />
+    <!--弹出框优化-->
+    <script src="../../static/resources/plugins/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/resources/plugins/sweetalert.css">
+</head>
+<body background="../../static/resources/image/user/bg_umes.jpg">
+<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
+    <a class="navbar-brand" href="#">在线学习网站</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">课程</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">讨论社区</a>
+        </li>
+    </ul>
+    <form class="form-inline" style="margin-left: 200px">
+        <input class="form-control" type="text" placeholder="请输入关键字...">
+        <button class="btn btn-light" type="button" style="margin-left: 10px">查询</button>
+    </form>
+    <ul class="navbar-nav">
+        <li class="nav-item" style="margin-left: 130px">
+            <a class="nav-link" href="#">消息</a>
+        </li>
+        <li class="nav-item" style="margin-left: 20px">
+            <a class="nav-link" href="#">历史</a>
+        </li>
+        <li class="nav-item" style="margin-left: 20px">
+            <a class="nav-link" href="#">收藏</a>
+        </li>
+    </ul>
+    <img src="../../static/resources/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
+</nav>
+<div class="container" style="margin-top: 8%;width: 15%;margin-left: 10%;">
+    <h4><i class="fa fa-paper-plane-o" aria-hidden="true"></i>消息通知</h4>
+    <br>
+    <ul class="nav flex-column nav-pills">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="pill" href="#home">系统通知</a>
+        </li>
+        <br>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu1">我的评论</a>
+        </li>
+        <br>
+    </ul>
+</div>
+<div style="margin-left: 29%; margin-top: -15%;width: 60%">
+    <div class="tab-content" style="margin-top: 5%">
+        <div id="home" class="container tab-pane active ">
+            <input type="text" class="form-control" id="usr" readonly="readonly" value="系统通知">
+            <br>
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <div class="card-text text-left">
+                        <form class="form-inline font-weight-light">
+                            <h6 style="color: #333333;margin-left:3.5%;font-weight:bold">登录就送，点击即可</h6>
+                            <label style="margin-left: 15%"> <i class="fa fa-pencil-square" aria-hidden="true">
+                                </i></label>2020-05-12 16:58
+                            <div id="test-markdown-view2" style="width: 100%;">
+                                <!-- Server-side output Markdown text -->
+                                <textarea style="display:none;">期待遇见更优秀的她。我仍相信爱情。
+                             </textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <div class="card-text text-left">
+                        <form class="form-inline font-weight-light">
+                            <h6 style="color: #333333;margin-left:3.5%;font-weight:bold">登录就送，点击即可</h6>
+                            <label style="margin-left: 15%"> <i class="fa fa-pencil-square" aria-hidden="true">
+                            </i></label>2020-05-12 16:58
+                            <div id="test-markdown-view3" style="width: 100%;">
+                                <!-- Server-side output Markdown text -->
+                                <textarea style="display:none;">期待遇见更优秀的她。我仍相信爱情。
+                             </textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="menu1" class="container tab-pane fade">
+            <input type="text" class="form-control" readonly="readonly" id="my_comment" value="我的评论"><br>
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <div class="card-text text-left">
+                        <form class="form-inline font-weight-light">
+                            <a href="#"><h6 style="color: #333333;margin-left:3.5%;font-weight:bold">1-1 Java从入门到精通</h6></a>
+                            <label style="margin-left: 15%"> <i class="fa fa-pencil-square" aria-hidden="true">
+                            </i>评论于</label>2020-05-12 16:58
+                            <div id="test-markdown-view1" style="width: 100%;">
+                                <!-- Server-side output Markdown text -->
+                                <textarea style="display:none;">期待遇见更优秀的她。我仍相信爱情。
+                         </textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../static/resources/plugins/editor.md-master/lib/marked.min.js"></script>
+<script src="../../static/resources/plugins/editor.md-master/lib/prettify.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var testView = editormd.markdownToHTML("test-markdown-view1", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("test-markdown-view2", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("test-markdown-view3", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("test-markdown-view4", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+</script>
+</html>
