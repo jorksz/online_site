@@ -22,20 +22,20 @@
         </where>
     </select>
 
-    <select id="getUserName" resultType="user">
-        select * from user where user_name = #{userName}
+    <select id="getUserName" resultType="com.online.site.start.entity.User">
+        select * from user where user_name = #{userName} or mail_number = #{mailNumber}
     </select>
 
-    <select id="getMail" resultType="user">
+    <select id="getMail" resultType="com.online.site.start.entity.User">
         select * from user where mail_number = #{mailNumber}
     </select>
 
-    <insert id="saveUser" parameterType="user">
+    <insert id="saveUser" parameterType="com.online.site.start.entity.User">
         insert into user(user_name, password, mail_number) values (#{userName},
         #{password}, #{mailNumber})
     </insert>
 
-    <select id="listUser" resultType="user">
+    <select id="listUser" resultType="com.online.site.start.entity.User">
         select * from user;
     </select>
 

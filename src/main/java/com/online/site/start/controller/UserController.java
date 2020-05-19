@@ -29,17 +29,15 @@ public class UserController {
 
     @RequestMapping(value = "/login/{userName}/{password}")
     public String login(@PathVariable String userName, @PathVariable String password){
-            String loginPassword = Optional.ofNullable(userService.getPassword(userName)).orElse("");
-            System.out.print(loginPassword);
-            if (password.equals(loginPassword)){
-                int id = 0;
-                for (User user : userService.getUser(userName)){
-                    id = user.getId();
-                }
-                return Optional.ofNullable(roleService.getRole(id)).orElse("");
-
+        String loginPassword = Optional.ofNullable(userService.getPassword(userName)).orElse("");
+        if (password.equals(loginPassword)){
+            int id = 0;
+            for (User user : userService.getUser(userName)){
+                id = user.getId();
             }
-            return "";
+            return Optional.ofNullable(roleService.getRole(id)).orElse("");
+        }
+        return "";
     }
 
     @RequestMapping(value = "/send/{mailNumber}")
@@ -71,5 +69,4 @@ public class UserController {
     public List<User> queryAll(){
         return userService.listUser();
     }
-
 }
