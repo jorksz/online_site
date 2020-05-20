@@ -15,14 +15,14 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!--字体图标-->
-    <link rel="stylesheet" href="../../static/resources/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--markdown-->
-    <link rel="stylesheet" href="../../static/resources/plugins/editor.md-master/css/editormd.css" />
-    <script src="../../static/resources/plugins/editor.md-master/editormd.min.js"></script>
-    <link rel="stylesheet" href="../../static/resources/plugins/editor.md-master/css/editormd.preview.css" />
+    <link rel="stylesheet" href="../../static/plugins/editor.md-master/css/editormd.css" />
+    <script src="../../static/plugins/editor.md-master/editormd.min.js"></script>
+    <link rel="stylesheet" href="../../static/plugins/editor.md-master/css/editormd.preview.css" />
     <!--弹出框优化-->
-    <script src="../../static/resources/plugins/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../static/resources/plugins/sweetalert.css">
+    <script src="../../static/plugins/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css">
 
     <!--video.js-->
     <link href="https://vjs.zencdn.net/7.7.6/video-js.css" rel="stylesheet" />
@@ -45,7 +45,7 @@
             <a class="nav-link" href="#"><i class="fa fa-bell-o" aria-hidden="true"></i>消息</a>
         </li>
     </ul>
-    <img src="../../static/resources/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
+    <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
 </nav>
 
 <!--视频播放-->
@@ -54,7 +54,7 @@
         <video remainingTimeDisplay="false" id="my-video" class="video-js vjs-default-skin vjs-big-play-centered"
                controls preload="auto" width="800px" height=500px"
               data-setup="{}">
-            <source src="../../static/resources/video/learn.mp4" type='video/mp4'>
+            <source src="../../static/video/learn.mp4" type='video/mp4'>
         </video>
     </div>
 </div>
@@ -85,7 +85,7 @@
                 <div class="card-body">
                     <div class="card-text text-left">
                         <form class="form-inline font-weight-light">
-                            <img src="../../static/resources/image/facio.jpg" href="#" class="rounded-circle" style="width: 80px;height: 80px;">
+                            <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="width: 80px;height: 80px;">
                             <h6 style="color: #333333;margin-left:3.5%;margin-top: -8%;font-weight:bold">向南的我</h6>
                             <button  style="margin-top: -20%;margin-left: 92%" type="button" class="btn btn-light" disabled>#1</button>
                             <div id="test-markdown-view1" style="width: 100%;margin-left: 12%;margin-top: -8%">
@@ -122,8 +122,8 @@
 <script>
     var player = videojs('my-video');
 </script>
-<script src="../../static/resources/plugins/editor.md-master/lib/marked.min.js"></script>
-<script src="../../static/resources/plugins/editor.md-master/lib/prettify.min.js"></script>
+<script src="../../static/plugins/editor.md-master/lib/marked.min.js"></script>
+<script src="../../static/plugins/editor.md-master/lib/prettify.min.js"></script>
 <script type="text/javascript">
     $(function() {
         var testView = editormd.markdownToHTML("test-markdown-view1", {

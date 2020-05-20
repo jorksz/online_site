@@ -14,7 +14,13 @@ public class MailController {
     private MailService mailService;
 
     @RequestMapping(value = "/{mailNumber}")
-    public boolean checkUserExist(@PathVariable String mailNumber){
+    public boolean saveMail(@PathVariable String mailNumber){
         return mailService.saveMail(mailNumber);
     }
+
+    @RequestMapping(value = "/check/{verCode}")
+    public boolean checkVerCode(@PathVariable String verCode){
+        return mailService.checkMail(verCode);
+    }
+
 }

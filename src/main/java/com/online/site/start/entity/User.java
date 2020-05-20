@@ -9,6 +9,8 @@ public class User {
     private String userName;
     private String password;
     private String mailNumber;
+    private String sex;
+    private Integer roleId;
 
     public String getSex() {
         return sex;
@@ -18,8 +20,6 @@ public class User {
         this.sex = sex;
     }
 
-    private String sex;
-    private Integer roleId;
 
     public Integer getId() {
         return id;

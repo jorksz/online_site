@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.online.site.start.mapper.MailMapper">
-    <insert id="saveMail" parameterType="mail">
+    <insert id="saveMail" parameterType="com.online.site.start.entity.Mail">
          insert into mail(title, content, to_mail_number, end_time, verification_code )
          values (#{title},#{content}, #{toMailNumber}, #{endTime}, #{verificationCode})
     </insert>
+    <select id="listMail" resultType="com.online.site.start.entity.Mail">
+        select * from mail where verification_code = #{verificationCode}
+    </select>
 
 
 </mapper>

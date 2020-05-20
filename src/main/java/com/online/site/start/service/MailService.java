@@ -10,4 +10,6 @@ public interface MailService {
      * @return
      */
     boolean saveMail(String mailNumber);
+
+    boolean checkMail(String verificationCode);
 }

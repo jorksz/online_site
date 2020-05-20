@@ -72,11 +72,11 @@ input::-ms-clear {
 .header .switch .switch_btn_focus:hover {
 	text-decoration:none;
 }
-#switch_bottom {
-	position:absolute;
-	bottom:-1px;_bottom:-2px;
-	border-bottom:2px solid #848484;
-}
+/*#switch_bottom {*/
+/*	position:absolute;*/
+/*	bottom:-1px;*/
+/*	border-bottom:2px solid #848484;*/
+/*}*/
 
 .web_login {
 	width:370px;
@@ -202,10 +202,11 @@ height: 55px;
 margin-top: 15px;
 margin-bottom: 10px;border:1px solid #eee;border-radius:3px;
 }
-.web_login input.inputstyle2:focus, .web_login input.inputstyle:focus {
-border: 1px solid #5796f;
+/*.web_login input.inputstyle2:focus, .web_login input.inputstyle:focus {
+border: 1px solid;
+color:#5796f;
 box-shadow: 0 0 0;
-}
+}*/
 .web_login .reg_form {
 width: 300px;
 margin: 0 auto;

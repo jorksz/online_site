@@ -38,4 +38,9 @@ public class MailServiceImpl implements MailService {
         sendSimpleMail.sendSimpleMail(mailNumber, content, StringProperties.MAIL_TITLE);
         return mailMapper.saveMail(mail) > 0;
     }
+
+    @Override
+    public boolean checkMail(String verificationCode) {
+        return mailMapper.listMail(verificationCode).size() > 0;
+    }
 }
