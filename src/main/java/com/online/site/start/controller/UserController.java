@@ -1,13 +1,12 @@
 package com.online.site.start.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.online.site.start.entity.User;
 import com.online.site.start.service.RoleService;
 import com.online.site.start.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,7 +65,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/all")
-    public List<User> queryAll(){
-        return userService.listUser();
+    public PageInfo<User> queryAll(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "3") int pageSize){
+        PageHelper.startPage(pageNo,pageSize);
+        PageInfo<User> pageInfo = new PageInfo<>(userService.listUser());
+        return pageInfo;
     }
 }

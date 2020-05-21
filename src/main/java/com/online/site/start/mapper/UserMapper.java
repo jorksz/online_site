@@ -1,5 +1,6 @@
 package com.online.site.start.mapper;
 
+import com.github.pagehelper.Page;
 import com.online.site.start.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -33,7 +34,7 @@ public interface UserMapper {
      * 查询全部用户
      * @return
      */
-    List<User> listUser();
+    Page<User> listUser();
 
     /**
      * 根据邮箱获取用户信息

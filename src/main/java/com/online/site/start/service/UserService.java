@@ -1,5 +1,6 @@
 package com.online.site.start.service;
 
+import com.github.pagehelper.Page;
 import com.online.site.start.entity.User;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public interface UserService {
      * 查询全部用户
      * @return
      */
-    List<User> listUser();
+    Page<User> listUser();
 
     /**
      * 检查用户邮箱是否存在

@@ -1,5 +1,6 @@
 package com.online.site.start.service.impl;
 
+import com.github.pagehelper.Page;
 import com.online.site.start.mapper.UserMapper;
 import com.online.site.start.entity.User;
 import com.online.site.start.service.UserService;
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> listUser() {
+    public Page<User> listUser() {
         return userMapper.listUser();
     }
 

@@ -38,6 +38,12 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.2</version>
         </dependency>
+        <!--分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.13</version>
+        </dependency>
         <!--支持跳转,springboot推荐使用thymeleaf模板引擎-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

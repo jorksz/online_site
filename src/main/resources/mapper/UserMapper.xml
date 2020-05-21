@@ -36,7 +36,7 @@
     </insert>
 
     <select id="listUser" resultType="com.online.site.start.entity.User">
-        select * from user;
+        select * from user
     </select>
 
     <update id="updateUserMessage">
