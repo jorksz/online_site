@@ -2,7 +2,9 @@ package com.online.site.start.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.online.site.start.entity.Post;
 import com.online.site.start.entity.User;
+import com.online.site.start.service.PostService;
 import com.online.site.start.service.RoleService;
 import com.online.site.start.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,8 @@ public class ViewController {
     @Autowired
     private RoleService roleService;
 
-    private UserController userController;
+    @Autowired
+    private PostService postService;
 
     @RequestMapping("home/index/{id}")
     public String index(@PathVariable Integer id, Model model){
@@ -55,7 +58,7 @@ public class ViewController {
     }
 
     @RequestMapping("bg/video")
-    public String bgVideo(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "6") int pageSize, Model model){
+    public String bgVideo(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "5") int pageSize, Model model){
         PageHelper.startPage(pageNo,pageSize);
         PageInfo<User> pageInfo = new PageInfo<>(userService.listUser());
         model.addAttribute("userList", pageInfo);
@@ -63,10 +66,13 @@ public class ViewController {
     }
 
     @RequestMapping("bg/post")
-    public String bgPost(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "3") int pageSize, Model model){
+    public String bgPost(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "5") int pageSize, Model model){
         PageHelper.startPage(pageNo,pageSize);
-        PageInfo<User> pageInfo = new PageInfo<>(userService.listUser());
-        model.addAttribute("userList", pageInfo);
+        PageInfo<Post> pageInfo = new PageInfo<>(postService.listPost(2));
+        model.addAttribute("postList", pageInfo);
+        PageHelper.startPage(pageNo,pageSize);
+        PageInfo<Post> pageInfo2 = new PageInfo<>(postService.listPost(1));
+        model.addAttribute("postList2", pageInfo2);
         return "/background/post_manage";
     }
 }

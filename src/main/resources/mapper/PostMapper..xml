@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.site.start.mapper.PostMapper">
+
+
+
+    <insert id="savePost" parameterType="com.online.site.start.entity.Post">
+        insert into post(name, content, publisher,status) values (#{name},
+        #{content}, #{publisher}, #{status})
+    </insert>
+
+    <select id="listPost" resultType="com.online.site.start.entity.Post">
+        select * from post where status = #{status}
+    </select>
+
+    <delete id="deletePost">
+        delete from post where id = #{id}
+    </delete>
+
+    <update id="updatePost">
+        update post set status = #{status} where id = #{id}
+    </update>
+</mapper>
