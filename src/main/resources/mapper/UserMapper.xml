@@ -31,8 +31,8 @@
     </select>
 
     <insert id="saveUser" parameterType="com.online.site.start.entity.User">
-        insert into user(user_name, password, mail_number,sex) values (#{userName},
-        #{password}, #{mailNumber}, #{sex})
+        insert into user(user_name, password, mail_number,sex,role_id) values (#{userName},
+        #{password}, #{mailNumber}, #{sex}, #{roleId})
     </insert>
 
     <select id="listUser" resultType="com.online.site.start.entity.User">

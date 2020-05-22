@@ -54,14 +54,14 @@
                 if (code=='普通用户' || code == '教师') {
                     console.log("登录成功");
                     /*  $.cookie('userId',data.data.id);*/
-                    $(location).attr('href', '/home/index/1');
+                    $(location).attr('href', '/view/home/index/1');
                 }
                 else {
                     if (code == "") {
                         swal('', '用户名或密码错误！', 'error');
                         return;
                     } else {
-                        $(location).attr('href', '/background/user_manage.html');
+                        $(location).attr('href', '/view/bg/user');
                     }
                 }
             }
@@ -75,7 +75,7 @@
      * 登录按钮点击事件
      */
     $("#registerBtn").click(function () {
-        $(location).attr('href', 'login/register');
+        $(location).attr('href', '/view/login/register');
     });
 </script>
 </html>
