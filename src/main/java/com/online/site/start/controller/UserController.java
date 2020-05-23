@@ -6,6 +6,7 @@ import com.online.site.start.entity.User;
 import com.online.site.start.service.RoleService;
 import com.online.site.start.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
+@SessionAttributes("user")
 public class UserController {
 
     @Autowired
@@ -27,11 +29,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login/{userName}/{password}")
-    public String login(@PathVariable String userName, @PathVariable String password){
+    public String login(Model model,  @PathVariable String userName, @PathVariable String password){
         String loginPassword = Optional.ofNullable(userService.getPassword(userName)).orElse("");
         if (password.equals(loginPassword)){
             int id = 0;
             for (User user : userService.getUser(userName)){
+                model.addAttribute("user",user);
                 id = user.getId();
             }
             return Optional.ofNullable(roleService.getRole(id)).orElse("");

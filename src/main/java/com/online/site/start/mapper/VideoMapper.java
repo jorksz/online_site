@@ -1,5 +1,6 @@
 package com.online.site.start.mapper;
 
+import com.github.pagehelper.Page;
 import com.online.site.start.entity.Video;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -33,13 +34,8 @@ public interface VideoMapper {
      * 获取全部视频
      * @return
      */
-    List<Video> listAll(Integer isPass);
+    Page<Video> listAll(Integer isPass);
 
-    /**
-     * 获取全部视频-管理员
-     * @return
-     */
-    List<Video> listAllM();
 
     /**
      * 删除视频
@@ -49,12 +45,11 @@ public interface VideoMapper {
     Integer deleteVideo(Integer id);
 
     /**
-     * 更新视频审核
-     * @param id 视频id
-     * @param isPass
+     * 视频审核
+     * @param video
      * @return
      */
-    Integer updateVideo(Integer id, Integer isPass);
+    Integer updateVideo(Video video);
 
     /**
      * 保存视频

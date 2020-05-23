@@ -2,26 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.online.site.start.mapper.VideoMapper">
 
-    <select id="listVideos" resultType="video">
+    <select id="listVideos" resultType="com.online.site.start.entity.Video">
         select * from video where is_pass = #{isPass} and video_name = #{videoName}
     </select>
 
-    <select id="listVideosByType" resultType="video">
+    <select id="listVideosByType" resultType="com.online.site.start.entity.Video">
         select * from video,video_type where video_type.id = video.type_id and video_type.type_name = #{typeName}
         and is_pass = #{isPass}
     </select>
 
-    <select id="getVideo" resultType="video">
+    <select id="getVideo" resultType="com.online.site.start.entity.Video">
         select * from video where is_pass = #{isPass} and id = #{id}
     </select>
 
-    <select id="listAll" resultType="video">
+    <select id="listAll" resultType="com.online.site.start.entity.Video">
         select * from video where is_pass = #{isPass}
     </select>
 
-    <select id="listAllM" resultType="video">
-        select * from video
-    </select>
 
     <delete id="deleteVideo">
         delete from video where id = #{id}
@@ -31,8 +28,8 @@
         update user set is_pass = #{isPass} where id = #{id}
     </update>
     
-    <insert id="saveVideo" parameterType="video">
-        insert into video (video_name, type_id, user_id, video_location, intro, video_order, course_id)
-         values (#{videoName}, #{typeId}, #{userId}, #{videoLocation}, #{intro}, #{videoOrder}, #{courseId});
+    <insert id="saveVideo" parameterType="com.online.site.start.entity.Video">
+        insert into video (video_name, type_id, user_id, user_name, video_location, intro, video_order, course_id)
+         values (#{videoName}, #{typeId}, #{userId}, #{userName},#{videoLocation}, #{intro}, #{videoOrder}, #{courseId});
     </insert>
 </mapper>

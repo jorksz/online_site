@@ -1,5 +1,6 @@
 package com.online.site.start.service.impl;
 
+import com.github.pagehelper.Page;
 import com.online.site.start.entity.Video;
 import com.online.site.start.mapper.VideoMapper;
 import com.online.site.start.service.VideoService;
@@ -30,14 +31,10 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<Video> listAll(Integer isPass) {
+    public Page<Video> listAll(Integer isPass) {
         return videoMapper.listAll(isPass);
     }
 
-    @Override
-    public List<Video> listAllM() {
-        return videoMapper.listAllM();
-    }
 
     @Override
     public boolean deleteVideo(Integer id) {
@@ -45,8 +42,8 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public boolean updateVideo(Integer id, Integer isPass) {
-        return videoMapper.updateVideo(id, isPass) > 0;
+    public boolean updateVideo(Video video) {
+        return videoMapper.updateVideo(video) > 0;
     }
 
     @Override

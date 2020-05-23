@@ -1,5 +1,6 @@
 package com.online.site.start.service;
 
+import com.github.pagehelper.Page;
 import com.online.site.start.entity.Video;
 
 import java.util.List;
@@ -32,14 +33,7 @@ public interface VideoService {
      * 获取全部视频
      * @return
      */
-    List<Video> listAll(Integer isPass);
-
-    /**
-     * 获取全部视频
-     * @return
-     */
-    List<Video> listAllM();
-
+    Page<Video> listAll(Integer isPass);
 
     /**
      * 删除视频
@@ -49,12 +43,11 @@ public interface VideoService {
     boolean deleteVideo(Integer id);
 
     /**
-     * 更新视频审核
-     * @param id 视频id
-     * @param isPass 审核是否通过
+     * 视频审核
+     * @param video
      * @return
      */
-    boolean updateVideo(Integer id, Integer isPass);
+    boolean updateVideo(Video video);
 
     /**
      * 上传视频

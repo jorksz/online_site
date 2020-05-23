@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>视频管理</title>
@@ -15,8 +15,8 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script src="../../static/plugins/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css">
+    <script src="../../static/plugins/sweetalert.min.js" th:src="@{/plugins/sweetalert.min.js}"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css" th:href="@{/plugins/sweetalert.css}">
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -32,7 +32,7 @@
             <a class="nav-link" href="/view/bg/post">帖子管理</a>
         </li>
     </ul>
-    <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="margin-left: 60%;width: 50px;height: 50px">
+    <img src="../../static/image/facio.jpg"  th:src="@{/image/facio.jpg}" href="#" class="rounded-circle" style="margin-left: 60%;width: 50px;height: 50px">
 </nav>
 <div class="container" style="margin-top: 10%">
     <h2>视频管理</h2>
@@ -49,36 +49,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>John</td>
-            <td>Java从入门到精通</td>
-            <td>Java</td>
-            <td>2020-5-11</td>
-            <td><button type="button" class="btn btn-outline-danger">删除</button></td>
-        </tr>
-        <tr>
-            <td>Rich Li</td>
-            <td>Java从入门到精通</td>
-            <td>Java</td>
-            <td>2020-5-10</td>
-            <td><button type="button" class="btn btn-outline-danger">删除</button></td>
-        </tr>
-        <tr>
-            <td>Rich Li</td>
-            <td>Java从入门到精通</td>
-            <td>Java</td>
-            <td>2020-5-19</td>
-            <td><button type="button" class="btn btn-outline-danger">删除</button></td>
+        <tr th:each="video:  ${videoList.getList()}">
+            <td th:text="${video.userName}">David</td>
+            <td th:text="${video.videoName}">David</td>
+            <div th:switch="${video.typeId}">
+                <td th:case=1>Java</td>
+                <td th:case=2>C</td>
+                <td th:case=3>bootstrap</td>
+                <td th:case=4>MySQL</td>
+            </div>
+            <td th:text="${video.uploadTime}">1223360222@qq.com</td>
+            <td><button type="button" class="btn btn-outline-danger" th:data-id="${video.id}" onclick="deleteFunc(this.getAttribute('data-id'),this)">删除</button></td>
         </tr>
         </tbody>
     </table>
     <div class="container" style="margin-left: 30%">
-        <ul class="pagination pagination-lg">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <ul class="pagination pagination-lg" th:if="${videoList.getTotal()} > 5" >
+            <li class="page-item"><a class="page-link" href="#" th:text="|当前第${videoList.getPageNum()}页|">当前第一页</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/view/bg/video?pageNo='+${videoList.getPrePage()}}" th:text="上一页">Previous</a></li>
+            <li class="page-item"><a class="page-link"th:href="@{'/view/bg/video?pageNo='+${videoList.getNextPage()}}" th:text="下一页">next</a></li>
+            <li class="page-item"><a class="page-link" th:text="|共${videoList.getPages()}页|">共1页</a></li>
         </ul>
     </div>
 </div>
@@ -90,14 +80,14 @@
             <!-- 模态框头部 -->
             <div class="modal-header">
                 <h3 class="modal-title">视频上传</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button"  id="closeWindow" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- 模态框主体 -->
             <div class="modal-body">
                 <form class=" form-inline">
                     <div class="form-group">
-                        <input type="file" id="myFile" name="filename2" id="upVideo" accept="video/mp4">
+                        <input type="file" id="myFile" name="filename2"  accept="video/mp4">
                     </div>
                     <div class="form-group">
                         <label for="sel1">分类:</label>
@@ -115,7 +105,7 @@
                         <label for="comment">简介:</label>
                         <textarea class="form-control" rows="5" id="comment" style="width: 300px;margin-left: 20px;margin-top: 20px"></textarea>
                     </div>
-                    <button id="registerBtn"  type="button" class="btn btn-primary" style="margin-left: 70px;margin-top: 30px;width: 100px">上传</button>
+                    <button id="uploadVideo"  type="button" class="btn btn-primary" style="margin-left: 70px;margin-top: 30px;width: 100px">上传</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-left: 100px;margin-top: 30px;width: 100px">关闭</button>
                 </form>
             </div>
@@ -130,7 +120,7 @@
             <!-- 模态框头部 -->
             <div class="modal-header">
                 <h3 class="modal-title">视频审核</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" id="closeWindow1" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- 模态框主体 -->
@@ -154,32 +144,27 @@
                         <td><button type="button" class="btn btn-outline-success">通过</button></td>
                         <td><button type="button" class="btn btn-outline-danger">删除</button></td>
                     </tr>
-                    <tr>
-                        <td>Rich Li</td>
-                        <td>Java从入门到精通3</td>
-                        <td>Java</td>
-                        <td>2020-5-10</td>
-                        <td><button type="button" class="btn btn-outline-success">通过</button></td>
-                        <td><button type="button" class="btn btn-outline-danger">删除</button></td>
-                    </tr>
-                    <tr>
-                        <td>Rich Li</td>
-                        <td>Java从入门到精通3</td>
-                        <td>Java</td>
-                        <td>2020-5-19</td>
-                        <td><button type="button" class="btn btn-outline-success">通过</button></td>
-                        <td><button type="button" class="btn btn-outline-danger">删除</button></td>
-
+                    <tr th:each="video:  ${videoList2.getList()}">
+                        <td th:text="${video.userName}">David</td>
+                        <td th:text="${video.videoName}">David</td>
+                        <div th:switch="${video.typeId}">
+                            <td th:case=1>Java</td>
+                            <td th:case=2>C</td>
+                            <td th:case=3>bootstrap</td>
+                            <td th:case=4>MySQL</td>
+                        </div>
+                        <td th:text="${video.uploadTime}">1223360222@qq.com</td>
+                        <td><button type="button" class="btn btn-outline-danger" th:data-id="${video.id}" onclick="passFunc(this.getAttribute('data-id'),this)">通过</button></td>
+                        <td><button type="button" class="btn btn-outline-danger" th:data-id="${video.id}" onclick="deleteFunc(this.getAttribute('data-id'),this)">删除</button></td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="container" style="margin-left: 20%">
-                    <ul class="pagination pagination-lg">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <ul class="pagination pagination-lg" th:if="${videoList2.getTotal()} > 5" >
+                        <li class="page-item"><a class="page-link" href="#" th:text="|当前第${videoList2.getPageNum()}页|">当前第一页</a></li>
+                        <li class="page-item"><a class="page-link" th:href="@{'/view/bg/video?pageNo='+${videoList2.getPrePage()}}" th:text="上一页">Previous</a></li>
+                        <li class="page-item"><a class="page-link"th:href="@{'/view/bg/video?pageNo='+${videoList2.getNextPage()}}" th:text="下一页">next</a></li>
+                        <li class="page-item"><a class="page-link" th:text="|共${videoList2.getPages()}页|">共1页</a></li>
                     </ul>
                 </div>
             </div>
@@ -187,4 +172,50 @@
     </div>
 </div>
 </body>
+<script>
+    function deleteFunc(param, nowtr){
+        if (window.confirm("是否删除?")){
+            var $this = $(nowtr).parent().parent();
+            $.ajax({
+                type: "post",
+                url: "/video/delete/"+param,
+                success: function (data) {
+                    if (data == true){
+                        $this.remove();
+                    }
+                    else {
+                        swal("删除失败，请重试!")
+                    }
+                }
+            });
+        }
+    }
+
+    function passFunc(param, nowtr){
+        var $this = $(nowtr).parent().parent();
+        if (window.confirm("是否通过?")) {
+            if (param != '') {
+                $.ajax({
+                    type: "post",
+                    url: "/post/update",
+                    data: {"status": 2,"id":param},
+                    success: function (data) {
+                        if (data == true) {
+                            $this.remove();
+                        } else {
+                            swal("审批失败，请重试!")
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    $("#closeWindow").click(function () {
+        $(location).attr('href', '/view/bg/video');
+    });
+    $("#closeWindow1").click(function () {
+        $(location).attr('href', '/view/bg/video');
+    });
+</script>
 </html>

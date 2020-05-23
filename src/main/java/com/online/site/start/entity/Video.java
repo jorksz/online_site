@@ -9,6 +9,16 @@ public class Video {
     private String videoName;
     private Integer typeId;
     private Integer userId;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    private String userName;
     private String videoLocation;
     private String intro;
     private Integer videoOrder;

@@ -4,9 +4,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.online.site.start.entity.Post;
 import com.online.site.start.entity.User;
+import com.online.site.start.entity.Video;
 import com.online.site.start.service.PostService;
 import com.online.site.start.service.RoleService;
 import com.online.site.start.service.UserService;
+import com.online.site.start.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,9 @@ public class ViewController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private VideoService videoService;
 
     @RequestMapping("home/index/{id}")
     public String index(@PathVariable Integer id, Model model){
@@ -60,8 +65,11 @@ public class ViewController {
     @RequestMapping("bg/video")
     public String bgVideo(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "5") int pageSize, Model model){
         PageHelper.startPage(pageNo,pageSize);
-        PageInfo<User> pageInfo = new PageInfo<>(userService.listUser());
-        model.addAttribute("userList", pageInfo);
+        PageInfo<Video> pageInfo = new PageInfo<>(videoService.listAll(2));
+        model.addAttribute("videoList", pageInfo);
+        PageHelper.startPage(pageNo,pageSize);
+        PageInfo<Video> pageInfo2 = new PageInfo<>(videoService.listAll(1));
+        model.addAttribute("videoList2", pageInfo2);
         return "/background/video_manage";
     }
 
