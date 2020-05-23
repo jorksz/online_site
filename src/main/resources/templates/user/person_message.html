@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>个人信息</title>
@@ -16,11 +16,11 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <!--字体图标-->
-    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
 
-    <script src="../../static/plugins/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css">
-    <link href="../../static/css/history.css" rel="stylesheet">
+    <script src="../../static/plugins/sweetalert.min.js" th:src="@{/plugins/sweetalert.min.js}"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css" th:href="@{/plugins/sweetalert.css}">
+    <link href="../../static/css/history.css" rel="stylesheet" th:href="@{/css/history.css}">
 </head>
 <script>
     function setBodyWidth(){
@@ -40,7 +40,7 @@
         }
     )
 </script>
-<body background="../../static/image/user/bg_umes.jpg">
+<body background="/image/user/bg_umes.jpg">
 <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
     <a class="navbar-brand" href="#">在线学习网站</a>
     <ul class="navbar-nav">
@@ -66,7 +66,7 @@
             <a class="nav-link" href="#">收藏</a>
         </li>
     </ul>
-    <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
+    <img src="../../static/image/facio.jpg" th:src="@{/image/facio.jpg}" onclick="funcp()" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
 </nav>
 <div class="container" style="margin-top: 10%">
     <h2>个人信息</h2>
@@ -80,15 +80,15 @@
         <tbody>
         <tr>
             <th>昵称</th>
-            <td>向南的我</td>
+            <td th:text="${user.userName}">向南得我</td>
         </tr>
         <tr>
             <th>Email</th>
-            <td>1223360222@qq.com</td>
+            <td th:text="${user.mailNumber}">1223360222@qq.com</td>
         </tr>
         <tr>
             <th>性别</th>
-            <td>男</td>
+            <td th:text="${user.sex}">男</td>
         </tr>
         </tbody>
     </table>
@@ -100,7 +100,7 @@
             <!-- 模态框头部 -->
             <div class="modal-header">
                 <h3 class="modal-title">编辑用户信息</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" id="closeWindow" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- 模态框主体 -->
@@ -108,21 +108,22 @@
                 <form class=" form-inline">
                     <div class="form-group">
                         <label for="userName" style="margin-top: 15px">昵称:</label>
-                        <input type="text" class="form-control" id="userName" value="李富贵" style="width: 300px;margin-left: 20px;margin-top: 30px">
+                        <input type="text" class="form-control" id="userName" th:value="${user.userName}" value="向南的我" style="width: 300px;margin-left: 20px;margin-top: 30px">
+                        <input type="hidden" th:value="${user.id}" id="id_data">
                     </div>
                     <div class="form-group">
                         <label for="mail">邮箱:</label>
-                        <input type="email" class="form-control" id="mail" value="1223360222@qq.com" style="width: 300px;margin-left: 20px;margin-top: 20px ">
+                        <input type="email" class="form-control" id="mail" th:value="${user.mailNumber}" value="1223360222@qq.com" style="width: 300px;margin-left: 20px;margin-top: 20px ">
                     </div>
                     <div class="form-group">
                         <label for="sel1">性别:</label>
                         <select class="form-control" id="sel1" style="width: 300px;margin-left: 20px;margin-top: 20px ">
-                            <option selected>男</option>
-                            <option>女</option>
+                            <option th:if="${user.sex}=='男'" selected>男</option>
+                            <option th:if="${user.sex}=='女'">女</option>
                         </select>
                     </div>
-                    <button id="registerBtn"  type="button" class="btn btn-primary" style="margin-left: 70px;margin-top: 30px;width: 100px">修改</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-left: 100px;margin-top: 30px;width: 100px">关闭</button>
+                    <button id="updateBtn"  type="button" class="btn btn-primary" style="margin-left: 70px;margin-top: 30px;width: 100px">修改</button>
+                    <button type="button" id="closeWindow2" class="btn btn-secondary" data-dismiss="modal" style="margin-left: 100px;margin-top: 30px;width: 100px">关闭</button>
                 </form>
             </div>
 
@@ -135,4 +136,49 @@
     </div>
 </div>
 </body>
+<script>
+    function funcp(){
+        $(location).attr('href', '/view/user/usmg');
+    }
+    $("#closeWindow").click(function () {
+        $(location).attr('href', '/view/user/usmg');
+    });
+    $("#closeWindow2").click(function () {
+        $(location).attr('href', '/view/user/usmg');
+    });
+
+    $(document).ready(function () {
+        $("#updateBtn").click(function() {
+            var userName=$('#userName').val();
+            var mailNumber = $('#mail').val();
+            var sex= $("#sel1").val();
+            var id = $("#id_data").va();
+            if(userName == ""||mailNumber == ""||sex == ""||id ==""){
+                swal({
+                    title: '所有信息不为空',
+                    type: 'warning'
+                })
+            }
+            else{
+                $.ajax({
+                    url:"/user/update",
+                    type:"post",
+                    data:{"userName":userName,"mailNumber":mailNumber,"sex":sex,"id":id},
+                    success:function(data){
+                        if (data == true){
+                            swal("更新成功!")
+
+                        }
+                        else {
+                            swal("添加失败请重试!");
+                        }
+                    },
+                    error:function(){
+                        alert("修改信息出现了问题，请重试!");
+                    }
+                });
+            }
+        })
+    })
+</script>
 </html>

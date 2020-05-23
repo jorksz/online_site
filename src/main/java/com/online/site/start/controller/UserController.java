@@ -7,6 +7,7 @@ import com.online.site.start.service.RoleService;
 import com.online.site.start.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login/{userName}/{password}")
-    public String login(Model model,  @PathVariable String userName, @PathVariable String password){
+    public String login(ModelMap model, @PathVariable String userName, @PathVariable String password){
         String loginPassword = Optional.ofNullable(userService.getPassword(userName)).orElse("");
         if (password.equals(loginPassword)){
             int id = 0;

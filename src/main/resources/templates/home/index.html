@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>在线学习网站</title>
@@ -16,11 +16,11 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <!--字体图标-->
-    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
 
     <!--弹出框优化-->
-    <script src="../../static/plugins/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css">
+    <script src="../../static/plugins/sweetalert.min.js" th:src="@{/plugins/sweetalert.min.js}"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css" th:href="@{/plugins/sweetalert.css}">
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -45,10 +45,10 @@
             <a class="nav-link" href="../user/history.html">历史</a>
         </li>
         <li class="nav-item" style="margin-left: 20px">
-            <a class="nav-link" href="../user/collection.html">收藏</a>
+            <a class="nav-link" href="../user/colletction.html">收藏</a>
         </li>
     </ul>
-    <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
+    <img src="../../static/image/facio.jpg" id="pictureHead" th:src="@{/image/facio.jpg}" onclick="funcp()"  href="../user/person_message.html" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
 </nav>
 
 
@@ -445,4 +445,10 @@
     <p>在线学习网站</p>
 </div>
 </body>
+
+<script>
+    function funcp(){
+        $(location).attr('href', '/view/user/usmg');
+    }
+</script>
 </html>
