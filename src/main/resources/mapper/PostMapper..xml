@@ -13,6 +13,10 @@
         select * from post where status = #{status}
     </select>
 
+    <select id="listPostOne" resultType="com.online.site.start.entity.Post">
+        select * from post where id = #{id}
+    </select>
+
     <delete id="deletePost">
         delete from post where id = #{id}
     </delete>

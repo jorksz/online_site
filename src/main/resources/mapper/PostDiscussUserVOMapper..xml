@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.site.start.mapper.PostDiscussUserVOMapper">
+    <resultMap id="postDiscussUserVO" type="com.online.site.start.vo.PostDiscussUserVO">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="picture" property="userPicture" jdbcType="STRING"></result>
+    </resultMap>
+    <select id="ListPostDiscussUserVO" resultMap="postDiscussUserVO">
+    </select>
+</mapper>

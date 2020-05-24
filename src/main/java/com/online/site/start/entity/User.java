@@ -12,6 +12,16 @@ public class User {
     private String sex;
     private Integer roleId;
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    private String picture;
+
     public String getSex() {
         return sex;
     }

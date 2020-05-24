@@ -13,6 +13,13 @@ public interface PostService {
     Page<Post> listPost(Integer status);
 
     /**
+     * 查询帖子详细信息
+     * @param id
+     * @return
+     */
+    Post listPostOne(Integer id);
+
+    /**
      * 删除帖子
      * @param id
      * @return

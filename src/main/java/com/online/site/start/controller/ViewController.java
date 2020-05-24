@@ -1,22 +1,18 @@
 package com.online.site.start.controller;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.online.site.start.entity.Post;
+import com.online.site.start.entity.PostDetail;
 import com.online.site.start.entity.User;
 import com.online.site.start.entity.Video;
-import com.online.site.start.service.PostService;
-import com.online.site.start.service.RoleService;
-import com.online.site.start.service.UserService;
-import com.online.site.start.service.VideoService;
+import com.online.site.start.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
@@ -37,6 +33,11 @@ public class ViewController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private PostDetailService postDetailService;
+
+    @Autowired
+    private PostReplyService postReplyService;
     @Autowired
     private VideoService videoService;
 
@@ -94,4 +95,30 @@ public class ViewController {
         model.addAttribute("postList2", pageInfo2);
         return "/background/post_manage";
     }
+
+    @RequestMapping("post/index")
+    public String postIndex(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Model model, HttpSession session){
+        PageHelper.startPage(pageNo,pageSize);
+        PageInfo<Post> pageInfo = new PageInfo<>(postService.listPost(2));
+        model.addAttribute("postList", pageInfo);
+        User user  = (User) session.getAttribute("user");
+        model.addAttribute("user",user);
+        return "/community/post";
+    }
+
+    @RequestMapping("post/detail/{postId}")
+    public String postDetail(@PathVariable Integer postId, Model model, HttpSession session,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "6") int pageSize){
+        User user  = (User) session.getAttribute("user");
+        model.addAttribute("user",user);
+        model.addAttribute("postId",postId);
+        Post post = postService.listPostOne(postId);
+        model.addAttribute("post",post);
+        PageHelper.startPage(pageNo,pageSize);
+        PageInfo<PostDetail> pageInfoDetail = new PageInfo<>(postDetailService.ListPostDetail(postId));
+        model.addAttribute("pageInfoDetail",pageInfoDetail);
+        return "/community/post_detail";
+    }
+
+
+
 }

@@ -44,36 +44,28 @@ public class PostDetail {
         this.content = content;
     }
 
-    public Integer getReplyId() {
-        return replyId;
+    public Integer getPostId() {
+        return postId;
     }
 
-    public void setReplyId(Integer replyId) {
-        this.replyId = replyId;
-    }
-
-    public String getReplyTime() {
-        return replyTime;
-    }
-
-    public void setReplyTime(String replyTime) {
-        this.replyTime = replyTime;
-    }
-
-    public String getReplyContent() {
-        return replyContent;
-    }
-
-    public void setReplyContent(String replyContent) {
-        this.replyContent = replyContent;
+    public void setPostId(Integer postId) {
+        this.postId = postId;
     }
 
     private Integer id;
     private String postName;
+    private Integer postId;
     private Integer discussId;
+
+    public String getDiscussName() {
+        return discussName;
+    }
+
+    public void setDiscussName(String discussName) {
+        this.discussName = discussName;
+    }
+
+    private String discussName;
     private String discussTime;
     private String content;
-    private Integer replyId;
-    private String replyTime;
-    private String replyContent;
 }

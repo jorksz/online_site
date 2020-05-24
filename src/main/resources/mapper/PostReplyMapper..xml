@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.site.start.mapper.PostReplyMapper">
+
+
+
+    <insert id="savePostReply" parameterType="com.online.site.start.entity.PostReply">
+        insert into post_reply(post_id, discuss_id, reply_id, reply_content) values (#{postId},
+        #{discussId}, #{replyId}, #{replyContent})
+    </insert>
+
+    <select id="ListPostReply" resultType="com.online.site.start.entity.PostReply">
+        select * from post_reply where post_id = #{postId} and discuss_id = #{discussId}
+    </select>
+
+</mapper>

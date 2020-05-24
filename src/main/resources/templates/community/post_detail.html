@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>如何学习虚拟机</title>
@@ -14,15 +14,15 @@
 
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!--字体图标-->
-    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--markdown-->
-    <link rel="stylesheet" href="../../static/plugins/editor.md-master/css/editormd.css" />
-    <script src="../../static/plugins/editor.md-master/editormd.min.js"></script>
-    <link rel="stylesheet" href="../../static/plugins/editor.md-master/css/editormd.preview.css" />
+    <link rel="stylesheet" href="../../static/plugins/editor.md-master/css/editormd.css" th:href="@{/plugins/editor.md-master/css/editormd.css}" />
+    <script src="../../static/plugins/editor.md-master/editormd.min.js" th:src="@{/plugins/editor.md-master/editormd.min.js}"></script>
+    <link rel="stylesheet" href="../../static/plugins/editor.md-master/css/editormd.preview.css" th:href="@{/plugins/editor.md-master/css/editormd.preview.css}" />
     <!--弹出框优化-->
-    <script src="../../static/plugins/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css">
+    <!--字体图标-->
+    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <script src="../../static/plugins/sweetalert.min.js"  th:src="@{/plugins/sweetalert.min.js}"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css" th:href="@{/plugins/sweetalert.css}">
 </head>
 <body style="background-color: #b9b9b9">
 <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
@@ -50,25 +50,25 @@
             <a class="nav-link" href="#">收藏</a>
         </li>
     </ul>
-    <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
+    <img src="../../static/image/facio.jpg" th:src="@{${user.picture}}" onclick="funcp()" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
 </nav>
 
 <div class="container" style="margin-top: 10%;width: 60%" >
     <div class="card">
         <div class="card-header">
-            <h3><i class="fa fa-bookmark" aria-hidden="true" style="color: #9c3328">
+            <h3 th:text="${post.name}"><i class="fa fa-bookmark" aria-hidden="true" style="color: #9c3328">
                 如何学习虚拟机
             </i></h3>
         </div>
         <div class="card-body">
             <div class="card-text text-left">
-                <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="width: 80px;height: 80px;">
+                <img src="../../static/image/facio.jpg" th:src="@{user.picture}" onclick="funcp()" class="rounded-circle" style="width: 80px;height: 80px;">
                 <div style="margin-left: 15%;width: 10px;height: 100%; background: #000;"></div>
-                <h6 style="color: #333333;margin-left:1.5%;margin-top:1%;font-weight:bold">向南的我</h6>
+                <h6 style="color: #333333;margin-left:1.5%;margin-top:1%;font-weight:bold" th:text="${post.publisher}">向南的我</h6>
                 <form class="form-inline font-weight-light">
                     <label> <i class="fa fa-pencil-square" aria-hidden="true" style="margin-left: 0%;">
-                        编辑于</i></label>2020-05-12 16:58
-                    <label style="margin-left: 40%"><i class="fa fa-comments" aria-hidden="true">评论</i></label>1
+                        编辑于</i><label th:text="${post.publishTime}">2020-05-12 16:58</label></label>
+                    <label style="margin-left: 40%"><i class="fa fa-comments" aria-hidden="true">评论</i></label><label th:text="${pageInfoDetail.getSize()}">1</label>
                     <label style="margin-left: 3%"><i class="fa fa-eye" aria-hidden="true">浏览数</i></label>1
                 </form>
             </div>
@@ -77,41 +77,8 @@
     <div class="card">
         <div id="test-markdown-view">
             <!-- Server-side output Markdown text -->
-            <textarea style="display:none;">
+            <textarea style="display:none;" th:text="${post.content}">
 2014年，我们本科相识，2017年，我们一起考研到同一所大学，感情很好，我和她都很习惯对方，现在是亲人胜似恋人。
-2020年7月，我们研究生将一起要毕业了。我们不是同一个专业，我计算机，她医学。
-
-具体找我分手的原因，是她妈妈觉得我家条件不好，我和女朋友家里都是农村，以后对两方的老人养老，怕我们在一起会吃苦。她妈妈说，如果她和我在一起，就不认她这个女儿，以后她结婚，父母也不会去。我女朋友认为得不到家人得祝福，即使在一起也不会幸福。
-
-我也马上要参加工作了，我目前签的工作在上海，但是我考虑异地了，我现在不想和女朋友异地。我非常珍惜这段感情，2020年因为疫情，有好几个月没有见面了，我女朋友说不见反而淡了。我没有去看她，是我的错误。
-
-最重要的一个原因，就是两方家庭条件都不是比较好，而她妈妈当初就是嫁给了一个穷人过得很苦，所以不想她女儿重蹈覆辙。
-
-但是我觉得我们工作之后会好起来的。我真的不想失去这段感情。
-
-朋友们可以帮忙想想如何办吗？
-
-
-😭😭😭
-刚女朋友发我视频，我说了一句你主动发过来我好高兴，我从昨天中午到现在没有吃饭了，我可以去吃饭了。女朋友说，可以她就是忍不住。我好难过。
-我明天就去长沙找她了。
-
-😶😶😶
-感谢大家的建议。我明天就去当面谈。明天再回复大家。衷心感谢给大家。
-
-
-😣😣😣
-更新一下，我是92年，她是93年。我本科毕业后工作了段时间考研的。她是直接考研。
-
-——————————分割线—————————————
-5月12日晚上9点更。
-
-怎么说呢？
-女方心里是有我的，和我坦白了很多事情。现在她面临很多压力，包括我们的和她自己私人的。她很累，看的我心疼。我们分手了，她虽然很不舍，我也很不舍。我们双方在一起都面临家庭的压力，不如分开，让自己独立优秀起来，不让下次遇见出现遗憾。
-
-也许这样我才能从男孩变成男人吧。痛苦伤心确实是事实。
-
-期待遇见更优秀的她。我仍相信爱情。
             </textarea>
         </div>
     </div>
@@ -125,62 +92,92 @@
         </div>
         <div class="card-body">
             <div class="card-text text-left">
-                <form class="form-inline font-weight-light">
-                    <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="width: 80px;height: 80px;">
-                    <h6 style="color: #333333;margin-left:3%;margin-top: -8%;font-weight:bold">向南的我</h6>
-                    <button  style="margin-top: -20%;margin-left: 92%" type="button" class="btn btn-light" disabled>#1</button>
-                    <div id="test-markdown-view2" style="width: 100%;margin-left: 12%;margin-top: -8%">
-                        <!-- Server-side output Markdown text -->
-                        <textarea style="display:none;">
+                <div th:each="postDetail:  ${pageInfoDetail.getList()}">
+                    <form class="form-inline font-weight-light">
+                        <img src="../../static/image/facio.jpg" th:src="" href="#" class="rounded-circle" style="width: 80px;height: 80px;">
+                        <h6 style="color: #333333;margin-left:3%;margin-top: -8%;font-weight:bold" th:text="${postDetail.discussName}">向南的我</h6>
+                        <button  style="margin-top: -20%;margin-left: 92%" type="button" class="btn btn-light" disabled th:text="${postDetailStat.index}">#1</button>
+                        <div th:id="'test-markdown-view'+(${postDetailStat.index}+1)" id="test-markdown-view2" style="width: 100%;margin-left: 12%;margin-top: -8%">
+                            <!-- Server-side output Markdown text -->
+                            <textarea style="display:none;" th:text="${postDetail.content}">
 女方心里是有我的，和我坦白了很多事情。现在她面临很多压力，包括我们的和她自己私人的。她很累，看的我心疼。我们分手了，她虽然很不舍，我也很不舍。我们双方在一起都面临家庭的压力，不如分开，让自己独立优秀起来，不让下次遇见出现遗憾。
 
 也许这样我才能从男孩变成男人吧。痛苦伤心确实是事实。
                             期待遇见更优秀的她。我仍相信爱情。
                          </textarea>
-                    </div>
-                </form>
-                <form class="form-inline font-weight-light">
-                    <label style="margin-left: 15%"> <i class="fa fa-pencil-square" aria-hidden="true">
-                        评论于</i></label>2020-05-12 16:58
-                    <a  style="margin-left: 45%" class="card-link" data-toggle="collapse" href="#demo">
-                        <i class="fa fa-comments" aria-hidden="true">回复（1）</i>
-                    </a>
-                </form>
-            </div>
-        </div>
-        <!--回复的内容--->
-        <div id="demo" class="collapse" style="margin-left: 17%;width: 80%;">
-            <div class="card-body">
-            <div class="card-text text-left">
-                <form class="form-inline font-weight-light">
-                    <h6 style="color: #9c3328">向南的我：</h6>
-                    <div id="test-markdown-view3" style="width: 100%;margin-left: 15%;margin-top: -8.5%">
-                        <!-- Server-side output Markdown text -->
-                        <textarea style="display:none;">期待遇见更优秀的她。我仍相信爱情。
+                        </div>
+                    </form>
+                    <form class="form-inline font-weight-light">
+                        <label style="margin-left: 15%"> <i class="fa fa-pencil-square" aria-hidden="true">
+                            评论于</i><label th:text="${postDetail.discussTime}">2020-05-12 16:58</label></label>
+                        <a  style="margin-left: 45%" class="card-link" data-toggle="collapse" href="#demo">
+                            <i class="fa fa-comments" aria-hidden="true">回复<span>（1）</span></i>
+                        </a>
+                    </form>
+                </div>
+                <!--回复的内容--->
+                <div id="demo" class="collapse" style="margin-left: 17%;width: 80%;">
+                    <div class="card-body">
+                        <div class="card-text text-left">
+                            <form class="form-inline font-weight-light">
+                                <h6 style="color: #9c3328">向南的我：</h6>
+                                <div id="test-markdown-view3" style="width: 100%;margin-left: 15%;margin-top: -8.5%">
+                                    <!-- Server-side output Markdown text -->
+                                    <textarea style="display:none;">期待遇见更优秀的她。我仍相信爱情。
                          </textarea>
+                                </div>
+                            </form>
+                            <form class="form-inline font-weight-light">
+                                <label style="margin-left: 0%"> <i class="fa fa-pencil-square" aria-hidden="true">
+                                    回复于</i></label>2020-05-12 16:58
+                            </form>
+                        </div>
                     </div>
-                </form>
-                <form class="form-inline font-weight-light">
-                    <label style="margin-left: 0%"> <i class="fa fa-pencil-square" aria-hidden="true">
-                        回复于</i></label>2020-05-12 16:58
-                </form>
-            </div>
-            </div>
-            <div class="card-body">
-                <div class="card-text text-left">
-                    <textarea style="width: 100%;height: 100%" placeholder="在这里留下你的回复把！"></textarea>
-                    <button type="button" class="btn btn-success" style="margin-left: 87%">回复</button>
+                    <div class="card-body">
+                        <div class="card-text text-left">
+                            <form class="form-inline font-weight-light">
+                                <h6 style="color: #9c3328">向南的我：</h6>
+                                <div id="test-markdown-view5"  style="width: 100%;margin-left: 15%;margin-top: -8.5%">
+                                    <!-- Server-side output Markdown text -->
+                                    <textarea style="display:none;">期待遇见更优秀的她。我仍相信爱情。
+                                    </textarea>
+                                </div>
+                            </form>
+                            <form class="form-inline font-weight-light">
+                                <label style="margin-left: 0%"> <i class="fa fa-pencil-square" aria-hidden="true">
+                                    回复于</i></label>2020-05-12 16:58
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text text-left">
+                            <textarea style="width: 100%;height: 100%" placeholder="在这里留下你的回复把！"></textarea>
+                            <button type="button" class="btn btn-success" style="margin-left: 87%">回复</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="container" style="margin-left: 0%">
+        <ul class="pagination pagination" th:if="${pageInfoDetail.getTotal()} > 6" >
+            <li class="page-item"><a class="page-link" href="#" th:text="|当前第${pageInfoDetail.getPageNum()}页|">当前第一页</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/view/post/index/'+${postId}+'?pageNo='+${pageInfoDetail.getPrePage()}}" th:text="上一页">Previous</a></li>
+            <li class="page-item"><a class="page-link"th:href="@{'/view/post/index/'+${postId}+'?pageNo='+${pageInfoDetail.getNextPage()}}" th:text="下一页">next</a></li>
+            <li class="page-item"><a class="page-link" th:text="|共${pageInfoDetail.getPages()}页|">共1页</a></li>
+        </ul>
+    </div>
     <!--回复板块-->
     <div class="card" style="margin-top: 4%">
         <div class="card-body">
             <div class="card-text text-left">
-                <textarea style="width: 100%;height: 100%" placeholder="在这里添加你的回帖把！"></textarea>
-                <button type="button" class="btn btn-success" style="margin-left: 90%">回帖</button>
+                <input type="hidden" id="postId" th:value="${post.id}">
+                <input type="hidden" id="postName" th:value="${post.name}">
+                <input type="hidden" id="discussId" th:value="${user.id}">
+                <input type="hidden" id="discussName" th:value="${user.userName}">
+                <textarea id="discussContent" style="width: 100%;height: 100%" placeholder="在这里添加你的回帖把！"></textarea>
+                <button type="button" id="discussBtn" class="btn btn-success" style="margin-left: 90%">回帖</button>
             </div>
         </div>
     </div>
@@ -191,11 +188,45 @@
     <p>在线学习网站</p>
 </div>
 </body>
-<script src="../../static/plugins/editor.md-master/lib/marked.min.js"></script>
-<script src="../../static/plugins/editor.md-master/lib/prettify.min.js"></script>
+<script src="../../static/plugins/editor.md-master/lib/marked.min.js" th:src="@{/plugins/editor.md-master/lib/marked.min.js}"></script>
+<script src="../../static/plugins/editor.md-master/lib/prettify.min.js" th:src="@{/plugins/editor.md-master/lib/prettify.min.js}"></script>
 <script type="text/javascript">
+    $("#discussBtn").click(function () {
+        var discussId = $("#discussId").val().trim();
+        var postId = $("#postId").val().trim();
+        var postName = $("#postName").val().trim();
+        var discussName = $("#discussName").val().trim();
+        var discussContent = $("#discussContent").val().trim();
+        if (discussContent==""||postId==""||discussId==""||postName==""||discussName=="") {
+            swal("请填写评论内容！", "");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/discuss/save",
+            data: {"postId":postId,"postName":postName,
+                "discussId":discussId,"discussName":discussName,"content":discussContent},
+            success: function (data) {
+                var code = data;
+                if (code==true) {
+                    $(location).attr('href', '/view/post/detail/'+postId);
+                }
+                else {
+                    swal("发布评论失败，请重试!")
+                }
+            }
+        });
+    });
+
     $(function() {
         var testView = editormd.markdownToHTML("test-markdown-view", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("test-markdown-view1", {
             // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
             // htmlDecode : true,  // Enable / disable HTML tag encode.
             // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
@@ -222,5 +253,16 @@
             // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
         });
     });
+
+    $(function() {
+        var testView = editormd.markdownToHTML("test-markdown-view5", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    function funcp(){
+        $(location).attr('href', '/view/user/usmg');
+    }
 </script>
 </html>

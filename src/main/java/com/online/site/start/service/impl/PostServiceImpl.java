@@ -19,6 +19,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Post listPostOne(Integer id) {
+        return postMapper.listPostOne(id);
+    }
+
+    @Override
     public Boolean deletePost(Integer id) {
         return postMapper.deletePost(id) > 0;
     }
