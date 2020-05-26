@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.online.site.start.mapper.VideoCollectionMapper">
-    <select id="listVideoCollection" resultType="videoCollection">
+    <select id="listVideoCollection" resultType="com.online.site.start.entity.VideoCollection">
         select * from video_collection where user_id = #{userId}
     </select>
 
-    <insert id="saveVideoCollection" parameterType="videoCollection">
+    <insert id="saveVideoCollection" parameterType="com.online.site.start.entity.VideoCollection">
          insert into video_collection(user_id, video_id, video_name) values (#{userId},
         #{videoId}, #{videoName})
     </insert>

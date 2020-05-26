@@ -4,13 +4,12 @@ package com.online.site.start.entity;
  * 帖子详细信息
  */
 public class PostDetail {
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private Integer detailId;
+    private String postName;
+    private Integer postId;
+    private Integer discussId;
+    private String discussTime;
+    private String content;
 
     public String getPostName() {
         return postName;
@@ -52,20 +51,12 @@ public class PostDetail {
         this.postId = postId;
     }
 
-    private Integer id;
-    private String postName;
-    private Integer postId;
-    private Integer discussId;
-
-    public String getDiscussName() {
-        return discussName;
+    public Integer getDetailId() {
+        return detailId;
     }
 
-    public void setDiscussName(String discussName) {
-        this.discussName = discussName;
+    public void setDetailId(Integer detailId) {
+        this.detailId = detailId;
     }
 
-    private String discussName;
-    private String discussTime;
-    private String content;
 }

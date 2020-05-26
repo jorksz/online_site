@@ -3,8 +3,8 @@ package com.online.site.start.entity;
 public class PostReply {
 
     private Integer id;
-    private Integer potId;
-    private Integer dicussId;
+    private Integer postId;
+    private Integer discussId;
     private Integer replyId;
     private String replyContent;
     private String replyTime;
@@ -17,20 +17,20 @@ public class PostReply {
         this.id = id;
     }
 
-    public Integer getPotId() {
-        return potId;
+    public Integer getPostId() {
+        return postId;
     }
 
-    public void setPotId(Integer potId) {
-        this.potId = potId;
+    public void setPostId(Integer postId) {
+        this.postId = postId;
     }
 
-    public Integer getDicussId() {
-        return dicussId;
+    public Integer getDiscussId() {
+        return discussId;
     }
 
-    public void setDicussId(Integer dicussId) {
-        this.dicussId = dicussId;
+    public void setDiscussId(Integer discussId) {
+        this.discussId = discussId;
     }
 
     public Integer getReplyId() {

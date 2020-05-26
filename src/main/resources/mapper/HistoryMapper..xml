@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.online.site.start.mapper.HistoryMapper">
-    <select id="listHistory" resultType="history">
+    <select id="listHistory" resultType="com.online.site.start.entity.History">
         select * from history where user_id = #{userId}
     </select>
 
-    <insert id="saveHistory" parameterType="history">
+    <insert id="saveHistory" parameterType="com.online.site.start.entity.History">
          insert into history(user_id, video_id) values (#{userId},
         #{videoId})
     </insert>

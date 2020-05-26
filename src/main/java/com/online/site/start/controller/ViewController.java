@@ -3,11 +3,11 @@ package com.online.site.start.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.online.site.start.entity.Post;
-import com.online.site.start.entity.PostDetail;
-import com.online.site.start.entity.User;
-import com.online.site.start.entity.Video;
+import com.online.site.start.entity.*;
+import com.online.site.start.mapper.PostDiscussUserVOMapper;
 import com.online.site.start.service.*;
+import com.online.site.start.vo.PostDiscussUserVO;
+import com.online.site.start.vo.PostReplyUserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +15,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -40,6 +42,8 @@ public class ViewController {
     private PostReplyService postReplyService;
     @Autowired
     private VideoService videoService;
+    @Autowired
+    private PostDiscussUserVOMapper postDiscussUserVOMapper;
 
     @RequestMapping("home/index")
     public String index(Model model, HttpSession session){
@@ -106,6 +110,13 @@ public class ViewController {
         return "/community/post";
     }
 
+    @RequestMapping("post/publish")
+    public String postIndex( Model model, HttpSession session){
+        User user  = (User) session.getAttribute("user");
+        model.addAttribute("user",user);
+        return "/community/publish_post";
+    }
+
     @RequestMapping("post/detail/{postId}")
     public String postDetail(@PathVariable Integer postId, Model model, HttpSession session,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "6") int pageSize){
         User user  = (User) session.getAttribute("user");
@@ -113,9 +124,12 @@ public class ViewController {
         model.addAttribute("postId",postId);
         Post post = postService.listPostOne(postId);
         model.addAttribute("post",post);
+        Page<PostDiscussUserVO> postDiscussUserVOPage = postDiscussUserVOMapper.ListPostDiscussUserVO(postId);
         PageHelper.startPage(pageNo,pageSize);
-        PageInfo<PostDetail> pageInfoDetail = new PageInfo<>(postDetailService.ListPostDetail(postId));
+        PageInfo<PostDiscussUserVO> pageInfoDetail = new PageInfo<>(postDiscussUserVOPage);
         model.addAttribute("pageInfoDetail",pageInfoDetail);
+        Map<Integer, List<PostReplyUserVO>> replyMap = postReplyService.ListPostReply(postDiscussUserVOPage);
+        model.addAttribute("replyMap",replyMap);
         return "/community/post_detail";
     }
 

@@ -2,6 +2,7 @@ package com.online.site.start.mapper;
 
 import com.github.pagehelper.Page;
 import com.online.site.start.entity.PostDetail;
+import com.online.site.start.vo.PostDiscussUserVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -11,5 +12,5 @@ public interface PostDiscussUserVOMapper {
      * @param postId
      * @return
      */
-    Page<PostDetail> ListPostDiscussUserVO(Integer postId);
+    Page<PostDiscussUserVO> ListPostDiscussUserVO(Integer postId);
 }

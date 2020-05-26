@@ -1,7 +1,6 @@
 package com.online.site.start.vo;
 
 public class PostDiscussUserVO {
-    private Integer id;
     private String userPicture;
     private Integer discussId;
     private Integer postId;
@@ -11,13 +10,6 @@ public class PostDiscussUserVO {
     private String discussContent;
     private String discussTime;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getUserPicture() {
         return userPicture;

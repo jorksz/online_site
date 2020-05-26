@@ -2,9 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.online.site.start.mapper.PostDiscussUserVOMapper">
     <resultMap id="postDiscussUserVO" type="com.online.site.start.vo.PostDiscussUserVO">
-        <id column="id" property="id" jdbcType="INTEGER"></id>
-        <result column="picture" property="userPicture" jdbcType="STRING"></result>
+        <result column="picture" property="userPicture"></result>
+        <result column="id" property="userId"/>
+        <result column="post_id" property="postId"/>
+        <result column="post_name" property="postName"/>
+        <result column="detail_id" property="discussId"/>
+        <result column="user_name" property="userName"/>
+        <result column="discuss_time" property="discussTime"/>
+        <result column="content" property="discussContent"/>
+
     </resultMap>
     <select id="ListPostDiscussUserVO" resultMap="postDiscussUserVO">
+       select user.id,user.user_name,user.picture,post_detail.post_name,
+post_detail.discuss_time,post_detail.detail_id,post_detail.content,post_detail.post_id
+FROM user,post_detail
+where user.id= post_detail.discuss_id and post_detail.post_id = #{postId}
     </select>
 </mapper>

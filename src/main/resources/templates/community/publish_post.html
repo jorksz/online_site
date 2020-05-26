@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>发布帖子</title>
@@ -15,13 +15,13 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!--字体图标-->
-    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
     <!--markdown-->
-    <link rel="stylesheet" href="../../static/plugins/editor.md-master/css/editormd.css" />
-    <script src="../../static/plugins/editor.md-master/editormd.min.js"></script>
+    <link rel="stylesheet" href="../../static/plugins/editor.md-master/css/editormd.css" th:href="@{/plugins/editor.md-master/css/editormd.css}"/>
+    <script src="../../static/plugins/editor.md-master/editormd.min.js" th:href="@{/plugins/editor.md-master/editormd.min.js}"></script>
     <!--弹出框优化-->
-    <script src="../../static/plugins/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css">
+    <script src="../../static/plugins/sweetalert.min.js" th:src="@{/plugins/sweetalert.min.js}"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css" th:href="@{/plugins/sweetalert.css}">
 
 </head>
 <body style="background-color: #9d9d9d">
@@ -56,21 +56,22 @@
     <h3>发布帖子</h3>
     <form class="form-inline">
         <input type="text" class="form-control" id="title" placeholder="标题..." style="width: 100%">
+        <input type="hidden" id="user" th:value="${user.userName}">
     <div id="test-editor">
-        <textarea style="display:none;" class="content-markdown" name="content-markdown">
+        <textarea style="display:none;" id="cotent" class="content-markdown" name="test-editor-content-markdown">
         </textarea>
+        <textarea id="my-editormd-html-code" name="test-editor-html-code" style="display:none;"></textarea>
     </div>
     <button type="submit" class="btn btn-success btn-lg" style="margin-left: 48%">发布</button>
     </form>
 </div>
-<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="editormd/editormd.min.js"></script>
 <script type="text/javascript">
     $(function() {
         var editor = editormd("test-editor", {
              width  : "100%",
              height : "500px",
-            path   : "../../static/resources/plugins/editor.md-master/lib/"
+            path   : "../../static/resources/plugins/editor.md-master/lib/",
+            saveHTMLToTextarea : true//注意3：这个配置，方便post提交表单
         });
     });
 </script>

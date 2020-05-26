@@ -62,7 +62,7 @@
         </div>
         <div class="card-body">
             <div class="card-text text-left">
-                <img src="../../static/image/facio.jpg" th:src="@{user.picture}" onclick="funcp()" class="rounded-circle" style="width: 80px;height: 80px;">
+                <img src="../../static/image/facio.jpg" th:src="@{${user.picture}}" onclick="funcp()" class="rounded-circle" style="width: 80px;height: 80px;">
                 <div style="margin-left: 15%;width: 10px;height: 100%; background: #000;"></div>
                 <h6 style="color: #333333;margin-left:1.5%;margin-top:1%;font-weight:bold" th:text="${post.publisher}">向南的我</h6>
                 <form class="form-inline font-weight-light">
@@ -90,77 +90,59 @@
                 评论信息
             </i></h3>
         </div>
-        <div class="card-body">
+        <div class="card-body" th:each="postDiscussUserVO:  ${pageInfoDetail.getList()}">
             <div class="card-text text-left">
-                <div th:each="postDetail:  ${pageInfoDetail.getList()}">
-                    <form class="form-inline font-weight-light">
-                        <img src="../../static/image/facio.jpg" th:src="" href="#" class="rounded-circle" style="width: 80px;height: 80px;">
-                        <h6 style="color: #333333;margin-left:3%;margin-top: -8%;font-weight:bold" th:text="${postDetail.discussName}">向南的我</h6>
-                        <button  style="margin-top: -20%;margin-left: 92%" type="button" class="btn btn-light" disabled th:text="${postDetailStat.index}">#1</button>
-                        <div th:id="'test-markdown-view'+(${postDetailStat.index}+1)" id="test-markdown-view2" style="width: 100%;margin-left: 12%;margin-top: -8%">
-                            <!-- Server-side output Markdown text -->
-                            <textarea style="display:none;" th:text="${postDetail.content}">
-女方心里是有我的，和我坦白了很多事情。现在她面临很多压力，包括我们的和她自己私人的。她很累，看的我心疼。我们分手了，她虽然很不舍，我也很不舍。我们双方在一起都面临家庭的压力，不如分开，让自己独立优秀起来，不让下次遇见出现遗憾。
-
-也许这样我才能从男孩变成男人吧。痛苦伤心确实是事实。
-                            期待遇见更优秀的她。我仍相信爱情。
+                <form class="form-inline font-weight-light">
+                    <img src="../../static/image/facio.jpg" th:src="@{${postDiscussUserVO.userPicture}}" href="#" class="rounded-circle" style="width: 80px;height: 80px;">
+                    <h6 style="color: #333333;margin-left:3%;margin-top: -8%;font-weight:bold" th:text="${postDiscussUserVO.userName}">向南的我</h6>
+                    <button  style="margin-top: -20%;margin-left: 92%" type="button" class="btn btn-light" disabled th:text="${postDiscussUserVOStat.index}+1">#1</button>
+                    <div th:id="'discussM'+(${postDiscussUserVOStat.index})" id="test-markdown-view2" style="width: 100%;margin-left: 12%;margin-top: -8%">
+                        <!-- Server-side output Markdown text -->
+                        <textarea style="display:none;" th:text="${postDiscussUserVO.discussContent}">期待遇见更优秀的她。我仍相信爱情。
                          </textarea>
-                        </div>
-                    </form>
-                    <form class="form-inline font-weight-light">
-                        <label style="margin-left: 15%"> <i class="fa fa-pencil-square" aria-hidden="true">
-                            评论于</i><label th:text="${postDetail.discussTime}">2020-05-12 16:58</label></label>
-                        <a  style="margin-left: 45%" class="card-link" data-toggle="collapse" href="#demo">
-                            <i class="fa fa-comments" aria-hidden="true">回复<span>（1）</span></i>
-                        </a>
-                    </form>
-                </div>
-                <!--回复的内容--->
-                <div id="demo" class="collapse" style="margin-left: 17%;width: 80%;">
-                    <div class="card-body">
-                        <div class="card-text text-left">
-                            <form class="form-inline font-weight-light">
-                                <h6 style="color: #9c3328">向南的我：</h6>
-                                <div id="test-markdown-view3" style="width: 100%;margin-left: 15%;margin-top: -8.5%">
-                                    <!-- Server-side output Markdown text -->
-                                    <textarea style="display:none;">期待遇见更优秀的她。我仍相信爱情。
-                         </textarea>
-                                </div>
-                            </form>
-                            <form class="form-inline font-weight-light">
-                                <label style="margin-left: 0%"> <i class="fa fa-pencil-square" aria-hidden="true">
-                                    回复于</i></label>2020-05-12 16:58
-                            </form>
-                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="card-text text-left">
-                            <form class="form-inline font-weight-light">
-                                <h6 style="color: #9c3328">向南的我：</h6>
-                                <div id="test-markdown-view5"  style="width: 100%;margin-left: 15%;margin-top: -8.5%">
-                                    <!-- Server-side output Markdown text -->
-                                    <textarea style="display:none;">期待遇见更优秀的她。我仍相信爱情。
+                </form>
+                <form class="form-inline font-weight-light">
+                    <label style="margin-left: 15%"> <i class="fa fa-pencil-square" aria-hidden="true">
+                        评论于</i><label th:text="${postDiscussUserVO.discussTime}">2020-05-12 16:58</label></label>
+                    <a  style="margin-left: 45%" class="card-link" data-toggle="collapse" th:href="@{'#demo'+${postDiscussUserVOStat.index}}" href="#demo">
+                        <i class="fa fa-comments" aria-hidden="true">回复</i>
+                    </a>
+                </form>
+                <hr/>
+            </div>
+            <!--回复的内容--->
+            <div th:id="'demo'+(${postDiscussUserVOStat.index})" id="demo" class="collapse" style="margin-left: 17%;width: 80%;background-color: #b9b9b9">
+                <div th:each="reply: ${replyMap}">
+                    <div class="card-body" th:if="${reply.getValue().size()>0}">
+                        <div class="card-text text-left" th:if="${reply.getKey()} == ${postDiscussUserVO.discussId}">
+                            <div th:each="postReplyUserVO:${reply.getValue()}">
+                                <form class="form-inline font-weight-light">
+                                    <h6 style="color: #9c3328" th:text="${postReplyUserVO.userName}+':'">向南的我：</h6>
+                                    <div th:id="'replyM'+(${postReplyUserVOStat.index})" style="width: 100%;margin-left: 15%;margin-top: -4%;background-color: #b9b9b9">
+                                        <!-- Server-side output Markdown text -->
+                                        <textarea style="display:none;" th:text="${postReplyUserVO.replyContent}">期待遇见更优秀的她。我仍相信爱情。
                                     </textarea>
-                                </div>
-                            </form>
-                            <form class="form-inline font-weight-light">
-                                <label style="margin-left: 0%"> <i class="fa fa-pencil-square" aria-hidden="true">
-                                    回复于</i></label>2020-05-12 16:58
-                            </form>
+                                    </div>
+                                    <label style="margin-left: 60%"> <i class="fa fa-pencil-square" aria-hidden="true">
+                                        回复于</i><label th:text="${postReplyUserVO.replyTime}">2020-05-12 16:58</label></label>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="card-text text-left">
-                            <textarea style="width: 100%;height: 100%" placeholder="在这里留下你的回复把！"></textarea>
-                            <button type="button" class="btn btn-success" style="margin-left: 87%">回复</button>
-                        </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-text text-left">
+                        <textarea th:id="'replyContent'+(${postDiscussUserVOStat.index})" style="width: 100%;height: 100%" placeholder="在这里留下你的回复把！"></textarea>
+                        <button type="button" th:data-postid="${post.id}" th:data-discussId="${postDiscussUserVO.discussId}" th:data-replyId="${user.id}" th:data-index="${postDiscussUserVOStat.index}"
+                                onclick="funReply(this.getAttribute('data-postid'), this.getAttribute('data-discussId'),this.getAttribute('data-replyId'), this.getAttribute('data-index'))" class="btn btn-success" style="margin-left: 87%">回复</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container" style="margin-left: 0%">
+    <div class="container" style="margin-left: -2%;margin-top: 4%">
         <ul class="pagination pagination" th:if="${pageInfoDetail.getTotal()} > 6" >
             <li class="page-item"><a class="page-link" href="#" th:text="|当前第${pageInfoDetail.getPageNum()}页|">当前第一页</a></li>
             <li class="page-item"><a class="page-link" th:href="@{'/view/post/index/'+${postId}+'?pageNo='+${pageInfoDetail.getPrePage()}}" th:text="上一页">Previous</a></li>
@@ -168,14 +150,13 @@
             <li class="page-item"><a class="page-link" th:text="|共${pageInfoDetail.getPages()}页|">共1页</a></li>
         </ul>
     </div>
-    <!--回复板块-->
+    <!--留言-->
     <div class="card" style="margin-top: 4%">
         <div class="card-body">
             <div class="card-text text-left">
                 <input type="hidden" id="postId" th:value="${post.id}">
                 <input type="hidden" id="postName" th:value="${post.name}">
                 <input type="hidden" id="discussId" th:value="${user.id}">
-                <input type="hidden" id="discussName" th:value="${user.userName}">
                 <textarea id="discussContent" style="width: 100%;height: 100%" placeholder="在这里添加你的回帖把！"></textarea>
                 <button type="button" id="discussBtn" class="btn btn-success" style="margin-left: 90%">回帖</button>
             </div>
@@ -195,9 +176,8 @@
         var discussId = $("#discussId").val().trim();
         var postId = $("#postId").val().trim();
         var postName = $("#postName").val().trim();
-        var discussName = $("#discussName").val().trim();
         var discussContent = $("#discussContent").val().trim();
-        if (discussContent==""||postId==""||discussId==""||postName==""||discussName=="") {
+        if (discussContent==""||postId==""||discussId==""||postName=="") {
             swal("请填写评论内容！", "");
             return;
         }
@@ -205,7 +185,7 @@
             type: "post",
             url: "/discuss/save",
             data: {"postId":postId,"postName":postName,
-                "discussId":discussId,"discussName":discussName,"content":discussContent},
+                "discussId":discussId,"content":discussContent},
             success: function (data) {
                 var code = data;
                 if (code==true) {
@@ -218,6 +198,31 @@
         });
     });
 
+    function funReply(postId, discussId, replyId, index){
+        var temp = "replyContent"+index;
+        alert(index)
+        var replyContent = $("#"+temp+"").val();
+        if (postId==""||discussId==""||replyId==""||replyContent=="") {
+            swal("请填写回复内容！", "");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/reply/save",
+            data: {"postId":postId,"discussId":discussId,
+                "replyId":replyId,"replyContent":replyContent},
+            success: function (data) {
+                var code = data;
+                if (code==true) {
+                    $(location).attr('href', '/view/post/detail/'+postId);
+                }
+                else {
+                    swal("回复失败，请重试!")
+                }
+            }
+        });
+    }
+
     $(function() {
         var testView = editormd.markdownToHTML("test-markdown-view", {
             // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
@@ -226,28 +231,28 @@
         });
     });
     $(function() {
-        var testView = editormd.markdownToHTML("test-markdown-view1", {
+        var testView = editormd.markdownToHTML("discussM0", {
             // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
             // htmlDecode : true,  // Enable / disable HTML tag encode.
             // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
         });
     });
     $(function() {
-        var testView = editormd.markdownToHTML("test-markdown-view2", {
+        var testView = editormd.markdownToHTML("discussM1", {
             // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
             // htmlDecode : true,  // Enable / disable HTML tag encode.
             // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
         });
     });
     $(function() {
-        var testView = editormd.markdownToHTML("test-markdown-view3", {
+        var testView = editormd.markdownToHTML("discussM2", {
             // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
             // htmlDecode : true,  // Enable / disable HTML tag encode.
             // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
         });
     });
     $(function() {
-        var testView = editormd.markdownToHTML("test-markdown-view4", {
+        var testView = editormd.markdownToHTML("discussM3", {
             // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
             // htmlDecode : true,  // Enable / disable HTML tag encode.
             // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
@@ -255,7 +260,118 @@
     });
 
     $(function() {
-        var testView = editormd.markdownToHTML("test-markdown-view5", {
+        var testView = editormd.markdownToHTML("discussM4", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("discussM5", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("discussM6", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("discussM7", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("discussM8", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+
+    $(function() {
+        var testView = editormd.markdownToHTML("discussM9", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+
+
+
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM0", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM1", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM2", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM3", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM4", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM5", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM6", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM7", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM8", {
+            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+            // htmlDecode : true,  // Enable / disable HTML tag encode.
+            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+        });
+    });
+
+    $(function() {
+        var testView = editormd.markdownToHTML("replyM9", {
             // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
             // htmlDecode : true,  // Enable / disable HTML tag encode.
             // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.

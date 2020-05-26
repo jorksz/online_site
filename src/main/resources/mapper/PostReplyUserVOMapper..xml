@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.site.start.mapper.PostReplyUserVOMapper">
+    <resultMap id="postReplyUserVO" type="com.online.site.start.vo.PostReplyUserVO">
+        <result column="picture" property="userPicture"></result>
+        <result column="id" property="userId"/>
+        <result column="post_id" property="postId"/>
+        <result column="detail_id" property="discussId"/>
+        <result column="user_name" property="userName"/>
+        <result column="reply_time" property="replyTime"/>
+        <result column="reply_content" property="replyContent"/>
+
+    </resultMap>
+    <select id="ListPostReplyUserVO" resultMap="postReplyUserVO">
+  select user.id,user.user_name,user.picture,post_reply.post_id,post_reply.reply_content,post_reply.reply_time,
+	post_reply.discuss_id
+FROM user,post_reply
+where user.id=post_reply.reply_id and post_reply.post_id=#{postId} and post_reply.discuss_id=#{discussId}
+    </select>
+</mapper>

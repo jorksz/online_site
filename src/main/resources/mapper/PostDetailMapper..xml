@@ -5,8 +5,8 @@
 
 
     <insert id="savePostDetail" parameterType="com.online.site.start.entity.PostDetail">
-        insert into post_detail(post_id, post_name, discuss_id, discuss_name, content) values (#{postId},
-        #{postName}, #{discussId}, #{discussName}, #{content})
+        insert into post_detail(post_id, post_name, discuss_id, content) values (#{postId},
+        #{postName}, #{discussId}, #{content})
     </insert>
 
     <select id="ListPostDetail" resultType="com.online.site.start.entity.PostDetail">
