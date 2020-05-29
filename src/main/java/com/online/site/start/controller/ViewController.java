@@ -52,13 +52,6 @@ public class ViewController {
         return "/home/index";
     }
 
-    @RequestMapping("user/usmg")
-    public String userMessage(Model model, HttpSession session){
-        User user  = (User) session.getAttribute("user");
-        model.addAttribute("user",user);
-        return "/user/person_message";
-    }
-
     @RequestMapping("")
     public String login(){
         return "index";
@@ -110,8 +103,8 @@ public class ViewController {
         return "/community/post";
     }
 
-    @RequestMapping("post/publish")
-    public String postIndex( Model model, HttpSession session){
+    @RequestMapping("post/write")
+    public String writePost( Model model, HttpSession session){
         User user  = (User) session.getAttribute("user");
         model.addAttribute("user",user);
         return "/community/publish_post";

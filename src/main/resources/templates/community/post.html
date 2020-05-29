@@ -68,7 +68,7 @@
 
 <div class="container" style="margin-top: 10%">
     <h2>讨论社区</h2>
-    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myModal" th:href="@{/view/post/publish}">发布帖子</button></td>
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myModal" onclick="funcWrite()" th:href="@{/view/post/write}">发布帖子</button></td>
     <table class="table table-light table-hover table-striped">
         <thead>
         <tr>
@@ -100,6 +100,9 @@
 <script>
     function funcp(){
         $(location).attr('href', '/view/user/usmg');
+    }
+    function funcWrite(){
+        $(location).attr('href', '/view/post/write');
     }
 </script>
 </html>

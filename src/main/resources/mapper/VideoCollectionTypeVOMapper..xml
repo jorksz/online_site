@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.site.start.mapper.VideoCollectionTypeVOMapper">
+    <resultMap id="videoCollectionTypeVO" type="com.online.site.start.vo.VideoCollectionTypeVO">
+        <result column="id" property="videoId"></result>
+        <result column="video_name" property="videoName"/>
+        <result column="video_location" property="videoLocation"/>
+        <result column="intro" property="videoIntroduction"/>
+        <result column="upload_time" property="videoUploadTime"/>
+        <result column="user_name" property="uploadUser"/>
+        <result column="picture" property="videoPicture"/>
+        <result column="type_name" property="videoType"/>
+        <result column="label_name" property="videoLabel"/>
+
+    </resultMap>
+    <select id="listVideoCollectionTypeVOByType" resultMap="videoCollectionTypeVO">
+  select video.id,video.video_name,video.video_location,video.picture,
+  video.intro,video.user_name,video_type.type_name,video_label.label_name
+   FROM video,video_type,video_label
+   where video.type_id = video_type.id and video_label.label_id= video.label_id
+    and video_type.type_name=#{videoType}
+    </select>
+
+    <select id="listVideoCollectionTypeVOByLabel" resultMap="videoCollectionTypeVO">
+  select video.id,video.video_name,video.video_location,video.picture,
+  video.intro,video.user_name,video_type.type_name,video_label.label_name
+   FROM video,video_type,video_label
+   where video.type_id = video_type.id and video_label.label_id= video.label_id
+    and label_name=#{videoLabel}
+    </select>
+
+    <select id="listVideoCollectionTypeVOByVideoName" resultMap="videoCollectionTypeVO">
+  select video.id,video.video_name,video.video_location,video.picture,
+  video.intro,video.user_name,video_type.type_name,video_label.label_name
+   FROM video,video_type,video_label
+   where video.type_id = video_type.id and video_label.label_id= video.label_id
+    and video_name = #{videoName}
+    </select>
+
+    <select id="listVideoCollectionTypeVOByVideoKeyName" resultMap="videoCollectionTypeVO">
+  select video.id,video.video_name,video.video_location,video.picture,
+  video.intro,video.user_name,video_type.type_name,video_label.label_name
+   FROM video,video_type,video_label
+   where video.type_id = video_type.id and video_label.label_id= video.label_id
+    and video_name like #{videoName}
+    </select>
+</mapper>
