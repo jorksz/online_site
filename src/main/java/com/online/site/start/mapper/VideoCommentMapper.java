@@ -16,6 +16,13 @@ public interface VideoCommentMapper {
     List<VideoComment> listVideoComment(Integer userId);
 
     /**
+     * 查询视频收藏
+     * @param videoId 视频iD
+     * @return
+     */
+    List<VideoComment> listVideoCommentByVideoID(Integer videoId);
+
+    /**
      * 保存收藏信息
      * @param videoComment
      * @return

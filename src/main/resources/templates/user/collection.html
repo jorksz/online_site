@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>我的收藏</title>
@@ -16,11 +16,12 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <!--字体图标-->
-    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
 
-    <script src="../../static/plugins/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css">
-    <link href="../../static/css/history.css" rel="stylesheet">
+    <!--弹出框优化-->
+    <script src="../../static/plugins/sweetalert.min.js" th:src="@{/plugins/sweetalert.min.js}"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css" th:href="@{/plugins/sweetalert.css}">
+    <link href="../../static/css/history.css" rel="stylesheet" th:href="@{/css/history.css}">
 </head>
 <script>
     function setBodyWidth(){
@@ -42,13 +43,10 @@
 </script>
 <body class="jumbotron">
 <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
-    <a class="navbar-brand" href="#">在线学习网站</a>
+    <a class="navbar-brand" href="index.html" th:href="@{/view/home/index}">在线学习网站</a>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="#">课程</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">讨论社区</a>
+            <a class="nav-link" href="../community/post.html" th:href="@{/view/post/index}">讨论社区</a>
         </li>
     </ul>
     <form class="form-inline" style="margin-left: 200px">
@@ -56,17 +54,17 @@
         <button class="btn btn-light" type="button" style="margin-left: 10px">查询</button>
     </form>
     <ul class="navbar-nav">
-        <li class="nav-item" style="margin-left: 130px">
-            <a class="nav-link" href="#">消息</a>
+        <li class="nav-item" style="margin-left: 180px">
+            <a class="nav-link" href="../user/message.html" th:href="@{/view/user/message}">消息</a>
         </li>
         <li class="nav-item" style="margin-left: 20px">
-            <a class="nav-link" href="#">历史</a>
+            <a class="nav-link" href="../user/history.html" th:href="@{/view/user/history}">历史</a>
         </li>
         <li class="nav-item" style="margin-left: 20px">
-            <a class="nav-link" href="#">收藏</a>
+            <a class="nav-link" href="../user/collection.html" th:href="@{/view/user/collection}">收藏</a>
         </li>
     </ul>
-    <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
+    <img src="../../static/image/facio.jpg" id="pictureHead" th:src="@{/image/facio.jpg}" onclick="funcp()"  href="../user/person_message.html" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
 </nav>
 <div class="container">
     <div class="card img-fluid" style="width: 100%">
@@ -94,57 +92,11 @@
             2020-4-10
         </div>
         <div class="video_show">
-            <a href="#"><img width="200px" height="120px" src="../../static/image/user/test_history.jpg"></a>
+            <a href="#"><img width="200px" height="120px" src="../../static/image/video/bg/java4.png" th:src="@{/image/video/bg/java4.png}"></a>
         </div>
         <div style="margin-left: 42%;margin-top: -10%">
             <a href="#">
-                测试数据1
-            </a>
-        </div>
-        <div style="margin-left: 42%; margin-top: 5%">
-            <span class="fa fa-book" style="color: rgb(149, 121, 0);">Java</span>
-        </div>
-        <div style="margin-left: 89%;margin-top: -6%">
-            <a class="btn" href="#">
-                <i class="fa fa-trash-o fa-lg"></i></a>
-        </div>
-        <div style="margin-left:8%;margin-top: -0.5%">
-            <HR style="width: 55%"/>
-        </div>
-    </div>
-    <div class="video">
-        <div class="video_line_day">
-            2020-5-1
-        </div>
-        <div class="video_show">
-            <a href="#"><img width="200px" height="120px" src="../../static/image/user/test_history.jpg"></a>
-        </div>
-        <div style="margin-left: 42%;margin-top: -10%">
-            <a href="#">
-                后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放
-            </a>
-        </div>
-        <div style="margin-left: 42%; margin-top: 5%">
-            <span class="fa fa-book" style="color: rgb(149, 121, 0);">Java</span>
-        </div>
-        <div style="margin-left: 89%;margin-top: -6%">
-            <a class="btn" href="#">
-                <i class="fa fa-trash-o fa-lg"></i></a>
-        </div>
-        <div style="margin-left:8%;margin-top: -0.5%">
-            <HR style="width: 55%"/>
-        </div>
-    </div>
-    <div class="video">
-        <div class="video_line_day">
-            2020-5-1
-        </div>
-        <div class="video_show">
-            <a href="#"><img width="200px" height="120px" src="../../static/image/user/test_history.jpg"></a>
-        </div>
-        <div style="margin-left: 42%;margin-top: -10%">
-            <a href="#">
-                后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放
+                Mybatis缓存详解
             </a>
         </div>
         <div style="margin-left: 42%; margin-top: 5%">

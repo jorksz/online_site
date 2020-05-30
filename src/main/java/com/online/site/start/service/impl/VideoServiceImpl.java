@@ -26,7 +26,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<Video> getVideo(Integer id, Integer isPass) {
+    public Video getVideo(Integer id, Integer isPass) {
         return videoMapper.getVideo(id, isPass);
     }
 

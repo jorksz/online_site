@@ -57,6 +57,12 @@
                 <td th:case=2>C</td>
                 <td th:case=3>bootstrap</td>
                 <td th:case=4>MySQL</td>
+                <td th:case=5>计算机网络</td>
+                <td th:case=6>安卓</td>
+                <td th:case=7>HTML</td>
+                <td th:case=8>数据结构</td>
+                <td th:case=9>Redis</td>
+                <td th:case=10>IOS</td>
             </div>
             <td th:text="${video.uploadTime}">1223360222@qq.com</td>
             <td><button type="button" class="btn btn-outline-danger" th:data-id="${video.id}" onclick="deleteFunc(this.getAttribute('data-id'),this)">删除</button></td>
@@ -99,6 +105,9 @@
                             <option>MySQL</option>
                             <option>安卓</option>
                             <option>IOS</option>
+                            <option>Redis</option>
+                            <option>数据结构</option>
+                            <option>bootstrap</option>
                         </select>
                     </div>
                     <div class="form-group">

@@ -20,6 +20,11 @@ public class VideoCommentServiceImpl implements VideoCommentService {
     }
 
     @Override
+    public List<VideoComment> listVideoCommentByVideoID(Integer videoId) {
+        return videoCommentMapper.listVideoCommentByVideoID(videoId);
+    }
+
+    @Override
     public boolean saveVideoComment(VideoComment videoComment) {
         return videoCommentMapper.saveVideoComment(videoComment) > 0;
     }

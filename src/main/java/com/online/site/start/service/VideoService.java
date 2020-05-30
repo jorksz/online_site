@@ -26,7 +26,7 @@ public interface VideoService {
      * @param id
      * @return
      */
-    List<Video> getVideo(Integer id, Integer isPass);
+    Video getVideo(Integer id, Integer isPass);
 
 
     /**

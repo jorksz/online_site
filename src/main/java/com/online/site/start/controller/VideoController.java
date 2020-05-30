@@ -42,7 +42,7 @@ public class VideoController {
     }
 
     @RequestMapping("/findO/{id}/{isPass}")
-    public List<Video> getVideo(@PathVariable Integer id, @PathVariable Integer isPass){
+    public Video getVideo(@PathVariable Integer id, @PathVariable Integer isPass){
         return videoService.getVideo(id, isPass);
     }
 

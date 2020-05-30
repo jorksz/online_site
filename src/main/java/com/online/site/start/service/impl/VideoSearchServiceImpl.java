@@ -15,16 +15,20 @@ public class VideoSearchServiceImpl implements VideoSearchService {
 
     @Override
     public Page<VideoCollectionTypeVO> listVideoCollectionTypeVO(String param) {
+        //视频类型查询，参数重新赋值
         String videoType = param;
         Page<VideoCollectionTypeVO> page = videoCollectionTypeVOMapper.listVideoCollectionTypeVOByType(videoType);
+        //如果为空，则使用视频名查询
         if (page.size() == 0){
             String videoName = param;
             page = videoCollectionTypeVOMapper.listVideoCollectionTypeVOByVideoName(videoName);
+            //如果视频名查询为空，则调用视频标签查询
             if (page.size() == 0){
                 String videoLabel = param;
                 page = videoCollectionTypeVOMapper.listVideoCollectionTypeVOByLabel(videoLabel);
             }
         }
+        //如果3者都为空，则返回空集合
         return page;
     }
 }

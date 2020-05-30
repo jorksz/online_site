@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 敏感词汇过滤工具类，
+ * 敏感词汇过滤工具类
  * 使用了 <a href="http://zh.wikipedia.org/wiki/确定有限状态自动机">DFA</a>
  * 算法来实现词汇过滤
  */

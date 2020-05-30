@@ -17,6 +17,13 @@ public interface VideoCollectionMapper {
     List<VideoCollection> listVideoCollection(Integer userId);
 
     /**
+     * 查询当前视频的收藏数
+     * @param videoId 视频ID
+     * @return
+     */
+    Integer countVideoCollection(Integer videoId);
+
+    /**
      * 保存收藏信息
      * @param videoCollection
      * @return

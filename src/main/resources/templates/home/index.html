@@ -24,11 +24,8 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-    <a class="navbar-brand" href="index.html">在线学习网站</a>
+    <a class="navbar-brand" href="index.html" th:href="@{/view/home/index}">在线学习网站</a>
     <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="">课程</a>
-        </li>
         <li class="nav-item">
             <a class="nav-link" href="../community/post.html" th:href="@{/view/post/index}">讨论社区</a>
         </li>
@@ -38,14 +35,14 @@
         <button class="btn btn-light" type="button" style="margin-left: 10px">查询</button>
     </form>
     <ul class="navbar-nav">
-        <li class="nav-item" style="margin-left: 130px">
-            <a class="nav-link" href="../user/message.html">消息</a>
+        <li class="nav-item" style="margin-left: 180px">
+            <a class="nav-link" href="../user/message.html" th:href="@{/view/user/message}">消息</a>
         </li>
         <li class="nav-item" style="margin-left: 20px">
-            <a class="nav-link" href="../user/history.html">历史</a>
+            <a class="nav-link" href="../user/history.html" th:href="@{/view/user/history}">历史</a>
         </li>
         <li class="nav-item" style="margin-left: 20px">
-            <a class="nav-link" href="../user/collection.html">收藏</a>
+            <a class="nav-link" href="../user/collection.html" th:href="@{/view/user/collection}">收藏</a>
         </li>
     </ul>
     <img src="../../static/image/facio.jpg" id="pictureHead" th:src="@{/image/facio.jpg}" onclick="funcp()"  href="../user/person_message.html" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
@@ -185,259 +182,79 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div id="home" class="container tab-pane active"><br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
+            <div class="card bg-light text-dark" style="width: 100%;margin-left: -2%" th:each="videoCollectionTypeVO:  ${frontPageInfo.getList()}">
                 <div class="card-body">
                     <div class="card-text text-left">
                         <form class="form-inline font-weight-light">
-                        <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                        <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
+                            <img src="../../static/image/facio.jpg" th:data-videoId="${videoCollectionTypeVO.videoId}"  onclick="funcCourse(this.getAttribute('data-videoId'))" th:src="@{${videoCollectionTypeVO.videoPicture}}"  class="rounded" style="width: 120px;height: 120px;">
+                            <h5 style="color: #333333;margin-left:3%;margin-top:-7%;font-weight:bold" th:text="${videoCollectionTypeVO.videoName}">HTML初识</h5>
+                            <p style="margin-left: 14.5%;margin-top: -8%;text-overflow:ellipsis;  display: -webkit-box;overflow: hidden; -webkit-line-clamp:3;-webkit-box-orient: vertical;" th:text="${videoCollectionTypeVO.videoIntroduction}"></p>
                         </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
+                       <!-- <label style="margin-left: 93%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1-->
                     </div>
                 </div>
             </div>
             <br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="menu1" class="container tab-pane fade"><br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
+            <div class="card bg-light text-dark" style="width: 100%;margin-left: -2%" th:each="videoCollectionTypeVO:  ${bgPageInfo.getList()}">
                 <div class="card-body">
                     <div class="card-text text-left">
                         <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
+                            <img src="../../static/image/facio.jpg" th:data-videoId="${videoCollectionTypeVO.videoId}"  onclick="funcCourse(this.getAttribute('data-videoId'))" th:src="@{${videoCollectionTypeVO.videoPicture}}"  class="rounded" style="width: 120px;height: 120px;">
+                            <h5 style="color: #333333;margin-left:3%;margin-top:-7%;font-weight:bold" th:text="${videoCollectionTypeVO.videoName}">HTML初识</h5>
+                            <p style="margin-left: 14.5%;margin-top: -8%;text-overflow:ellipsis;  display: -webkit-box;overflow: hidden; -webkit-line-clamp:3;-webkit-box-orient: vertical;" th:text="${videoCollectionTypeVO.videoIntroduction}"></p>
                         </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
+                        <!--<label style="margin-left: 93%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1-->
                     </div>
                 </div>
             </div>
             <br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="menu2" class="container tab-pane fade"><br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
+            <div class="card bg-light text-dark" style="width: 100%;margin-left: -2%" th:each="videoCollectionTypeVO:  ${computerPageInfo.getList()}">
                 <div class="card-body">
                     <div class="card-text text-left">
                         <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
+                            <img src="../../static/image/facio.jpg" th:data-videoId="${videoCollectionTypeVO.videoId}"  onclick="funcCourse(this.getAttribute('data-videoId'))" th:src="@{${videoCollectionTypeVO.videoPicture}}"  class="rounded" style="width: 120px;height: 120px;">
+                            <h5 style="color: #333333;margin-left:3%;margin-top:-7%;font-weight:bold" th:text="${videoCollectionTypeVO.videoName}">HTML初识</h5>
+                            <p style="margin-left: 14.5%;margin-top: -8%;text-overflow:ellipsis;  display: -webkit-box;overflow: hidden; -webkit-line-clamp:3;-webkit-box-orient: vertical;" th:text="${videoCollectionTypeVO.videoIntroduction}"></p>
                         </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
+                       <!-- <label style="margin-left: 93%;"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1-->
                     </div>
                 </div>
             </div>
             <br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="menu3" class="container tab-pane fade"><br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
+            <div class="card bg-light text-dark" style="width: 100%;margin-left: -2%" th:each="videoCollectionTypeVO:  ${dbPageInfo.getList()}">
                 <div class="card-body">
                     <div class="card-text text-left">
                         <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
+                            <img src="../../static/image/facio.jpg" th:data-videoId="${videoCollectionTypeVO.videoId}"  onclick="funcCourse(this.getAttribute('data-videoId'))" th:src="@{${videoCollectionTypeVO.videoPicture}}"  class="rounded" style="width: 120px;height: 120px;">
+                            <h5 style="color: #333333;margin-left:3%;margin-top:-7%;font-weight:bold" th:text="${videoCollectionTypeVO.videoName}">HTML初识</h5>
+                            <p style="margin-left: 14.5%;margin-top: -8%;text-overflow:ellipsis;  display: -webkit-box;overflow: hidden; -webkit-line-clamp:3;-webkit-box-orient: vertical;" th:text="${videoCollectionTypeVO.videoIntroduction}"></p>
                         </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
+                        <!--<label style="margin-left: 93%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1-->
                     </div>
                 </div>
             </div>
             <br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="menu4" class="container tab-pane fade"><br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
+            <div class="card bg-light text-dark" style="width: 100%;margin-left: -2%" th:each="videoCollectionTypeVO:  ${movePageInfo.getList()}">
                 <div class="card-body">
                     <div class="card-text text-left">
                         <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
+                            <img src="../../static/image/facio.jpg" th:data-videoId="${videoCollectionTypeVO.videoId}"  onclick="funcCourse(this.getAttribute('data-videoId'))" th:src="@{${videoCollectionTypeVO.videoPicture}}"  class="rounded" style="width: 120px;height: 120px;">
+                            <h5 style="color: #333333;margin-left:3%;margin-top:-7%;font-weight:bold" th:text="${videoCollectionTypeVO.videoName}">HTML初识</h5>
+                            <p style="margin-left: 14.5%;margin-top: -8%;text-overflow:ellipsis;  display: -webkit-box;overflow: hidden; -webkit-line-clamp:3;-webkit-box-orient: vertical;" th:text="${videoCollectionTypeVO.videoIntroduction}"></p>
                         </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
+                        <!--<label style="margin-left: 93%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1-->
                     </div>
                 </div>
             </div>
             <br>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: -2%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-light text-dark" style="width: 50%;margin-left: 50%;margin-top: -17.3%">
-                <div class="card-body">
-                    <div class="card-text text-left">
-                        <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" href="#" class="rounded" style="width: 100px;height: 100px;">
-                            <h5 style="color: #333333;margin-left:5%;margin-top:-15%;font-weight:bold">HTML初识</h5>
-                            <p style="margin-left: 25%;margin-top: -15%">带你系统全面的入门，轻松掌握音视频采集、音视频编解码、RTMP传输协议等核心基础，低门槛进入音视频行业。</p>
-                        </form>
-                        <label style="margin-left: 85%"><i class="fa fa-star" aria-hidden="true">收藏</i></label>1
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -449,6 +266,10 @@
 <script>
     function funcp(){
         $(location).attr('href', '/view/user/usmg');
+    }
+
+    function funcCourse(videoId){
+        $(location).attr('href', '/view/video/play/'+videoId);
     }
 </script>
 </html>

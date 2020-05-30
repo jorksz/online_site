@@ -5,7 +5,7 @@ package com.online.site.start.vo;
  */
 public class VideoCollectionTypeVO {
     private Integer videoId;
-    private Integer videoName;
+    private String videoName;
     private String videoLocation;
     private String videoIntroduction;
     private String videoPicture;
@@ -31,11 +31,11 @@ public class VideoCollectionTypeVO {
         this.videoId = videoId;
     }
 
-    public Integer getVideoName() {
+    public String getVideoName() {
         return videoName;
     }
 
-    public void setVideoName(Integer videoName) {
+    public void setVideoName(String videoName) {
         this.videoName = videoName;
     }
 

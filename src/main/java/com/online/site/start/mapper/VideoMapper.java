@@ -16,6 +16,7 @@ public interface VideoMapper {
      */
     List<Video> listVideos(String videoName, Integer isPass);
 
+
     /**
      * 根据视频类型查询
      * @param typeName
@@ -28,7 +29,7 @@ public interface VideoMapper {
      * @param id
      * @return
      */
-    List<Video> getVideo(Integer id, Integer isPass);
+    Video getVideo(Integer id, Integer isPass);
 
     /**
      * 获取全部视频

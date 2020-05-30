@@ -5,6 +5,10 @@
         select * from video_collection where user_id = #{userId}
     </select>
 
+    <select id="countVideoCollection" resultType="int">
+        select count(*) from video_collection where video_id = #{videoId}
+    </select>
+
     <insert id="saveVideoCollection" parameterType="com.online.site.start.entity.VideoCollection">
          insert into video_collection(user_id, video_id, video_name) values (#{userId},
         #{videoId}, #{videoName})
