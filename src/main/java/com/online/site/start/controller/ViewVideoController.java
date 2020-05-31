@@ -6,10 +6,13 @@ import com.github.pagehelper.PageInfo;
 import com.online.site.start.entity.User;
 import com.online.site.start.entity.Video;
 import com.online.site.start.entity.VideoComment;
+import com.online.site.start.mapper.VideoCommentUserVOMapper;
 import com.online.site.start.service.VideoCommentService;
 import com.online.site.start.service.VideoSearchService;
 import com.online.site.start.service.VideoService;
 import com.online.site.start.vo.VideoCollectionTypeVO;
+import com.online.site.start.vo.VideoCommentUserVO;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +40,9 @@ public class ViewVideoController {
     @Autowired
     private VideoCommentService videoCommentService;
 
+    @Autowired
+    private VideoCommentUserVOMapper videoCommentUserVOMapper;
+
 
     @RequestMapping("/search/{param}")
     public String toSeachIndex(@PathVariable String param, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Model model, HttpSession session){
@@ -52,14 +58,16 @@ public class ViewVideoController {
     }
 
     @RequestMapping("/video/play/{videoId}")
-    public String toVideoPlayer(@PathVariable Integer videoId, Model model, HttpSession session){
+    public String toVideoPlayer(@PathVariable Integer videoId, Model model, HttpSession session,  @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
         //获取user信息
         User user  = (User) session.getAttribute("user");
         model.addAttribute("user",user);
         Video video = videoService.getVideo(videoId, 2);
         model.addAttribute("video", video);
-       /* List<VideoComment> videoComments = videoCommentService.listVideoCommentByVideoID(videoId);
-        model.addAttribute("listComments", videoComments);*/
+        Page<VideoCommentUserVO> page = videoCommentUserVOMapper.listVideoCommentUserVO(videoId);
+        PageHelper.startPage(pageNo,pageSize);
+        PageInfo<VideoCommentUserVO> pageInfo = new PageInfo<>(page);
+        model.addAttribute("commentList",pageInfo);
         return "video/video";
     }
 }

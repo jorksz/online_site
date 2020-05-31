@@ -27,8 +27,8 @@
     <script src="../../static/plugins/sweetalert.min.js" th:src="@{/plugins/sweetalert.min.js}"></script>
     <link rel="stylesheet" type="text/css" href="../../static/plugins/sweetalert.css" th:href="@{/plugins/sweetalert.css}">
     <!--video.js-->
-    <link href="https://vjs.zencdn.net/7.7.6/video-js.css" rel="stylesheet" />
-    <script src="https://vjs.zencdn.net/7.7.6/video.js"></script>
+    <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
 </head>
 <body>
 <!--导航栏-->
@@ -36,10 +36,10 @@
     <a class="navbar-brand" href="#" th:href="@{/view/home/index}"><i class="fa fa-long-arrow-left fa-3x" aria-hidden="true"></i></a>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="#">玩转bootstrap</a>
+            <a class="nav-link" th:text="${video.videoName}">玩转bootstrap</a>
         </li>
-        <li class="nav-item" style="margin-left: 50px">
-            <a class="btn btn-link" href="#" ><i class="fa fa-star" aria-hidden="true">收藏</i></a>
+        <li class="nav-item">
+            <a class="btn btn-link" onclick="funSave()" ><i class="fa fa-star" aria-hidden="true">收藏</i></a>
         </li>
     </ul>
     <ul class="navbar-nav">
@@ -47,17 +47,26 @@
             <a class="nav-link" href="#" th:href="@{/view/user/message}"><i class="fa fa-bell-o" aria-hidden="true"></i>消息</a>
         </li>
     </ul>
-    <img src="../../static/image/facio.jpg" th:src="@{/image/facio.jpg}" onclick="funcp()" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
+    <img src="../../static/image/facio.jpg"  th:src="@{/image/facio.jpg}" onclick="funcp()" class="rounded-circle" style="margin-left:70px;width: 50px;height: 50px">
 </nav>
 
 <!--视频播放-->
 <div style="background-color: #333333">
     <div style="margin-top: 1%;background-color: #333333;margin-left: 20%;width: 62%">
-        <video remainingTimeDisplay="false" id="my-video" class="video-js vjs-default-skin vjs-big-play-centered"
-               controls preload="auto" width="800px" height=500px"
-              data-setup="{}">
-            <source src="../../static/video/learn.mp4" th:src="@{/video/learn.mp4}" type='video/mp4'>
-        </video>
+        <!--<video remainingTimeDisplay="false"
+               id="my-video"
+               class="video-js vjs-default-skin vjs-big-play-centered"
+               controls preload="auto"
+               width="800px"
+               height=500px"
+               data-setup="{}"
+        >
+            <source src="../../static/video/learn.mp4" th:src="@{/video/learn.mp4}" type='video/mp4'/>
+        </video>-->
+        <video id="my_video"  style="width: 800px;height:500px" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto">
+
+        <source src="../../static/video/learn.mp4" th:src="${video.videoLocation}" type='video/mp4'/>
+    </video>
     </div>
 </div>
 
@@ -78,27 +87,37 @@
     <div class="tab-content">
         <div id="home" class="container tab-pane active "><br>
             <h2>类型</h2>
-            <p>bootstrap</p>
+            <div th:switch="${video.typeId}">
+                <p th:case=1>Java</p>
+                <p th:case=2>C++</p>
+                <p th:case=3>bootstrap</p>
+                <p th:case=4>MySQL</p>
+                <p th:case=5>计算机网络</p>
+                <p th:case=6>安卓</p>
+                <p th:case=7>HTML</p>
+                <p th:case=8>数据结构</p>
+                <p th:case=9>Redis</p>
+                <p th:case=10>IOS</p>
+            </div>
             <h2>简介</h2>
-            <p>你可以把这门课程看成是《玩转Bootstrap》的补充篇，带领大家学习怎么使用JS自由控制Bootstrap中提供的组件（插件）。</p>
+            <p th:text="${video.intro}">你可以把这门课程看成是《玩转Bootstrap》的补充篇，带领大家学习怎么使用JS自由控制Bootstrap中提供的组件（插件）。</p>
         </div>
         <div id="menu1" class="container tab-pane fade"><br>
-            <div class="card" style="margin-top: 2%;width: 70%">
+            <div class="card" style="margin-top: 2%;width: 70%" th:each="videoCommentVO:${commentList.getList()}">
                 <div class="card-body">
                     <div class="card-text text-left">
                         <form class="form-inline font-weight-light">
-                            <img src="../../static/image/facio.jpg" th:src="${user.picture}" href="#" class="rounded-circle" style="width: 80px;height: 80px;">
-                            <h6 style="color: #333333;margin-left:3.5%;margin-top: -8%;font-weight:bold">向南的我</h6>
-                            <button  style="margin-top: -20%;margin-left: 92%" type="button" class="btn btn-light" disabled>#1</button>
-                            <div id="test-markdown-view1" style="width: 100%;margin-left: 12%;margin-top: -8%">
+                            <img src="../../static/image/facio.jpg" th:src="${videoCommentVO.userPicture}"  class="rounded-circle" style="width: 80px;height: 80px;">
+                            <h6 th:text="${videoCommentVO.userName}" style="color: #333333;margin-left:3.5%;margin-top: -8%;font-weight:bold">向南的我</h6>
+                            <button  style="margin-top: -20%;margin-left: 92%" type="button" class="btn btn-light" disabled th:text="${videoCommentVOStat.index}+1">#1</button>
+                            <p style="width: 100%;margin-left: 15%;margin-top: -8%" th:text="${videoCommentVO.videoCommentContent}">
                                 <!-- Server-side output Markdown text -->
-                                <textarea style="display:none;">期待遇见更优秀的她。我仍相信爱情。
-                         </textarea>
-                            </div>
+                                期待遇见更优秀的她。我仍相信爱情。
+                            </p>
                         </form>
                         <form class="form-inline font-weight-light">
                             <label style="margin-left: 15%"> <i class="fa fa-pencil-square" aria-hidden="true">
-                                评论于</i></label>2020-05-12 16:58
+                                评论于</i><label th:text="${videoCommentVO.videoCommentTime}">2020-05-12 16:58</label></label>
                         </form>
                     </div>
                 </div>
@@ -108,8 +127,11 @@
             <div class="card" style="margin-top: 4%;width: 70%">
                 <div class="card-body">
                     <div class="card-text text-left">
-                        <textarea style="width: 100%;height: 100%" placeholder="在这里添加你的评论把！"></textarea>
-                        <button type="button" class="btn btn-success" style="margin-left: 90%">评论</button>
+                        <input type="hidden" id="userId" th:value="${user.id}">
+                        <input type="hidden" id="videoId" th:value="${video.id}">
+                        <input type="hidden" id="videoName" th:value="${video.videoName}">
+                        <textarea id="comment" style="width: 100%;height: 100%" placeholder="在这里添加你的评论把！"></textarea>
+                        <button type="button" id="commentBtn" class="btn btn-success" style="margin-left: 90%">评论</button>
                     </div>
                 </div>
             </div>
@@ -122,17 +144,62 @@
 </body>
 
 <script>
-    var player = videojs('my-video');
+  /*  videojs("my_video", {}, function(){
+         Player(this)
+    });*/
+    function funcp(){
+        $(location).attr('href', '/view/user/usmg');
+    }
+
+    $("#commentBtn").click(function () {
+        var userId = $("#userId").val().trim();
+        var videoId = $("#videoId").val().trim();
+        var videoName = $("#videoName").val().trim();
+        var comment = $("#comment").val().trim();
+        if (userId==""||videoId==""||videoName==""||comment=="") {
+            swal("请填写评论内容！", "");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/vct/save",
+            data: {"userId":userId,"videoId":videoId,
+                "videoName":videoName,"comment":comment},
+            success: function (data) {
+                if (data==true) {
+                    $(location).attr('href', '/view/video/play/'+videoId);
+                }
+                else {
+                    swal("发布评论失败，请重试!")
+                }
+            }
+        });
+    });
+
+    function funSave(){
+        var userId = $("#userId").val().trim();
+        var videoId = $("#videoId").val().trim();
+        var videoName = $("#videoName").val().trim();
+        if (userId==""||videoId==""||videoName=="") {
+            swal("收藏失败，请重试！", "");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/vcn/save",
+            data: {"userId":userId,"videoId":videoId,
+                "videoName":videoName},
+            success: function (data) {
+                if (data==true) {
+                    swal("收藏成功!")
+                }
+                else {
+                    swal("发布评论失败，请重试!")
+                }
+            }
+        });
+    }
 </script>
 <script src="../../static/plugins/editor.md-master/lib/marked.min.js" th:src="@{/plugins/editor.md-master/lib/marked.min.js}"></script>
 <script src="../../static/plugins/editor.md-master/lib/prettify.min.js" th:src="@{/plugins/editor.md-master/lib/prettify.min.js}"></script>
-<script type="text/javascript">
-    $(function() {
-        var testView = editormd.markdownToHTML("test-markdown-view1", {
-            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
-            // htmlDecode : true,  // Enable / disable HTML tag encode.
-            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
-        });
-    });
-</script>
 </html>

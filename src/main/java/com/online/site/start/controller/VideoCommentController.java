@@ -21,4 +21,9 @@ public class VideoCommentController {
     public List<VideoComment> listVideoComment(@PathVariable Integer userId){
         return videoCommentService.listVideoComment(userId);
     }
+
+    @RequestMapping("/save")
+    public boolean saveComment(VideoComment videoComment){
+        return videoCommentService.saveVideoComment(videoComment);
+    }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.site.start.mapper.VideoCommentUserVOMapper">
+    <resultMap id="videoCommentUserVO" type="com.online.site.start.vo.VideoCommentUserVO">
+        <result column="id" property="videoCommentId"></result>
+        <result column="video_id" property="videoId"/>
+        <result column="video_name" property="videoName"/>
+        <result column="comment" property="videoCommentContent"/>
+        <result column="comment_time" property="videoCommentTime"/>
+        <result column="user_name" property="userName"/>
+        <result column="picture" property="userPicture"/>
+
+    </resultMap>
+    <select id="listVideoCommentUserVO" resultMap="videoCommentUserVO">
+select a.id, a.video_id,a.video_name,a.comment,
+a.comment_time,b.user_name,b.picture
+ from video_comment a, user b
+ where a.user_id=b.id and a.video_id= #{videoId}
+    </select>
+</mapper>

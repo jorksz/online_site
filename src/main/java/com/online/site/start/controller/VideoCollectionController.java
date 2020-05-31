@@ -29,4 +29,9 @@ public class VideoCollectionController {
     public Integer countVideoCollection(@PathVariable Integer videoId){
         return videoCollectionMapper.countVideoCollection(videoId);
     }
+
+    @RequestMapping("/save")
+    public boolean save(VideoCollection videoCollection){
+        return videoCollectionService.saveVideoCollection(videoCollection);
+    }
 }
