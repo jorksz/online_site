@@ -34,4 +34,9 @@ public class VideoCollectionController {
     public boolean save(VideoCollection videoCollection){
         return videoCollectionService.saveVideoCollection(videoCollection);
     }
+
+    @RequestMapping("/delete/{collectionId}")
+    public boolean delete(@PathVariable Integer collectionId){
+        return videoCollectionService.deleteCollection(collectionId);
+    }
 }

@@ -5,20 +5,19 @@ package com.online.site.start.entity;
  */
 public class VideoCollection {
 
-    private Integer id;
+    private Integer collectionId;
     private Integer userId;
     private Integer videoId;
     private String  videoName;
     private String collectionTime;
 
-    public Integer getId() {
-        return id;
+    public Integer getCollectionId() {
+        return collectionId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCollectionId(Integer collectionId) {
+        this.collectionId = collectionId;
     }
-
     public Integer getUserId() {
         return userId;
     }

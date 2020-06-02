@@ -29,4 +29,11 @@ public interface VideoCollectionMapper {
      * @return
      */
     Integer saveVideoCollection(VideoCollection videoCollection);
+
+    /**
+     * 删除收藏
+     * @param collectionId
+     * @return
+     */
+    Integer deleteCollection(Integer collectionId);
 }

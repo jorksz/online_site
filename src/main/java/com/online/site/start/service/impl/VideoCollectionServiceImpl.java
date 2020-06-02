@@ -23,4 +23,9 @@ public class VideoCollectionServiceImpl implements VideoCollectionService {
     public boolean saveVideoCollection(VideoCollection videoCollection) {
         return videoCollectionMapper.saveVideoCollection(videoCollection) > 0;
     }
+
+    @Override
+    public boolean deleteCollection(Integer collectionId) {
+        return videoCollectionMapper.deleteCollection(collectionId) > 0;
+    }
 }

@@ -11,6 +11,9 @@
         <result column="picture" property="videoPicture"/>
         <result column="type_name" property="videoType"/>
         <result column="label_name" property="videoLabel"/>
+        <result column="user_id" property="collectionUserId"/>
+        <result column="collection_id" property="videoCollectionId"/>
+        <result column="collection_time" property="videoCollectionTime"/>
 
     </resultMap>
     <select id="listVideoCollectionTypeVOByType" resultMap="videoCollectionTypeVO">
@@ -43,5 +46,14 @@
    FROM video,video_type,video_label
    where video.type_id = video_type.id and video_label.label_id= video.label_id
     and video_name like #{videoName}
+    </select>
+    <select id="listVideoConllection" resultMap="videoCollectionTypeVO">
+        select video.id,video.video_name,video.picture,video_type.type_name,
+        video_collection.collection_id,video_collection.user_id,
+        video_collection.collection_time
+        FROM video,video_type,video_collection
+         where video.type_id = video_type.id
+         and video.id=video_collection.video_id
+          and video_collection.user_id=#{collectionUserId}
     </select>
 </mapper>

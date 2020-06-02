@@ -1,8 +1,5 @@
 package com.online.site.start.vo;
 
-/**
- * 视频类与视频收藏类与视频类型的虚拟表
- */
 public class VideoCollectionTypeVO {
     private Integer videoId;
     private String videoName;
@@ -13,7 +10,26 @@ public class VideoCollectionTypeVO {
     private String uploadUser;
     private String videoType;
     private String videoLabel;
-    private String videoCollection;
+    private Integer collectionUserId;
+    private Integer videoCollectionId;
+    private String videoCollectionTime;
+
+    public Integer getVideoCollectionId() {
+        return videoCollectionId;
+    }
+
+    public void setVideoCollectionId(Integer videoCollectionId) {
+        this.videoCollectionId = videoCollectionId;
+    }
+
+    public Integer getCollectionUserId() {
+        return collectionUserId;
+    }
+
+    public void setCollectionUserId(Integer collectionUserId) {
+        this.collectionUserId = collectionUserId;
+    }
+
 
     public String getVideoLabel() {
         return videoLabel;
@@ -87,12 +103,11 @@ public class VideoCollectionTypeVO {
         this.videoType = videoType;
     }
 
-    public String getVideoCollection() {
-        return videoCollection;
+    public String getVideoCollectionTime() {
+        return videoCollectionTime;
     }
 
-    public void setVideoCollection(String videoCollection) {
-        this.videoCollection = videoCollection;
+    public void setVideoCollectionTime(String videoCollectionTime) {
+        this.videoCollectionTime = videoCollectionTime;
     }
-
 }

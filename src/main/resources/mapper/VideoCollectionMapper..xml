@@ -13,4 +13,8 @@
          insert into video_collection(user_id, video_id, video_name) values (#{userId},
         #{videoId}, #{videoName})
     </insert>
+
+    <delete id="deleteCollection">
+        delete  from video_collection where collection_id=#{collectionId}
+    </delete>
 </mapper>

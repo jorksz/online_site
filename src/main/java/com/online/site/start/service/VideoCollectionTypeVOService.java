@@ -32,4 +32,11 @@ public interface VideoCollectionTypeVOService {
      * @return
      */
     Page<VideoCollectionTypeVO> listVideoCollectionTypeVOByVideoKeyName(String videoName);
+
+    /**
+     * 查询视频收藏
+     * @param userId
+     * @return
+     */
+    Page<VideoCollectionTypeVO> listVideoConllection(Integer userId);
 }

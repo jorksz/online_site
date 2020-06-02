@@ -19,4 +19,11 @@ public interface VideoCollectionService {
      * @return
      */
     boolean saveVideoCollection(VideoCollection videoCollection);
+
+    /**
+     * 删除收藏
+     * @param collectionId
+     * @return
+     */
+    boolean deleteCollection(Integer collectionId);
 }

@@ -68,43 +68,45 @@
 </nav>
 <div class="container">
     <div class="card img-fluid" style="width: 100%">
-        <img class="card-img-top" src="../../static/image/user/timg.jpg" alt="Card image" style="width:100%;height: 300px">
+        <img class="card-img-top" src="../../static/image/user/timg.jpg" th:src="@{/image/user/timg.jpg}" alt="Card image" style="width:100%;height: 300px">
         <div class="card-img-overlay">
-            <img src="../../static/image/facio.jpg" href="#" class="rounded-circle" style="margin-left:70px;width: 80px;height: 80px;margin-top: 15%">
-            <h4 class="card-title" style="margin-left: 15%;margin-top: -7%;color: #f1f1f1">向南的我</h4>
+            <img src="../../static/image/facio.jpg" th:src="@{${user.picture}}" onclick="funcp()"  class="rounded-circle" style="margin-left:70px;width: 80px;height: 80px;margin-top: 15%">
+            <h4 class="card-title" style="margin-left: 15%;margin-top: -7%;color: #f1f1f1" th:text="${user.userName}">向南的我</h4>
         </div>
     </div>
 </div>
 <div style="background-color: #f1f1f1;width: 92%;margin-left: 4%" >
     <div class="topspace">
-        <div class="top_title1" style="margin-top: 10%">
-        <span class="fa fa-bars" style="color: rgb(217, 109, 60); font-size: larger">
-            收藏于：
-        </span>
+        <div class="top_title1" style="margin-top: 10%;">
+            <span class="fa fa-bars" style="color: rgb(217, 109, 60); font-size: larger">
+                收藏于：
+            </span>
         </div>
         <div class="top_title2">
             <button type="button" class="btn btn-default" data-color="#0b93d5"><i class="fa fa-trash-o fa-lg"></i>取消收藏</button>
         </div>
     </div>
 
-    <div class="video">
+    <div class="video" th:each="videoCollectionTypeVO:  ${collectionList.getList()}">
         <div class="video_line_day">
-            2020-4-10
+            <p th:text="${videoCollectionTypeVO.videoCollectionTime}">2020-05-31 18:23:33
+
+            </p>
         </div>
         <div class="video_show">
-            <a href="#"><img width="200px" height="120px" src="../../static/image/video/bg/java4.png" th:src="@{/image/video/bg/java4.png}"></a>
+            <a href="#"><img width="200px" height="120px" th:data-videoId="${videoCollectionTypeVO.videoId}"  onclick="toVideo(this.getAttribute('data-videoId'))" src="../../static/image/video/bg/java4.png" th:src="@{${videoCollectionTypeVO.videoPicture}}"></a>
         </div>
         <div style="margin-left: 42%;margin-top: -10%">
-            <a href="#">
+            <a href="#"  th:data-videoId="${videoCollectionTypeVO.videoId}"  onclick="toVideo(this.getAttribute('data-videoId'))" th:text="${videoCollectionTypeVO.videoName}">
                 Mybatis缓存详解
             </a>
         </div>
         <div style="margin-left: 42%; margin-top: 5%">
-            <span class="fa fa-book" style="color: rgb(149, 121, 0);">Java</span>
+            <span class="fa fa-book" style="color: rgb(149, 121, 0);" th:text="${videoCollectionTypeVO.videoType}">Java</span>
         </div>
         <div style="margin-left: 89%;margin-top: -6%">
             <a class="btn" href="#">
-                <i class="fa fa-trash-o fa-lg"></i></a>
+                <i class="fa fa-trash-o fa-lg"  th:data-collectionId="${videoCollectionTypeVO.videoCollectionId}"  onclick="deleteFunc(this.getAttribute('data-collectionId'),this)"></i></a>
         </div>
         <div style="margin-left:8%;margin-top: -0.5%">
             <HR style="width: 55%"/>
@@ -115,4 +117,31 @@
     <i class="fa fa-hand-o-up fa-4x" aria-hidden="true"></i>
 </a>
 </body>
+
+<script>
+    function deleteFunc(param, nowtr){
+        if (window.confirm("是否删除?")){
+            var $this = $(nowtr).parent().parent().parent();
+            $.ajax({
+                type: "post",
+                url: "/vcn/delete/"+param,
+                success: function (data) {
+                    if (data == true){
+                        $this.remove();
+                    }
+                    else {
+                        swal("删除失败，请重试!")
+                    }
+                }
+            });
+        }
+    }
+    function funcp(){
+        $(location).attr('href', '/view/user/usmg');
+    }
+
+    function toVideo(param) {
+        $(location).attr('href', '/view/video/play/'+param);
+    }
+</script>
 </html>

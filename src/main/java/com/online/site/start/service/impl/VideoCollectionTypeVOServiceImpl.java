@@ -32,4 +32,9 @@ public class VideoCollectionTypeVOServiceImpl implements VideoCollectionTypeVOSe
     public Page<VideoCollectionTypeVO> listVideoCollectionTypeVOByVideoKeyName(String videoName) {
         return videoCollectionTypeVOMapper.listVideoCollectionTypeVOByVideoKeyName(videoName);
     }
+
+    @Override
+    public Page<VideoCollectionTypeVO> listVideoConllection(Integer userId) {
+        return videoCollectionTypeVOMapper.listVideoConllection(userId);
+    }
 }
