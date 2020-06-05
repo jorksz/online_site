@@ -37,4 +37,9 @@ public class VideoCollectionTypeVOServiceImpl implements VideoCollectionTypeVOSe
     public Page<VideoCollectionTypeVO> listVideoConllection(Integer userId) {
         return videoCollectionTypeVOMapper.listVideoConllection(userId);
     }
+
+    @Override
+    public Page<VideoCollectionTypeVO> listVideoHistory(Integer historyUserId) {
+        return videoCollectionTypeVOMapper.listVideoHistory(historyUserId);
+    }
 }

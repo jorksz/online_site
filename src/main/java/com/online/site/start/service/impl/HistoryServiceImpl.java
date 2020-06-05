@@ -23,4 +23,9 @@ public class HistoryServiceImpl implements HistoryService {
     public boolean saveHistory(History history) {
         return histroyMapper.saveHistory(history) > 0;
     }
+
+    @Override
+    public boolean deleteHistory(Integer historyId) {
+        return histroyMapper.deleteHistory(historyId) > 0;
+    }
 }

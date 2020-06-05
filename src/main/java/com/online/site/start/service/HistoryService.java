@@ -18,4 +18,11 @@ public interface HistoryService {
      * @return
      */
     boolean saveHistory(History history);
+
+    /**
+     * 删除历史
+     * @param historyId
+     * @return
+     */
+    boolean deleteHistory(Integer historyId);
 }

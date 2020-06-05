@@ -20,4 +20,9 @@ public class HistoryController {
     public List<History> listHistory(@PathVariable Integer userId){
         return historyService.listHistory(userId);
     }
+
+    @RequestMapping("/delete/{historyId}")
+    public boolean delete(@PathVariable Integer historyId){
+        return historyService.deleteHistory(historyId);
+    }
 }

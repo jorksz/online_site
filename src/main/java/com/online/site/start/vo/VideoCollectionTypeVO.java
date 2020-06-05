@@ -1,6 +1,7 @@
 package com.online.site.start.vo;
 
 public class VideoCollectionTypeVO {
+    //视频
     private Integer videoId;
     private String videoName;
     private String videoLocation;
@@ -8,11 +9,22 @@ public class VideoCollectionTypeVO {
     private String videoPicture;
     private String videoUploadTime;
     private String uploadUser;
+    //视频分类
     private String videoType;
+    //视频标签
     private String videoLabel;
+
+    //视频收藏
     private Integer collectionUserId;
     private Integer videoCollectionId;
     private String videoCollectionTime;
+
+    //视频历史
+    private Integer historyUserId;
+    private Integer historyId;
+    private String videoRecord;
+    private String historyStartTime;
+
 
     public Integer getVideoCollectionId() {
         return videoCollectionId;
@@ -110,4 +122,37 @@ public class VideoCollectionTypeVO {
     public void setVideoCollectionTime(String videoCollectionTime) {
         this.videoCollectionTime = videoCollectionTime;
     }
+
+    public Integer getHistoryUserId() {
+        return historyUserId;
+    }
+
+    public void setHistoryUserId(Integer historyUserId) {
+        this.historyUserId = historyUserId;
+    }
+
+    public Integer getHistoryId() {
+        return historyId;
+    }
+
+    public void setHistoryId(Integer historyId) {
+        this.historyId = historyId;
+    }
+
+    public String getVideoRecord() {
+        return videoRecord;
+    }
+
+    public void setVideoRecord(String videoRecord) {
+        this.videoRecord = videoRecord;
+    }
+
+    public String getHistoryStartTime() {
+        return historyStartTime;
+    }
+
+    public void setHistoryStartTime(String historyStartTime) {
+        this.historyStartTime = historyStartTime;
+    }
+
 }

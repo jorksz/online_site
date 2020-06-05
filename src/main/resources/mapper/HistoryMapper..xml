@@ -9,6 +9,8 @@
          insert into history(user_id, video_id) values (#{userId},
         #{videoId})
     </insert>
-
+    <delete id="deleteHistory">
+        delete from history where history_id=#{historyId}
+    </delete>
 
 </mapper>

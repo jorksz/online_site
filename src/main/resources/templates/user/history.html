@@ -77,30 +77,31 @@
     </div>
 </div>
 
-<div class="video">
-    <div class="video_line_day">
-        2020-4-10 13：40
+<div class="video" th:each="videoCollectionTypeVO:  ${historyList.getList()}">
+    <div style=" margin-top:4%;margin-left: 7%;color: #f71752;font-size: large;">
+        <span th:text="${videoCollectionTypeVO.historyStartTime}">2020-05-31 18:23:33
+        </span>
     </div>
     <div class="video_show">
-        <a href="#"><img width="200px" height="120px" src="../../static/image/video/bg/java4.png" th:src="@{/image/video/bg/java4.png}"></a>
+        <a href="#"><img width="200px" height="120px" th:data-videoId="${videoCollectionTypeVO.videoId}"  onclick="toVideo(this.getAttribute('data-videoId'))" src="../../static/image/video/bg/java4.png" th:src="@{${videoCollectionTypeVO.videoPicture}}"></a>
     </div>
     <div class="progress" style="width: 15.5%;margin-left: 22%">
-        <div class="progress-bar bg-danger" style="width:70%">70%</div>
+        <div class="progress-bar bg-danger" style="width:70%"><span>70%</span></div>
     </div>
     <div style="margin-left: 40%;margin-top: -10%">
-        <a href="#">
+        <a href="#" th:data-videoId="${videoCollectionTypeVO.videoId}"  onclick="toVideo(this.getAttribute('data-videoId'))" th:text="${videoCollectionTypeVO.videoName}">
             Mybatis缓存详解
         </a>
     </div>
     <div style="margin-left: 40%; margin-top: 5%">
-        <span class="fa fa-television" style="color: rgb(149, 121, 0);">&nbsp;看到03:41</span>
+        <span class="fa fa-television" style="color: rgb(149, 121, 0);" th:text="|看到${videoCollectionTypeVO.videoRecord}|">&nbsp;看到03:41</span>
     </div>
     <div style="margin-left: 60%;margin-top: -2%">
-        <a ref="#" style="color: #5dc2f1">ali</a> &nbsp;|&nbsp;<span>Java</span>
+        <a ref="#" style="color: #5dc2f1" th:text="${videoCollectionTypeVO.uploadUser}">ali</a> &nbsp;|&nbsp;<span th:text="${videoCollectionTypeVO.videoType}">Java</span>
     </div>
     <div style="margin-left: 85%;margin-top: -6%">
         <a class="btn" href="#">
-            <i class="fa fa-trash-o fa-lg"></i></a>
+            <i class="fa fa-trash-o fa-lg" th:data-collectionId="${videoCollectionTypeVO.historyId}"  onclick="deleteFunc(this.getAttribute('data-collectionId'),this)"></i></a>
     </div>
     <div style="margin-left:5%;">
         <HR style="width: 50%"/>
@@ -113,4 +114,30 @@
     <p>在线学习网站</p>
 </div>
 </body>
+<script>
+    function deleteFunc(param, nowtr){
+        if (window.confirm("是否删除历史记录?")){
+            var $this = $(nowtr).parent().parent().parent();
+            $.ajax({
+                type: "post",
+                url: "/history/delete/"+param,
+                success: function (data) {
+                    if (data == true){
+                        $this.remove();
+                    }
+                    else {
+                        swal("删除失败，请重试!")
+                    }
+                }
+            });
+        }
+    }
+    function funcp(){
+        $(location).attr('href', '/view/user/usmg');
+    }
+
+    function toVideo(param) {
+        $(location).attr('href', '/view/video/play/'+param);
+    }
+</script>
 </html>

@@ -45,9 +45,14 @@ public class ViewUserController {
     }
 
     @RequestMapping("/user/history")
-    public String history(Model model, HttpSession session){
+    public String history(Model model, HttpSession session, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
         User user  = (User) session.getAttribute("user");
         model.addAttribute("user",user);
+        Integer userId = user.getId();
+        PageHelper.startPage(pageNo,pageSize);
+        Page<VideoCollectionTypeVO> page = videoCollectionTypeVOService.listVideoHistory(userId);
+        PageInfo<VideoCollectionTypeVO> pageInfo = new PageInfo<>(page);
+        model.addAttribute("historyList",pageInfo);
         return "/user/history";
     }
 

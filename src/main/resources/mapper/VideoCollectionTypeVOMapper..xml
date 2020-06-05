@@ -14,6 +14,9 @@
         <result column="user_id" property="collectionUserId"/>
         <result column="collection_id" property="videoCollectionId"/>
         <result column="collection_time" property="videoCollectionTime"/>
+        <result column="user_id" property="historyUserId"/>
+        <result column="history_id" property="historyId"/>
+        <result column="start_time" property="historyStartTime"/>
 
     </resultMap>
     <select id="listVideoCollectionTypeVOByType" resultMap="videoCollectionTypeVO">
@@ -55,5 +58,14 @@
          where video.type_id = video_type.id
          and video.id=video_collection.video_id
           and video_collection.user_id=#{collectionUserId}
+    </select>
+
+    <select id="listVideoHistory" resultMap="videoCollectionTypeVO">
+     select a.id,a.video_name,a.picture,a.user_name,b.type_name,
+     c.history_id,c.video_record,c.start_time
+     from video a,video_type b, history c
+     where a.type_id=b.id
+     and a.id=c.video_id
+     and c.user_id=#{historyUserId}
     </select>
 </mapper>

@@ -2,17 +2,17 @@ package com.online.site.start.entity;
 
 public class History {
 
-    private Integer id;
+    private Integer historyId;
     private Integer userId;
     private Integer videoId;
     private String startTime;
 
     public Integer getId() {
-        return id;
+        return historyId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer historyId) {
+        this.historyId = historyId;
     }
 
     public Integer getUserId() {

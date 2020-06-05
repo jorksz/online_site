@@ -39,4 +39,11 @@ public interface VideoCollectionTypeVOService {
      * @return
      */
     Page<VideoCollectionTypeVO> listVideoConllection(Integer userId);
+
+    /**
+     * 查询历史记录
+     * @param historyUserId
+     * @return
+     */
+    Page<VideoCollectionTypeVO> listVideoHistory(Integer historyUserId);
 }
